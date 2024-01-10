@@ -6,17 +6,17 @@ import ProtectedRoute from "./utils/ProtectedRoute";
 
 function App() {
   return (
-
     <div>
       {/* <Header/>  */}
       <Routes>
-      <Route path="/" element={<Login />} />
-      {
-        routes.map((item, i)=>(
-          <Route path={"/dashboard/" + item.name.toLowerCase()} element={<ProtectedRoute>{item.component}</ProtectedRoute>} / >
-        ))
-      }
-    </Routes>
+        <Route path="/" element={<Login />} />
+        {routes.map((item, i) => (
+          <Route
+            path={"/admin/" + item.name.toLowerCase()}
+            element={<ProtectedRoute>{item.component}</ProtectedRoute>}
+          />
+        ))}
+      </Routes>
     </div>
   );
 }

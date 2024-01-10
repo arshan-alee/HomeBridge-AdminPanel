@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const LoginRightSide = () => {
+  const navigate = useNavigate();
   return (
     <div
       className="flex items-center justify-center w-full md:w-[40%]"
@@ -36,7 +37,10 @@ const LoginRightSide = () => {
             />
           </div>
         </div>
-        <button className="w-full bg-[#111C44] text-white py-3 rounded-full mt-6 focus:outline-none focus:shadow-outline">
+        <button
+          className="w-full bg-[#111C44] text-white py-3 rounded-full mt-6 focus:outline-none focus:shadow-outline"
+          onClick={() => navigate("/admin/dashboard")}
+        >
           Login
         </button>
         <Link to="/forgot-password">
