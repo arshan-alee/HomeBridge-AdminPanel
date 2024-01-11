@@ -4,6 +4,7 @@ import Event from "../pages/Event";
 import FTOR from "../pages/FTOR";
 import Inquiry from "../pages/Inquiry";
 import JobAndHouse from "../pages/JobAndHouse";
+import MemberDetails from "../pages/MemberDetails";
 import Membership from "../pages/Membership";
 import Payment from "../pages/Payment";
 
@@ -54,9 +55,15 @@ export const routes = [
 
 export const editRoutes = [
   {
-    title: "Add member",
+    title: "Add Member",
     name: "addmember",
     // icon: "/images/home.png",
     component: <AddMember />,
+  },
+  {
+    title: "Edit Member",
+    name: "memberdetails",
+    // icon: "/images/home.png",
+    component: <MemberDetails />,
   },
 ];
