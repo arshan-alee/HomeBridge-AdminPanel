@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
 import Header from "./components/Shared/Header";
-import { routes } from "./utils/Routes";
+import { editRoutes, routes } from "./utils/Routes";
 import ProtectedRoute from "./utils/ProtectedRoute";
 
 function App() {
@@ -11,6 +11,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         {routes.map((item, i) => (
+          <Route
+            path={"/admin/" + item.name.toLowerCase()}
+            element={<ProtectedRoute>{item.component}</ProtectedRoute>}
+          />
+        ))}
+
+        {editRoutes.map((item, i) => (
           <Route
             path={"/admin/" + item.name.toLowerCase()}
             element={<ProtectedRoute>{item.component}</ProtectedRoute>}

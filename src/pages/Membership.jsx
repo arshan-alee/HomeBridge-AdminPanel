@@ -4,9 +4,11 @@ import SearchBar from "../components/Shared/SearchBar";
 import { membershipData } from "../utils/data";
 import Pagination from "../components/Shared/Pagination";
 import usePagination from "../utils/usePagination";
+import { useNavigate } from "react-router";
 
 const Membership = () => {
   const paginate = usePagination();
+  const navigate = useNavigate();
 
   const { currentPage, totalPages, visibleItems, goToPage } =
     paginate(membershipData);
@@ -17,6 +19,7 @@ const Membership = () => {
 
   const handleNavigation = () => {
     console.log("Add member function called");
+    navigate("/admin/" + "addmember");
   };
 
   return (

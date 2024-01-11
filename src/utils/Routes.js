@@ -1,3 +1,4 @@
+import AddMember from "../pages/AddMember";
 import Dashboard from "../pages/Dashboard";
 import Event from "../pages/Event";
 import FTOR from "../pages/FTOR";
@@ -48,5 +49,14 @@ export const routes = [
     name: "inquiry",
     icon: "/images/info_outline.png",
     component: <Inquiry />,
+  },
+];
+
+export const editRoutes = [
+  {
+    title: "Add member",
+    name: "addmember",
+    // icon: "/images/home.png",
+    component: <AddMember />,
   },
 ];
