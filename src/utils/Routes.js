@@ -1,7 +1,8 @@
 import AddMember from "../pages/AddMember";
 import Dashboard from "../pages/Dashboard";
 import Event from "../pages/Event";
-import FTOR from "../pages/FTOR";
+import F2RSupportList from "../pages/F2RSupportList";
+import FTOR from "../pages/F2R";
 import Inquiry from "../pages/Inquiry";
 import JobAndHouse from "../pages/JobAndHouse";
 import MemberDetails from "../pages/MemberDetails";
@@ -23,7 +24,7 @@ export const routes = [
   },
   {
     title: "F-2-R",
-    name: "f-2-r",
+    name: "f_2_r",
     icon: "/images/F2R.png",
     component: <FTOR />,
   },
@@ -62,7 +63,11 @@ export const editRoutes = [
   {
     title: "Edit Member",
     name: "memberdetails",
-    // icon: "/images/home.png",
     component: <MemberDetails />,
+  },
+  {
+    title: "F-2-R Support List",
+    name: "f_2_r_support_list",
+    component: <F2RSupportList />,
   },
 ];

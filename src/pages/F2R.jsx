@@ -6,7 +6,7 @@ import Pagination from "../components/Shared/Pagination";
 import usePagination from "../utils/usePagination";
 import { useNavigate } from "react-router";
 
-const FTOR = () => {
+const F2R = () => {
   const paginate = usePagination();
   const navigate = useNavigate();
 
@@ -102,7 +102,11 @@ const FTOR = () => {
               </thead>
               <tbody className="relative overflow-auto">
                 {visibleItems.map((row, index) => (
-                  <tr key={index}>
+                  <tr
+                    className="cursor-pointer"
+                    key={index}
+                    onClick={() => navigate("/admin/f_2_r_support_list")}
+                  >
                     <td className="px-7 py-5  bg-[#111C44] text-sm">
                       <p className="text-white whitespace-no-wrap">{row.id}</p>
                     </td>
@@ -154,4 +158,4 @@ const FTOR = () => {
   );
 };
 
-export default FTOR;
+export default F2R;
