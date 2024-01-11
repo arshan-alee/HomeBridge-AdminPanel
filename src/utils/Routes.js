@@ -8,6 +8,7 @@ import JobAndHouse from "../pages/JobAndHouse";
 import MemberDetails from "../pages/MemberDetails";
 import Membership from "../pages/Membership";
 import Payment from "../pages/Payment";
+import InquiryDetails from "../pages/InquiryDetails";
 
 export const routes = [
   {
@@ -64,6 +65,11 @@ export const editRoutes = [
     title: "Edit Member",
     name: "member_details",
     component: <MemberDetails />,
+  },
+  {
+    title: "Inquiry Details",
+    name: "inquiry_details",
+    component: <InquiryDetails />,
   },
   {
     title: "F-2-R Support List",
