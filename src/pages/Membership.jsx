@@ -19,7 +19,7 @@ const Membership = () => {
 
   const handleNavigation = () => {
     console.log("Add member function called");
-    navigate("/admin/" + "addmember");
+    navigate("/admin/" + "add_member");
   };
 
   return (
@@ -94,7 +94,7 @@ const Membership = () => {
                     key={index}
                     className="cursor-pointer"
                     onClick={() => {
-                      navigate("/admin/" + "memberdetails");
+                      navigate("/admin/" + "member_details");
                     }}
                   >
                     <td className="px-7 py-5  bg-[#111C44] text-sm">

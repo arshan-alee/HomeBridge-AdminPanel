@@ -57,12 +57,12 @@ export const routes = [
 export const editRoutes = [
   {
     title: "Add Member",
-    name: "addmember",
+    name: "add_member",
     component: <AddMember />,
   },
   {
     title: "Edit Member",
-    name: "memberdetails",
+    name: "member_details",
     component: <MemberDetails />,
   },
   {
