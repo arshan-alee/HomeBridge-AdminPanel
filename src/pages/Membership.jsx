@@ -89,7 +89,7 @@ const Membership = () => {
                 </tr>
               </thead>
               <tbody className="relative overflow-auto">
-                {membershipData.map((row, index) => (
+                {visibleItems.map((row, index) => (
                   <tr key={index}>
                     <td className="px-7 py-5  bg-[#111C44] text-sm">
                       <p className="text-white whitespace-no-wrap">{row.id}</p>

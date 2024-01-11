@@ -10,8 +10,7 @@ const FTOR = () => {
   const paginate = usePagination();
   const navigate = useNavigate();
 
-  const { currentPage, totalPages, visibleItems, goToPage } =
-    paginate(membershipData);
+  const { currentPage, totalPages, visibleItems, goToPage } = paginate(f2rData);
 
   const handleDownloadInExcel = () => {
     console.log("handleDownloadInExcel function called");
@@ -102,7 +101,7 @@ const FTOR = () => {
                 </tr>
               </thead>
               <tbody className="relative overflow-auto">
-                {f2rData.map((row, index) => (
+                {visibleItems.map((row, index) => (
                   <tr key={index}>
                     <td className="px-7 py-5  bg-[#111C44] text-sm">
                       <p className="text-white whitespace-no-wrap">{row.id}</p>
