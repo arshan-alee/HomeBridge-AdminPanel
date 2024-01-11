@@ -10,7 +10,7 @@ const ProtectedRoute = (props) => {
       {isLoggedIn ? (
         <div className=" h-screen  w-full  ">
           <Header />
-          <div className="flex h-[90%]">
+          <div className="flex h-[88%]">
             <Sidebar />
             <div className="w-[80%] overflow-y-auto">{props.children}</div>
           </div>
