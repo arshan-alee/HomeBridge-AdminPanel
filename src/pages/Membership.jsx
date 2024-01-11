@@ -37,7 +37,7 @@ const Membership = () => {
 
       {/* Body */}
       <div className="bg-[#111C44] rounded-tl-[20px] rounded-tr-[10px] rounded-br-[2px] rounded-bl-0">
-        <p className="px-7 py-5 text-left text-2xl font-bold text-white uppercase tracking-wider">
+        <p className="px-7 py-4 text-left text-2xl font-bold text-white uppercase tracking-wider">
           회원관리
         </p>
       </div>
@@ -45,7 +45,7 @@ const Membership = () => {
       <div className="min-w-full bg-[#111C44] rounded-b-3xl  text-white shadow-md overflow-hidden ">
         <div className="min-w-full bg-[#111C44] rounded-b-3xl text-white shadow-md overflow-hidden">
           <div
-            className="overflow-y-auto h-[53vh] custom-scrollbar"
+            className="overflow-y-auto h-[55vh] custom-scrollbar"
             // style={{ maxHeight: "60vh" }}
           >
             <table className="min-w-full leading-normal">
@@ -89,7 +89,7 @@ const Membership = () => {
                 </tr>
               </thead>
               <tbody className="relative overflow-auto">
-                {membershipData.map((row, index) => (
+                {visibleItems.map((row, index) => (
                   <tr
                     key={index}
                     className="cursor-pointer"

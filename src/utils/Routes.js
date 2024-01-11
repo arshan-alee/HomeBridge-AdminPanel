@@ -57,7 +57,6 @@ export const editRoutes = [
   {
     title: "Add Member",
     name: "addmember",
-    // icon: "/images/home.png",
     component: <AddMember />,
   },
   {
