@@ -1,5 +1,7 @@
 import React from "react";
 import InputContainer from "./InputContainer";
+import Textarea from "./Textarea";
+import UploadInput from "./UploadInput";
 
 const AddSchedule = ({ removeSchedule }) => {
   return (
@@ -24,6 +26,18 @@ const AddSchedule = ({ removeSchedule }) => {
           text="일정 소개"
           placeholder="2023.12.30(토)-서울/전주/순천/광양"
         />
+      </div>
+
+      {/* Add Day Schedule */}
+
+      <div className="grid items-end grid-cols-4 gap-8 px-10 mt-7">
+        <div className="col-span-1 text-[#fff] flex flex-col gap-10">
+          <InputContainer text="상세일정" placeholder="서울" />
+          <UploadInput />
+        </div>
+        <div className="col-span-3">
+          <Textarea text="" placeholder="" height="300px" rounded="10px" />
+        </div>
       </div>
 
       {/* Schdeule Button */}
