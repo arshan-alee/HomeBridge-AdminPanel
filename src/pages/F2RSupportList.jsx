@@ -40,7 +40,12 @@ const F2RSupportList = () => {
             </div>
 
             <div className="grid py-6 px-10 text-white">
-              <Textarea text="메시지" placeholder="hello" height="200px" />
+              <Textarea
+                text="메시지"
+                placeholder="hello"
+                height="200px"
+                rounded="50px"
+              />
             </div>
           </div>
         </div>
