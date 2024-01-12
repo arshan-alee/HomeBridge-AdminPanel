@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaCaretDown } from "react-icons/fa";
 import { IoCheckmark } from "react-icons/io5";
 import BarChart from "../components/Shared/BarChart";
+import LineChart from "../components/Shared/LineChart";
 
 const Dashboard = () => {
   return (
@@ -149,6 +150,7 @@ const Dashboard = () => {
               </span>
             </div>
           </div>
+          <LineChart />
         </div>
       </div>
 

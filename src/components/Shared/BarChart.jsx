@@ -4,14 +4,9 @@ import ApexCharts from "react-apexcharts";
 const options = {
   colors: ["#7551FF", "#80CAEE"],
   chart: {
-    // events: {
-    //   beforeMount: (chart) => {
-    //     chart.windowResizeHandler();
-    //   },
-    // },
-    fontFamily: "Satoshi, sans-serif",
+    // fontFamily: "Satoshi, sans-serif",
     type: "bar",
-    // height: 335,
+    height: "100%",
     stacked: true,
     toolbar: {
       show: false,
@@ -60,9 +55,24 @@ const options = {
   },
 
   yaxis: {
+    show: false,
     labels: {
       style: {
         colors: "#fff", // Change the color of y-axis labels to white
+      },
+    },
+  },
+
+  grid: {
+    xaxis: {
+      lines: {
+        show: false,
+      },
+    },
+
+    yaxis: {
+      lines: {
+        show: false,
       },
     },
   },

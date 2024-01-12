@@ -11,7 +11,7 @@
 }
 
 body {
-  font-family: "DM Sans", sans-serif;
+  font-family: "DM Sans", sans-serif !important;
 }
 
 /* Add this CSS to your global stylesheet (e.g., App.css) */
