@@ -236,8 +236,128 @@ export const f2rData = [
     phoneNumber: "010-1111-1111",
     date: "2023.11.04",
   },
-  
 ];
+
+export const eventData = [
+  {
+    id: "H12345",
+    event: "[New year's sunrise] Yeosu ",
+    name: "Kim",
+    phoneNumber: "010-1111-1111",
+    email: "test@gmail.com",
+
+    date: "2023.11.04",
+  },
+  {
+    id: "H12345",
+    event: "[New year's sunrise] Yeosu ",
+    name: "Kim",
+    phoneNumber: "010-1111-1111",
+    email: "test@gmail.com",
+
+    date: "2023.11.04",
+  },
+  {
+    id: "H12345",
+    event: "[New year's sunrise] Yeosu ",
+    name: "Kim",
+    phoneNumber: "010-1111-1111",
+    email: "test@gmail.com",
+
+    date: "2023.11.04",
+  },
+  {
+    id: "H12345",
+    event: "[New year's sunrise] Yeosu ",
+    name: "Kim",
+    phoneNumber: "010-1111-1111",
+    email: "test@gmail.com",
+
+    date: "2023.11.04",
+  },
+  {
+    id: "H12345",
+    event: "[New year's sunrise] Yeosu ",
+    name: "Kim",
+    phoneNumber: "010-1111-1111",
+    email: "test@gmail.com",
+
+    date: "2023.11.04",
+  },
+  {
+    id: "H12345",
+    event: "[New year's sunrise] Yeosu ",
+    name: "Kim",
+    phoneNumber: "010-1111-1111",
+    email: "test@gmail.com",
+
+    date: "2023.11.04",
+  },
+  {
+    id: "H12345",
+    event: "[New year's sunrise] Yeosu ",
+    name: "Kim",
+    phoneNumber: "010-1111-1111",
+    email: "test@gmail.com",
+
+    date: "2023.11.04",
+  },
+  {
+    id: "H12345",
+    event: "[New year's sunrise] Yeosu ",
+    name: "Kim",
+    phoneNumber: "010-1111-1111",
+    email: "test@gmail.com",
+
+    date: "2023.11.04",
+  },
+  {
+    id: "H12345",
+    event: "[New year's sunrise] Yeosu ",
+    name: "Kim",
+    phoneNumber: "010-1111-1111",
+    email: "test@gmail.com",
+
+    date: "2023.11.04",
+  },
+  {
+    id: "H12345",
+    event: "[New year's sunrise] Yeosu ",
+    name: "Kim",
+    phoneNumber: "010-1111-1111",
+    email: "test@gmail.com",
+
+    date: "2023.11.04",
+  },
+  {
+    id: "H12345",
+    event: "[New year's sunrise] Yeosu ",
+    name: "Kim",
+    phoneNumber: "010-1111-1111",
+    email: "test@gmail.com",
+
+    date: "2023.11.04",
+  },
+  {
+    id: "H12345",
+    event: "[New year's sunrise] Yeosu ",
+    name: "Kim",
+    phoneNumber: "010-1111-1111",
+    email: "test@gmail.com",
+
+    date: "2023.11.04",
+  },
+  {
+    id: "H12345",
+    event: "[New year's sunrise] Yeosu ",
+    name: "Kim",
+    phoneNumber: "010-1111-1111",
+    email: "test@gmail.com",
+
+    date: "2023.11.04",
+  },
+];
+
 export const paymentData = [
   {
     id: "H12345",

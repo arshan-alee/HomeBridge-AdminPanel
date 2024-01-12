@@ -9,6 +9,8 @@ import MemberDetails from "../pages/MemberDetails";
 import Membership from "../pages/Membership";
 import Payment from "../pages/Payment";
 import InquiryDetails from "../pages/InquiryDetails";
+import EventRegistration from "../pages/EventRegistration";
+import EventDetails from "../pages/EventDetails";
 
 export const routes = [
   {
@@ -75,5 +77,15 @@ export const editRoutes = [
     title: "F-2-R Support List",
     name: "f_2_r_support_list",
     component: <F2RSupportList />,
+  },
+  {
+    title: "Event Details",
+    name: "event_details",
+    component: <EventDetails />,
+  },
+  {
+    title: "Event Registration",
+    name: "event_resgistration",
+    component: <EventRegistration />,
   },
 ];
