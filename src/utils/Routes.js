@@ -11,6 +11,7 @@ import InquiryDetails from "../pages/InquiryDetails";
 import EventRegistration from "../pages/EventRegistration";
 import EventApplicationList from "../pages/EventApplicationList";
 import EventApplicationDetails from "../pages/EventApplicationDetails";
+import PaymentDetails from "../pages/PaymentDetails";
 
 export const routes = [
   {
@@ -67,6 +68,11 @@ export const editRoutes = [
     title: "Edit Member",
     name: "member_details",
     component: <MemberDetails />,
+  },
+  {
+    title: "Edit Payment",
+    name: "payment_details",
+    component: <PaymentDetails />,
   },
   {
     title: "Inquiry Details",
