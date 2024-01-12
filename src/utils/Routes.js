@@ -14,6 +14,7 @@ import PaymentDetails from "../pages/PaymentDetails";
 import EventList from "../pages/EventList";
 import Job_House_Announcement from "../pages/Job_House_Announcement";
 import Job_House_Support from "../pages/Job_House_Support";
+import JobAndHouseSupportDetails from "../pages/JobAndHouseSupportDetails";
 
 export const routes = [
   {
@@ -107,5 +108,10 @@ export const editRoutes = [
     title: "Event Registration",
     name: "event_resgistration",
     component: <EventRegistration />,
+  },
+  {
+    title: "Inquiry Details",
+    name: "job_and_house_support_details",
+    component: <JobAndHouseSupportDetails />,
   },
 ];
