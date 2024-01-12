@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaCaretDown } from "react-icons/fa";
+import { IoCheckmark } from "react-icons/io5";
+import BarChart from "../components/Shared/BarChart";
 
 const Dashboard = () => {
   return (
@@ -7,7 +9,7 @@ const Dashboard = () => {
       {/* 1st Row */}
       <div className=" gap-3 w-full grid grid-cols-6">
         {/* Left */}
-        <div className="col-span-4 rounded-[20px] bg-[#111C44] py-10 px-12">
+        <div className="col-span-4 rounded-[20px] bg-[#111C44] pt-10 pb-3 px-12">
           <div className="flex justify-between items-center">
             <p className="text-[#A3AED0] font-medium text-[14px]">회원수</p>
             <div className="relative cursor-pointer z-20 inline-block">
@@ -28,6 +30,8 @@ const Dashboard = () => {
           <h1 className="text-[34px] text-[#fff] font-bold mb-3">
             2.579 <span className="text-[#A3AED0] text-[14px]">유저</span>
           </h1>
+
+          <BarChart />
         </div>
         {/* Right */}
         <div className="col-span-2 rounded-[20px] bg-[#111C44] py-7 px-8">
@@ -103,9 +107,34 @@ const Dashboard = () => {
         </div>
 
         {/* Right */}
-        <div className="col-span-4 rounded-[20px] bg-[#111C44] py-10 px-12">
-          <div className="flex justify-between items-center">
-            <p className="text-[#A3AED0] font-medium text-[14px]">회원수</p>
+        <div className="col-span-4 rounded-[20px] bg-[#111C44] pt-10 pb-3 px-12">
+          <div className="flex justify-between items-start">
+            <div className="flex flex-col gap-2">
+              <div className="flex justify-start items-center gap-3">
+                <span className="p-[2px] flex justify-center items-center text-[#fff] rounded-full bg-[#7551FF]">
+                  <IoCheckmark className="text-[18px] font-bold" />
+                </span>{" "}
+                <span className="text-[#7551FF] font-bold text-[18px]">
+                  F-2-R 신청자
+                </span>
+              </div>
+              <div className="flex justify-start items-center gap-3">
+                <span className="p-[2px] flex justify-center items-center text-[#fff] rounded-full bg-[#EF39FF]">
+                  <IoCheckmark className="text-[18px] font-bold" />
+                </span>{" "}
+                <span className="text-[#EF39FF] font-bold text-[18px]">
+                  Job&House
+                </span>
+              </div>
+              <div className="flex justify-start items-center gap-3">
+                <span className="p-[2px] flex justify-center items-center text-[#fff] rounded-full bg-[#39B8FF]">
+                  <IoCheckmark className="text-[18px] font-bold" />
+                </span>{" "}
+                <span className="text-[#39B8FF] font-bold text-[18px]">
+                  Event
+                </span>
+              </div>
+            </div>
             <div className="relative cursor-pointer z-20 inline-block">
               <select
                 name=""
@@ -120,10 +149,6 @@ const Dashboard = () => {
               </span>
             </div>
           </div>
-
-          <h1 className="text-[34px] text-[#fff] font-bold mb-3">
-            2.579 <span className="text-[#A3AED0] text-[14px]">유저</span>
-          </h1>
         </div>
       </div>
 
