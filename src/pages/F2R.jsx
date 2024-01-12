@@ -43,7 +43,7 @@ const F2R = () => {
       <div className="min-w-full bg-[#111C44] rounded-b-3xl  text-white shadow-md overflow-hidden ">
         <div className="min-w-full bg-[#111C44] rounded-b-3xl text-white shadow-md overflow-hidden">
           <div
-            className="overflow-y-auto h-[55vh] custom-scrollbar"
+            className="overflow-y-auto h-[57vh] custom-scrollbar"
             // style={{ maxHeight: "60vh" }}
           >
             <table className="min-w-full leading-normal">
@@ -103,39 +103,39 @@ const F2R = () => {
               <tbody className="relative overflow-auto">
                 {visibleItems.map((row, index) => (
                   <tr
-                    className="cursor-pointer"
+                    className="cursor-pointer bg-[#111C44] hover:bg-[#0c1845] duration-300"
                     key={index}
                     onClick={() => navigate("/admin/f_2_r_support_list")}
                   >
-                    <td className="px-7 py-5  bg-[#111C44] text-sm">
+                    <td className="px-7 py-5   text-sm">
                       <p className="text-white whitespace-no-wrap">{row.id}</p>
                     </td>
-                    <td className="px-7 py-5  bg-[#111C44] text-sm">
+                    <td className="px-7 py-5   text-sm">
                       <p className="text-white whitespace-no-wrap">
                         {row.name}
                       </p>
                     </td>
-                    <td className="px-7 py-5  bg-[#111C44] text-sm">
+                    <td className="px-7 py-5   text-sm">
                       <p className="text-white whitespace-no-wrap">
                         {row.gender}
                       </p>
                     </td>
-                    <td className="px-7 py-5  bg-[#111C44] text-sm">
+                    <td className="px-7 py-5   text-sm">
                       <p className="text-white whitespace-no-wrap">
                         {row.nationality}
                       </p>
                     </td>
-                    <td className="px-7 py-5  bg-[#111C44] text-sm">
+                    <td className="px-7 py-5   text-sm">
                       <p className="text-white whitespace-no-wrap">
                         {row.currentResidence}
                       </p>
                     </td>
-                    <td className="px-7 py-5  bg-[#111C44] text-sm">
+                    <td className="px-7 py-5   text-sm">
                       <p className="text-white whitespace-no-wrap">
                         {row.phoneNumber}
                       </p>
                     </td>
-                    <td className="px-7 py-5  bg-[#111C44] text-sm">
+                    <td className="px-7 py-5   text-sm">
                       <p className="text-white whitespace-no-wrap">
                         {row.date}
                       </p>

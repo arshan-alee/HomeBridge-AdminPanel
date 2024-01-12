@@ -39,7 +39,7 @@ const Inquiry = () => {
       <div className="min-w-full bg-[#111C44] rounded-b-3xl  text-white shadow-md overflow-hidden ">
         <div className="min-w-full bg-[#111C44] rounded-b-3xl text-white shadow-md overflow-hidden">
           <div
-            className="overflow-y-auto h-[55vh] custom-scrollbar"
+            className="overflow-y-auto h-[57vh] custom-scrollbar"
             // style={{ maxHeight: "60vh" }}
           >
             <table className="min-w-full leading-normal">
@@ -94,37 +94,37 @@ const Inquiry = () => {
                 {visibleItems.map((row, index) => (
                   <tr
                     key={index}
-                    className="cursor-pointer"
+                    className="cursor-pointer bg-[#111C44] hover:bg-[#0c1845] duration-300"
                     onClick={() => {
                       navigate("/admin/" + "inquiry_details");
                     }}
                   >
-                    <td className="px-7 py-5  bg-[#111C44] text-sm">
+                    <td className="px-7 py-5   text-sm">
                       <p className="text-white whitespace-no-wrap">
                         {row.firstName}
                       </p>
                     </td>
-                    <td className="px-7 py-5  bg-[#111C44] text-sm">
+                    <td className="px-7 py-5   text-sm">
                       <p className="text-white whitespace-no-wrap">
                         {row.lastName}
                       </p>
                     </td>
-                    <td className="px-7 py-5  bg-[#111C44] text-sm">
+                    <td className="px-7 py-5   text-sm">
                       <p className="text-white whitespace-no-wrap">
                         {row.phoneNumber}
                       </p>
                     </td>
-                    <td className="px-7 py-5  bg-[#111C44] text-sm">
+                    <td className="px-7 py-5   text-sm">
                       <p className="text-white whitespace-no-wrap">
                         {row.email}
                       </p>
                     </td>
-                    <td className="px-7 py-5  bg-[#111C44] text-sm">
+                    <td className="px-7 py-5   text-sm">
                       <p className="text-white whitespace-no-wrap">
                         {row.message}
                       </p>
                     </td>
-                    <td className="px-7 py-5  bg-[#111C44] text-sm">
+                    <td className="px-7 py-5   text-sm">
                       <p className="text-white whitespace-no-wrap">
                         {row.applicationDate}
                       </p>

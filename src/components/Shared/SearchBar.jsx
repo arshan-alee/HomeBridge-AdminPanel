@@ -25,7 +25,7 @@ const SearchBar = () => {
 
       <button type="submit" className="absolute ml-5">
         <img
-          src="/images/search.png"
+          src="/images/Search.png"
           alt="Search"
           className="pt-[1px] w-[15px]"
         />
