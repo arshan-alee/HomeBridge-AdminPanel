@@ -1,7 +1,7 @@
 import { IoChevronDownSharp } from "react-icons/io5";
 import TabbarButton from "../components/Shared/TabbarButton";
 import SearchBar from "../components/Shared/SearchBar";
-import { jobAndHouse } from "../utils/data";
+import { jobAndHouse_AnnouncementList } from "../utils/data";
 import Pagination from "../components/Shared/Pagination";
 import usePagination from "../utils/usePagination";
 import { useNavigate } from "react-router";
@@ -11,14 +11,13 @@ const Job_House_Announcement = () => {
   const paginate = usePagination();
   const navigate = useNavigate();
 
-  const { currentPage, totalPages, visibleItems, goToPage } =
-    paginate(jobAndHouse);
+  const { currentPage, totalPages, visibleItems, goToPage } = paginate(
+    jobAndHouse_AnnouncementList
+  );
 
   const handleDownloadInExcel = () => {
     console.log("handleDownloadInExcel function called");
   };
-
-  const memebership_level = ["일반회원", "일반회원", "일반회원", "일반회원"];
 
   return (
     <div className="w-full pt-4 px-12">
@@ -30,8 +29,18 @@ const Job_House_Announcement = () => {
           <TabbarButton text="공고등록" onClick={handleDownloadInExcel} />
         </div>
         <div className="w-[60%] flex flex-row justify-end gap-3">
-          {/* Announcement list */}
-          <SelectPurpleInputContainer dropDownArray={memebership_level} />
+          <SelectPurpleInputContainer
+            dropDownArray={[
+              {
+                text: "지원리스트",
+                route: "/admin/job_house_support",
+              },
+              {
+                text: "공고리스트",
+                route: "/admin/job_house_announcement",
+              },
+            ]}
+          />
 
           <SearchBar />
         </div>
@@ -40,7 +49,7 @@ const Job_House_Announcement = () => {
       {/* Body */}
       <div className="bg-[#111C44] rounded-tl-[20px] rounded-tr-[10px] rounded-br-[2px] rounded-bl-0">
         <p className="px-7 py-4 text-left text-2xl font-bold text-white uppercase tracking-wider">
-          결제 리스트
+          Job&House 공고 리스트
         </p>
       </div>
 
