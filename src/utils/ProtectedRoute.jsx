@@ -12,7 +12,7 @@ const ProtectedRoute = (props) => {
           <div className="h-[11vh]">
             <Header />
           </div>
-          <div className="flex h-[89vh]">
+          <div className="flex h-[88.8vh]">
             <Sidebar />
             <div className="w-[80%] overflow-y-auto">{props.children}</div>
           </div>
