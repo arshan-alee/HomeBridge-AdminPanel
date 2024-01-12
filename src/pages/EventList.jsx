@@ -1,25 +1,25 @@
 import { IoChevronDownSharp } from "react-icons/io5";
 import TabbarButton from "../components/Shared/TabbarButton";
 import SearchBar from "../components/Shared/SearchBar";
-import { eventData } from "../utils/data";
+import { eventData, eventListData } from "../utils/data";
 import Pagination from "../components/Shared/Pagination";
 import usePagination from "../utils/usePagination";
 import { useNavigate } from "react-router";
 import SelectPurpleInputContainer from "../components/Shared/SelectPurpleInputContainer";
 
-const EventApplicationDetails = () => {
+const EventList = () => {
   const paginate = usePagination();
   const navigate = useNavigate();
 
   const { currentPage, totalPages, visibleItems, goToPage } =
-    paginate(eventData);
+    paginate(eventListData);
 
   const handleDownloadInExcel = () => {
     console.log("handleDownloadInExcel function called");
   };
 
   return (
-    <div className="w-full pt-4 px-12">
+    <div className="w-full pt-4 px-6">
       {/* Top bar */}
       <div className="flex flex-row items-center justify-between mb-4">
         <div className="flex gap-3">
@@ -66,42 +66,42 @@ const EventApplicationDetails = () => {
                     scope="col"
                     className="px-7 py-3 border-b-[1px] border-[#ffffff1a] bg-[#111C44] text-left text-sm font-semibold text-[#A3AED0] uppercase tracking-wider"
                   >
-                    회원번호
+                    이벤트명
                     <IoChevronDownSharp className="text-[#A3AED0] ml-2 inline-block text-[18px] cursor-pointer" />
                   </th>
                   <th
                     scope="col"
                     className="px-7 py-3 border-b-[1px] border-[#ffffff1a] bg-[#111C44] text-left text-sm font-semibold text-[#A3AED0] uppercase tracking-wider"
                   >
-                    이벤트
+                    이벤트상품번호
                     <IoChevronDownSharp className="text-[#A3AED0] ml-2 inline-block text-[18px] cursor-pointer" />
                   </th>
                   <th
                     scope="col"
                     className="px-7 py-3 border-b-[1px] border-[#ffffff1a] bg-[#111C44] text-left text-sm font-semibold text-[#A3AED0] uppercase tracking-wider"
                   >
-                    이름
+                    이벤트상품가격
                     <IoChevronDownSharp className="text-[#A3AED0] ml-2 inline-block text-[18px] cursor-pointer" />
                   </th>
                   <th
                     scope="col"
                     className="px-7 py-3 border-b-[1px] border-[#ffffff1a] bg-[#111C44] text-left text-sm font-semibold text-[#A3AED0] uppercase tracking-wider"
                   >
-                    전화번호
+                    마감여부
                     <IoChevronDownSharp className="text-[#A3AED0] ml-2 inline-block text-[18px] cursor-pointer" />
                   </th>
                   <th
                     scope="col"
                     className="px-7 py-3 border-b-[1px] border-[#ffffff1a] bg-[#111C44] text-left text-sm font-semibold text-[#A3AED0] uppercase tracking-wider"
                   >
-                    이메일
+                    신청자수
                     <IoChevronDownSharp className="text-[#A3AED0] ml-2 inline-block text-[18px] cursor-pointer" />
                   </th>
                   <th
                     scope="col"
                     className="px-7 py-3 border-b-[1px] border-[#ffffff1a] bg-[#111C44] text-left text-sm font-semibold text-[#A3AED0] uppercase tracking-wider"
                   >
-                    신청일자
+                    등록일자
                     <IoChevronDownSharp className="text-[#A3AED0] ml-2 inline-block text-[18px] cursor-pointer" />
                   </th>
                 </tr>
@@ -114,26 +114,28 @@ const EventApplicationDetails = () => {
                     onClick={() => navigate("/admin/event_application_details")}
                   >
                     <td className="px-7 py-5   text-sm">
-                      <p className="text-white whitespace-no-wrap">{row.id}</p>
-                    </td>
-                    <td className="px-7 py-5   text-sm">
-                      <p className="text-white whitespace-no-wrap">
-                        {row.event}
-                      </p>
-                    </td>
-                    <td className="px-7 py-5   text-sm">
                       <p className="text-white whitespace-no-wrap">
                         {row.name}
                       </p>
                     </td>
                     <td className="px-7 py-5   text-sm">
                       <p className="text-white whitespace-no-wrap">
-                        {row.phoneNumber}
+                        {row.productNo}
                       </p>
                     </td>
                     <td className="px-7 py-5   text-sm">
                       <p className="text-white whitespace-no-wrap">
-                        {row.email}
+                        {row.productPrice}
+                      </p>
+                    </td>
+                    <td className="px-7 py-5   text-sm">
+                      <p className="text-white whitespace-no-wrap">
+                        {row.deadline}
+                      </p>
+                    </td>
+                    <td className="px-7 py-5   text-sm">
+                      <p className="text-white whitespace-no-wrap">
+                        {row.noOfApplicants}
                       </p>
                     </td>
 
@@ -160,4 +162,4 @@ const EventApplicationDetails = () => {
   );
 };
 
-export default EventApplicationDetails;
+export default EventList;

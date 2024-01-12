@@ -11,6 +11,7 @@ import EventRegistration from "../pages/EventRegistration";
 import EventApplicationList from "../pages/EventApplicationList";
 import EventApplicationDetails from "../pages/EventApplicationDetails";
 import PaymentDetails from "../pages/PaymentDetails";
+import EventList from "../pages/EventList";
 import Job_House_Announcement from "../pages/Job_House_Announcement";
 import Job_House_Support from "../pages/Job_House_Support";
 
@@ -44,6 +45,12 @@ export const routes = [
     name: "job_house_support",
     icon: "/images/Job&House.png",
     component: <Job_House_Support />,
+  },
+  {
+    title: "Event list",
+    name: "event_list",
+    icon: "/images/lock.png",
+    component: <EventList />,
   },
   {
     title: "event",
