@@ -47,7 +47,7 @@ const Sidebar = () => {
 
       <div
         className="flex gap-5 items-center border-solid bottom-2 pl-7 cursor-pointer"
-        onClick={() => handleNavigation("Job&House", "job&house")}
+        onClick={() => handleNavigation("Job&House", "job_house_support")}
       >
         <img src="/images/Job&House.png" className="" />
         <p className="text-white">Job&House</p>

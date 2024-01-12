@@ -3,7 +3,6 @@ import Dashboard from "../pages/Dashboard";
 import F2RSupportList from "../pages/F2RSupportList";
 import FTOR from "../pages/F2R";
 import Inquiry from "../pages/Inquiry";
-import JobAndHouse from "../pages/JobAndHouse";
 import MemberDetails from "../pages/MemberDetails";
 import Membership from "../pages/Membership";
 import Payment from "../pages/Payment";
@@ -13,6 +12,8 @@ import EventApplicationList from "../pages/EventApplicationList";
 import EventApplicationDetails from "../pages/EventApplicationDetails";
 import PaymentDetails from "../pages/PaymentDetails";
 import EventList from "../pages/EventList";
+import Job_House_Announcement from "../pages/Job_House_Announcement";
+import Job_House_Support from "../pages/Job_House_Support";
 
 export const routes = [
   {
@@ -35,9 +36,15 @@ export const routes = [
   },
   {
     title: "Job&House",
-    name: "job&house",
+    name: "job_house_announcement",
     icon: "/images/Job&House.png",
-    component: <JobAndHouse />,
+    component: <Job_House_Announcement />,
+  },
+  {
+    title: "Job&House",
+    name: "job_house_support",
+    icon: "/images/Job&House.png",
+    component: <Job_House_Support />,
   },
   {
     title: "Event list",
