@@ -27,7 +27,7 @@ const AddSchedule = ({ removeSchedule }) => {
       </div>
 
       {/* Schdeule Button */}
-      <button className="bg-[#7551FF] w-[90%] mx-auto rounded-3xl mt-12 flex  justify-center items-center gap-4 text-[32px] text-[#fff] font-bold py-6 ">
+      <button className="bg-[#7551FF] w-[90%] mx-auto rounded-3xl mt-8 flex  justify-center items-center gap-4 text-[32px] text-[#fff] font-bold py-6 ">
         Day1 일정 추가하기
         <img src="/images/add_icon.png" alt="logo" />
       </button>
