@@ -18,7 +18,7 @@ const Inquiry = () => {
   };
 
   return (
-    <div className="w-full pt-4 px-12">
+    <div className="w-full pt-4 px-9">
       {/* Top bar */}
       <div className="flex flex-row items-center justify-between mb-4">
         <div className="flex gap-3">
