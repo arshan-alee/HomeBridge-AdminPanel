@@ -7,7 +7,7 @@ import usePagination from "../utils/usePagination";
 import { useNavigate } from "react-router";
 import SelectPurpleInputContainer from "../components/Shared/SelectPurpleInputContainer";
 
-const JobAndHouse = () => {
+const Job_House_Announcement = () => {
   const paginate = usePagination();
   const navigate = useNavigate();
 
@@ -155,4 +155,4 @@ const JobAndHouse = () => {
   );
 };
 
-export default JobAndHouse;
+export default Job_House_Announcement;
