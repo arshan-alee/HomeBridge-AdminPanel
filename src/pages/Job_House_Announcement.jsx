@@ -26,7 +26,12 @@ const Job_House_Announcement = () => {
         <div className="flex gap-3">
           <TabbarButton text="엑셀다운로드" onClick={handleDownloadInExcel} />
           {/* Announcement Registeration */}
-          <TabbarButton text="공고등록" onClick={handleDownloadInExcel} />
+          <TabbarButton
+            text="공고등록"
+            onClick={() => {
+              navigate("/admin/" + "announcement_resgistration");
+            }}
+          />
         </div>
         <div className="w-[60%] flex flex-row justify-end gap-3">
           <SelectPurpleInputContainer
@@ -113,7 +118,7 @@ const Job_House_Announcement = () => {
                     key={index}
                     className="cursor-pointer bg-[#111C44] hover:bg-[#0c1845] duration-300"
                     // onClick={() => {
-                    //   navigate("/admin/" + "inquiry_details");
+                    //   navigate("/admin/" + "announcement_resgistration");
                     // }}
                   >
                     <td className="px-7 py-5   text-sm">
