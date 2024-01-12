@@ -6,7 +6,7 @@ import Pagination from "../components/Shared/Pagination";
 import usePagination from "../utils/usePagination";
 import { useNavigate } from "react-router";
 
-const Event = () => {
+const EventApplicationDetails = () => {
   const paginate = usePagination();
   const navigate = useNavigate();
 
@@ -98,7 +98,7 @@ const Event = () => {
                   <tr
                     className="cursor-pointer bg-[#111C44] hover:bg-[#0c1845] duration-300"
                     key={index}
-                    onClick={() => navigate("/admin/event_details")}
+                    onClick={() => navigate("/admin/event_application_details")}
                   >
                     <td className="px-7 py-5   text-sm">
                       <p className="text-white whitespace-no-wrap">{row.id}</p>
@@ -147,4 +147,4 @@ const Event = () => {
   );
 };
 
-export default Event;
+export default EventApplicationDetails;

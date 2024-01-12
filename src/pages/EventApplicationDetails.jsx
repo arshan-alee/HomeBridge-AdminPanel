@@ -1,10 +1,9 @@
 import React from "react";
 import InputContainer from "../components/Shared/InputContainer";
 import Button from "../components/Shared/Button";
-import SelectInputContainer from "../components/Shared/SelectInputContainer";
 import Textarea from "../components/Shared/Textarea";
 
-const EventDetails = () => {
+const EventApplicationDetails = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("handleSubmit");
@@ -59,4 +58,4 @@ const EventDetails = () => {
   );
 };
 
-export default EventDetails;
+export default EventApplicationDetails;

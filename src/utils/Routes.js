@@ -1,6 +1,5 @@
 import AddMember from "../pages/AddMember";
 import Dashboard from "../pages/Dashboard";
-import Event from "../pages/Event";
 import F2RSupportList from "../pages/F2RSupportList";
 import FTOR from "../pages/F2R";
 import Inquiry from "../pages/Inquiry";
@@ -10,7 +9,8 @@ import Membership from "../pages/Membership";
 import Payment from "../pages/Payment";
 import InquiryDetails from "../pages/InquiryDetails";
 import EventRegistration from "../pages/EventRegistration";
-import EventDetails from "../pages/EventDetails";
+import EventApplicationList from "../pages/EventApplicationList";
+import EventApplicationDetails from "../pages/EventApplicationDetails";
 
 export const routes = [
   {
@@ -39,9 +39,9 @@ export const routes = [
   },
   {
     title: "event",
-    name: "event",
+    name: "event_application_list",
     icon: "/images/lock.png",
-    component: <Event />,
+    component: <EventApplicationList />,
   },
   {
     title: "결제내역",
@@ -80,8 +80,8 @@ export const editRoutes = [
   },
   {
     title: "Event Details",
-    name: "event_details",
-    component: <EventDetails />,
+    name: "event_application_details",
+    component: <EventApplicationDetails />,
   },
   {
     title: "Event Registration",

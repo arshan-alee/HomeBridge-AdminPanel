@@ -55,7 +55,7 @@ const Sidebar = () => {
 
       <div
         className="flex gap-5 items-center border-solid bottom-2  pl-8 cursor-pointer"
-        onClick={() => handleNavigation("event", "event")}
+        onClick={() => handleNavigation("event", "event_application_list")}
       >
         <img src="/images/lock.png" className="" />
         <p className="text-white pl-1">event</p>
