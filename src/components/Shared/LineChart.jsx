@@ -118,17 +118,17 @@ const LineChart = () => {
   const [state, setState] = useState({
     series: [
       {
-        name: "Product One",
-        data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30, 45],
+        name: "F-2-R 신청자",
+        data: [83, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30, 45],
       },
 
       {
-        name: "Product Two",
-        data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39, 51],
+        name: "Job&House",
+        data: [30, 90, 36, 30, 45, 35, 64, 52, 59, 36, 39, 51],
       },
       {
-        name: "Product Three",
-        data: [10, 27, 36, 30, 25, 95, 64, 52, 59, 36, 9, 51],
+        name: "Event",
+        data: [10, 27, 36, 30, 25, 95, 64, 52, 59, 36, 90, 51],
       },
     ],
   });
@@ -138,7 +138,7 @@ const LineChart = () => {
       <ReactApexChart
         options={options}
         series={state.series}
-        type="area"
+        type="line"
         width="100%"
         height={250}
       />
