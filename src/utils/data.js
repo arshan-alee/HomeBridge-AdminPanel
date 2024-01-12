@@ -358,6 +358,101 @@ export const eventData = [
   },
 ];
 
+export const eventListData = [
+  {
+    name: "[New year's sunrise] Yeosu ",
+    productNo: "e123456789",
+    productPrice: "199,000 KRW",
+    deadline: "마감",
+    noOfApplicants: "12",
+
+    date: "2023.11.04",
+  },
+  {
+    name: "[New year's sunrise] Yeosu ",
+    productNo: "e123456789",
+    productPrice: "199,000 KRW",
+    deadline: "마감",
+    noOfApplicants: "12",
+
+    date: "2023.11.04",
+  },
+  {
+    name: "[New year's sunrise] Yeosu ",
+    productNo: "e123456789",
+    productPrice: "199,000 KRW",
+    deadline: "마감",
+    noOfApplicants: "12",
+
+    date: "2023.11.04",
+  },
+  {
+    name: "[New year's sunrise] Yeosu ",
+    productNo: "e123456789",
+    productPrice: "199,000 KRW",
+    deadline: "마감",
+    noOfApplicants: "12",
+
+    date: "2023.11.04",
+  },
+  {
+    name: "[New year's sunrise] Yeosu ",
+    productNo: "e123456789",
+    productPrice: "199,000 KRW",
+    deadline: "마감",
+    noOfApplicants: "12",
+
+    date: "2023.11.04",
+  },
+  {
+    name: "[New year's sunrise] Yeosu ",
+    productNo: "e123456789",
+    productPrice: "199,000 KRW",
+    deadline: "마감",
+    noOfApplicants: "12",
+
+    date: "2023.11.04",
+  },
+  {
+    name: "[New year's sunrise] Yeosu ",
+    productNo: "e123456789",
+    productPrice: "199,000 KRW",
+    deadline: "마감",
+    noOfApplicants: "12",
+
+    date: "2023.11.04",
+  },
+  {
+    name: "[New year's sunrise] Yeosu ",
+    productNo: "e123456789",
+    productPrice: "199,000 KRW",
+    deadline: "마감",
+    noOfApplicants: "12",
+
+    date: "2023.11.04",
+  },
+
+  {
+    name: "[New year's sunrise] Yeosu ",
+    productNo: "e123456789",
+    productPrice: "199,000 KRW",
+    deadline: "마감",
+    noOfApplicants: "12",
+
+    date: "2023.11.04",
+  },
+
+  {
+    name: "[New year's sunrise] Yeosu ",
+    productNo: "e123456789",
+    productPrice: "199,000 KRW",
+    deadline: "마감",
+    noOfApplicants: "12",
+
+    date: "2023.11.04",
+  },
+];
+
 export const paymentData = [
   {
     id: "H12345",
