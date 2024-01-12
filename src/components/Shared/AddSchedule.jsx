@@ -1,7 +1,7 @@
 import React from "react";
 import InputContainer from "./InputContainer";
 
-const AddSchedule = () => {
+const AddSchedule = ({ removeSchedule }) => {
   return (
     <div className="bg-[#111C44] rounded-3xl mt-4 pb-16">
       <div className="px-10 py-6 flex justify-between items-center">
@@ -9,7 +9,12 @@ const AddSchedule = () => {
           Day 1
         </p>
 
-        <img src="/images/minimize.png" alt="logo" />
+        <img
+          src="/images/minimize.png"
+          alt="logo"
+          className="cursor-pointer"
+          onClick={removeSchedule}
+        />
       </div>
       {/* <hr /> */}
       <div className="border-b-[1px] border-[#ffffff1a] bg-[#111C44]"></div>

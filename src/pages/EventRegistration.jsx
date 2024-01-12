@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import InputContainer from "../components/Shared/InputContainer";
 import Button from "../components/Shared/Button";
 import SelectInputContainer from "../components/Shared/SelectInputContainer";
@@ -6,12 +6,20 @@ import Textarea from "../components/Shared/Textarea";
 import AddSchedule from "../components/Shared/AddSchedule";
 
 const EventRegistration = () => {
+  const [schedules, setSchedules] = useState([]);
+
+  const addSchedule = () => {
+    setSchedules([...schedules, {}]);
+  };
+
+  const removeSchedule = (index) => {
+    setSchedules(schedules.filter((_, i) => i !== index));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("handleSubmit");
   };
-
-  const memebership_level = ["일반회원", "일반회원", "일반회원", "일반회원"];
 
   return (
     <>
@@ -50,11 +58,19 @@ const EventRegistration = () => {
           </div>
         </div>
 
-        {/* Add Schedules */}
-        <AddSchedule />
+        {/* Schedules */}
+        {schedules.map((schedule, index) => (
+          <AddSchedule
+            key={index}
+            removeSchedule={() => removeSchedule(index)}
+          />
+        ))}
 
         {/* Schdeule Button */}
-        <button className="bg-[#111C44] rounded-3xl mt-4 flex w-full justify-center items-center gap-4 text-[32px] text-[#fff] font-bold py-6 px-10">
+        <button
+          onClick={addSchedule}
+          className="bg-[#111C44] rounded-3xl mt-4 flex w-full justify-center items-center gap-4 text-[32px] text-[#fff] font-bold py-6 px-10"
+        >
           일정 추가하기
           <img src="/images/add_icon.png" alt="logo" />
         </button>
