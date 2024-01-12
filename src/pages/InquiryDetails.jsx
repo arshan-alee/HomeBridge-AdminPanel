@@ -1,6 +1,7 @@
 import React from "react";
 import InputContainer from "../components/Shared/InputContainer";
 import Button from "../components/Shared/Button";
+import Textarea from "../components/Shared/Textarea";
 
 const InquiryDetails = () => {
   return (
@@ -23,16 +24,8 @@ const InquiryDetails = () => {
             <InputContainer text="신청일자" placeholder="2023.11.04" />
           </div>
 
-          <div className=" flex flex-col gap-2 py-6 px-10  text-white">
-            {/* <textarea /> */}
-            <p className="text-[18px]">메시지</p>
-            <textarea
-              // value={searchTerm}
-              // onChange={handleSearchChange}
-              placeholder="hello"
-              className="w-full py-5 text-xs pl-10 font-bold rounded-full border-2 text-[#8F9BBA] bg-[#FFF] border-gray-300 focus:outline-none"
-              rows="6"
-            />
+          <div className="grid py-6 px-10 text-white">
+            <Textarea text="메시지" placeholder="hello" height="200px" />
           </div>
         </div>
       </div>
