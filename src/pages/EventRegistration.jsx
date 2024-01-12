@@ -3,6 +3,7 @@ import InputContainer from "../components/Shared/InputContainer";
 import Button from "../components/Shared/Button";
 import SelectInputContainer from "../components/Shared/SelectInputContainer";
 import Textarea from "../components/Shared/Textarea";
+import AddSchedule from "../components/Shared/AddSchedule";
 
 const EventRegistration = () => {
   const handleSubmit = (e) => {
@@ -48,8 +49,11 @@ const EventRegistration = () => {
             </div>
           </div>
         </div>
-        {/* Schdeule Button */}
 
+        {/* Add Schedules */}
+        <AddSchedule />
+
+        {/* Schdeule Button */}
         <button className="bg-[#111C44] rounded-3xl mt-4 flex w-full justify-center items-center gap-4 text-[32px] text-[#fff] font-bold py-6 px-10">
           일정 추가하기
           <img src="/images/add_icon.png" alt="logo" />
