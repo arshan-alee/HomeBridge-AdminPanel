@@ -10,7 +10,7 @@ const Pagination = ({ totalPages, currentPage, onPageChange }) => {
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
       >
-        <FaChevronLeft />
+        <FaChevronLeft className={`${currentPage === 1 && "text-[#777777]"}`} />
       </button>
 
       {pageNumbers.map((number) => (
@@ -30,7 +30,9 @@ const Pagination = ({ totalPages, currentPage, onPageChange }) => {
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
       >
-        <FaChevronRight />
+        <FaChevronRight
+          className={`${currentPage === totalPages && "text-[#777777]"}`}
+        />
       </button>
     </div>
   );
