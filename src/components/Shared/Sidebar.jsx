@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { routes } from "../../utils/Routes";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
   const [activeItem, setActiveItem] = useState("null");
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleNavigation = (item, path) => {
     // setActiveItem(index);
@@ -22,7 +23,10 @@ const Sidebar = () => {
         }}
       ></span>
       <div
-        className="flex gap-5 items-center border-solid bottom-2 pl-7 cursor-pointer"
+        className={`flex gap-5 items-center border-solid bottom-2 py-1 pl-7 ${
+          location.pathname === "/admin/dashboard" &&
+          "border-r-4 border-[#7551FF]"
+        } cursor-pointer`}
         onClick={() => handleNavigation("Dashboard", "dashboard")}
       >
         <img src="/images/home.png" className="" />
@@ -30,7 +34,10 @@ const Sidebar = () => {
       </div>
 
       <div
-        className="flex gap-5 items-center border-solid bottom-2 pl-7 cursor-pointer"
+        className={`flex gap-5 items-center border-solid bottom-2 py-1 pl-7 ${
+          location.pathname === "/admin/membership" &&
+          "border-r-4 border-[#7551FF]"
+        } cursor-pointer`}
         onClick={() => handleNavigation("회원관리", "membership")}
       >
         <img src="/images/user_signout.png" className="" />
@@ -38,7 +45,9 @@ const Sidebar = () => {
       </div>
 
       <div
-        className="flex gap-5 items-center border-solid bottom-2 pl-7 cursor-pointer"
+        className={`flex gap-5 items-center border-solid bottom-2 py-1 pl-7 ${
+          location.pathname === "/admin/f_2_r" && "border-r-4 border-[#7551FF]"
+        } cursor-pointer`}
         onClick={() => handleNavigation("F-2-R", "f_2_r")}
       >
         <img src="/images/F2R.png" className="" />
@@ -46,7 +55,10 @@ const Sidebar = () => {
       </div>
 
       <div
-        className="flex gap-5 items-center border-solid bottom-2 pl-7 cursor-pointer"
+        className={`flex gap-5 items-center border-solid bottom-2 py-1 pl-7 ${
+          location.pathname === "/admin/job_house_support" &&
+          "border-r-4 border-[#7551FF]"
+        } cursor-pointer`}
         onClick={() => handleNavigation("Job&House", "job_house_support")}
       >
         <img src="/images/Job&House.png" className="" />
@@ -54,7 +66,10 @@ const Sidebar = () => {
       </div>
 
       <div
-        className="flex gap-5 items-center border-solid bottom-2  pl-8 cursor-pointer"
+        className={`flex gap-5 items-center border-solid bottom-2 py-1 pl-7 ${
+          location.pathname === "/admin/event_application_list" &&
+          "border-r-4 border-[#7551FF]"
+        } cursor-pointer`}
         onClick={() => handleNavigation("event", "event_application_list")}
       >
         <img src="/images/lock.png" className="" />
@@ -62,7 +77,10 @@ const Sidebar = () => {
       </div>
 
       <div
-        className="flex gap-5 items-center border-solid bottom-2 pl-7 cursor-pointer"
+        className={`flex gap-5 items-center border-solid bottom-2 py-1 pl-7 ${
+          location.pathname === "/admin/payments" &&
+          "border-r-4 border-[#7551FF]"
+        } cursor-pointer`}
         onClick={() => handleNavigation("결제내역", "payments")}
       >
         <img src="/images/cart.png" className="" />
@@ -70,7 +88,10 @@ const Sidebar = () => {
       </div>
 
       <div
-        className="flex gap-5 items-center border-solid bottom-2 pl-7 cursor-pointer"
+        className={`flex gap-5 items-center border-solid bottom-2 py-1 pl-7 ${
+          location.pathname === "/admin/inquiry" &&
+          "border-r-4 border-[#7551FF]"
+        } cursor-pointer`}
         onClick={() => handleNavigation("문의내역", "inquiry")}
       >
         <img src="/images/info_outline.png" className="" />
