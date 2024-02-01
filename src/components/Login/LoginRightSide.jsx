@@ -38,6 +38,7 @@ const LoginRightSide = () => {
       }
     } catch (error) {
       setLoader(true);
+      setError(error.message);
 
       setTimeout(() => {
         setError("");

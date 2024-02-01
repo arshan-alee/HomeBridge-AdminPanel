@@ -6,7 +6,7 @@ export const LoginUser = async (user) => {
     console.log("datadata: ", data);
     return data;
   } catch (error) {
-    console.log("errorerror: ", error);
+    console.log("errorerror: ", error.response);
 
     // return error.response.data.message;
     return error;

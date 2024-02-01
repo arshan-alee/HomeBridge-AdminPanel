@@ -6,10 +6,15 @@ import Pagination from "../components/Shared/Pagination";
 import usePagination from "../utils/usePagination";
 import { useNavigate } from "react-router";
 import SelectPurpleInputContainer from "../components/Shared/SelectPurpleInputContainer";
+import { useEffect, useState } from "react";
+import { GetAllData } from "../axios/NetworkCall";
+import baseUrl from "../utils/baseUrl";
 
 const Job_House_Announcement = () => {
   const paginate = usePagination();
   const navigate = useNavigate();
+  const [loader, setLoader] = useState();
+  const [data, setData] = useState([]);
 
   const { currentPage, totalPages, visibleItems, goToPage } = paginate(
     jobAndHouse_AnnouncementList
@@ -18,6 +23,27 @@ const Job_House_Announcement = () => {
   const handleDownloadInExcel = () => {
     console.log("handleDownloadInExcel function called");
   };
+
+  // useEffect(() => {
+  //   getData();
+  // }, []);
+
+  // const getData = async () => {
+  //   try {
+  //     setLoader(true);
+  //     // console.log("before api: ");
+  //     const response = await GetAllData(
+  //       `${baseUrl}/api/job_house/allAnnouncements`
+  //     );
+  //     // console.log("datata is", response);
+  //     setData(response);
+  //     // setFixedData(response);
+  //   } catch (err) {
+  //     console.log("err", err);
+  //   } finally {
+  //     setLoader(false);
+  //   }
+  // };
 
   return (
     <div className="w-full pt-4 px-12">

@@ -9,8 +9,9 @@ axiosInstance.interceptors.request.use(
   async function (config) {
     const user = JSON.parse(localStorage.getItem("info"));
 
-    if (token) {
-      config.headers["Authorization"] = "Bearer " + user?.token;
+    if (user) {
+      console.log("useruser: ", user.token);
+      config.headers["Authorization"] = user?.token;
     }
     return config;
   },
