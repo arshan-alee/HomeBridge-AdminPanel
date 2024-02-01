@@ -2,20 +2,28 @@ import React, { useEffect, useState } from "react";
 import InputContainer from "../components/Shared/InputContainer";
 import Button from "../components/Shared/Button";
 import Textarea from "../components/Shared/Textarea";
-import { useParams } from "react-router-dom";
-import { GetSingleData } from "../axios/NetworkCall";
+import { useNavigate, useParams } from "react-router-dom";
+import {
+  DeleteSingleData,
+  EditData,
+  GetSingleData,
+} from "../axios/NetworkCall";
 import baseUrl from "../utils/baseUrl";
 import formatDate from "../utils/helper";
+import toast from "react-hot-toast";
 
 const JobAndHouseSupportDetails = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [loader, setLoader] = useState();
   const [data, setData] = useState();
   const [Error, setError] = useState();
+  const [updateLoading, setUpdatetLoading] = useState(false);
+  const [deleteLoading, setDeleteLoading] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    console.log("name", name, "value", value);
+
     setData((prevValue) => {
       return {
         ...prevValue,
@@ -24,10 +32,47 @@ const JobAndHouseSupportDetails = () => {
     });
   };
 
-  console.log("id: ", id);
-  useEffect(() => {
-    getData();
-  }, []);
+  const handleSubmit = async () => {
+    setUpdatetLoading(true);
+    try {
+      const response = await EditData(
+        `api/job_house_application/updateApplication?id=${id}`,
+        data
+      );
+      if (response?.status) {
+        toast.success(response?.message);
+
+        navigate("/admin/" + "job_house_support");
+      } else {
+        toast.error(response?.message);
+      }
+    } catch (err) {
+      toast.error(err.message);
+    } finally {
+      setUpdatetLoading(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    setDeleteLoading(true);
+    try {
+      const response = await DeleteSingleData(
+        `api/job_house_application/deleteApplication?id=${id}`
+      );
+
+      if (response?.status) {
+        toast.success(response?.message);
+
+        navigate("/admin/" + "job_house_support");
+      } else {
+        toast.error(response);
+      }
+    } catch (err) {
+      toast.error(err.message);
+    } finally {
+      setDeleteLoading(false);
+    }
+  };
 
   const getData = async () => {
     try {
@@ -39,18 +84,20 @@ const JobAndHouseSupportDetails = () => {
       if (response.success) {
         setData(response.data);
       } else {
-        // console.error("Error or no data:", response.message);
         setError(response.message);
       }
     } catch (err) {
-      console.error("Error fetching data:", err);
     } finally {
       setLoader(false);
     }
   };
 
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
-    <form className="w-[90%]  my-12 mx-auto">
+    <div className="w-[90%]  my-12 mx-auto">
       <div className="bg-[#111C44] rounded-3xl ">
         <p className="px-7 py-6 text-left text-2xl font-bold text-white uppercase tracking-wider">
           Job&House 지원 리스트
@@ -121,10 +168,18 @@ const JobAndHouseSupportDetails = () => {
         </div>
       </div>
       <div className="flex justify-end mx-auto mt-5 gap-5">
-        <Button text="신청서수정" />
-        <Button text="신청서삭제" />
+        <Button
+          text="신청서수정"
+          onClick={handleSubmit}
+          loading={updateLoading}
+        />
+        <Button
+          text="신청서삭제"
+          onClick={handleDelete}
+          loading={deleteLoading}
+        />
       </div>
-    </form>
+    </div>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import baseUrl from "../../utils/baseUrl";
@@ -9,6 +9,7 @@ const LoginRightSide = () => {
   const [user, setUser] = useState({});
   const [loader, setLoader] = useState(false);
   const [Error, setError] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -47,6 +48,21 @@ const LoginRightSide = () => {
       setLoader(false);
     }
   };
+
+  const checkUserToken = () => {
+    const Info = localStorage.getItem("info");
+    const userToken = JSON.parse(Info)?.token;
+
+    if (userToken || userToken != "undefined") {
+      setIsLoggedIn(true);
+      return navigate("/admin/dashboard");
+    }
+  };
+
+  useEffect(() => {
+    checkUserToken();
+  }, [isLoggedIn]);
+
   return (
     <div
       className="flex items-center justify-center w-full md:w-[40%]"
