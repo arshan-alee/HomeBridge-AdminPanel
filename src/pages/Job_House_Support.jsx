@@ -39,7 +39,7 @@ const Job_House_Support = () => {
       if (response.success) {
         setData(response.data);
       } else {
-        console.error("Error or no data:", response.message);
+        // console.error("Error or no data:", response.message);
         setError(response.message);
       }
     } catch (err) {
@@ -158,11 +158,11 @@ const Job_House_Support = () => {
                           <tr
                             key={index}
                             className="cursor-pointer bg-[#111C44] hover:bg-[#0c1845] duration-300"
-                            onClick={() => {
+                            onClick={() =>
                               navigate(
-                                "/admin/" + "job_and_house_support_details"
-                              );
-                            }}
+                                `/admin/job_and_house_support_details/${row._id}`
+                              )
+                            }
                           >
                             <td className="px-7 py-5   text-sm">
                               <p className="text-white whitespace-no-wrap">

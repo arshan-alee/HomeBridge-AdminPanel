@@ -112,7 +112,7 @@ export const editRoutes = [
   },
   {
     title: "Inquiry Details",
-    name: "job_and_house_support_details",
+    name: "job_and_house_support_details/:id",
     component: <JobAndHouseSupportDetails />,
   },
   {

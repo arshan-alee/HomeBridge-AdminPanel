@@ -1,14 +1,17 @@
 import React from "react";
 
-const Textarea = ({ text, placeholder, height, rounded }) => {
+const Textarea = ({ text, placeholder, ...props }) => {
   return (
     <div className="flex flex-col gap-2">
       <p className="text-[18px]">{text}</p>
       <textarea
-        placeholder={placeholder}
+        // placeholder={placeholder}
+        value={placeholder}
+        name={props.name}
+        onChange={props.onChange}
         style={{
-          minHeight: height,
-          borderRadius: rounded,
+          minHeight: props.height,
+          borderRadius: props.rounded,
         }}
         className="  w-full py-8 px-8 text-xs 
      border-2 text-[#8F9BBA] bg-[#FFF] border-gray-300 focus:outline-none"

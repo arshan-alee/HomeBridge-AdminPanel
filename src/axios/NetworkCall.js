@@ -15,7 +15,6 @@ export const LoginUser = async (user) => {
 export const GetAllData = async (endpoint) => {
   try {
     const { data } = await axiosInstance.get(endpoint);
-    console.log("data: ", data);
     if (data?.data) {
       return { success: true, data: data.data };
     } else {
@@ -32,9 +31,16 @@ export const GetAllData = async (endpoint) => {
 export const GetSingleData = async (endpoint) => {
   try {
     const { data } = await axiosInstance.get(endpoint);
-    return data?.data;
+    if (data?.data) {
+      return { success: true, data: data.data };
+    } else {
+      return { success: false, message: "No data found" };
+    }
   } catch (error) {
-    return error.response.data.message;
+    return {
+      success: false,
+      message: error.response?.data.message || "An error occurred",
+    };
   }
 };
 
