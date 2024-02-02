@@ -79,7 +79,9 @@ const Job_House_Support = () => {
       {/* Body */}
 
       {loader ? (
-        <RequestLoader />
+        <div className="w-full h-[60vh] flex items-center justify-center">
+          <RequestLoader size="large" />
+        </div>
       ) : (
         <>
           {Error ? (

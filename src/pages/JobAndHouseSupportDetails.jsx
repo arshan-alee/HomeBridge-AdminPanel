@@ -9,7 +9,7 @@ import {
   GetSingleData,
 } from "../axios/NetworkCall";
 import baseUrl from "../utils/baseUrl";
-import formatDate from "../utils/helper";
+import formatDate, { toDisplayFormat } from "../utils/helper";
 import toast from "react-hot-toast";
 
 const JobAndHouseSupportDetails = () => {
@@ -151,17 +151,20 @@ const JobAndHouseSupportDetails = () => {
             <InputContainer
               text="신청일자"
               name="applicationDate"
+              type="date"
               value={formatDate(data?.applicationDate)}
+              onChange={handleChange}
             />
           </div>
 
           <div className="grid py-6 px-10 text-white">
             <Textarea
               text="메시지"
-              name="message"
-              placeholder={data?.message || "hello"}
+              placeholder=""
               height="200px"
               rounded="50px"
+              name="message"
+              value={data?.message || ""}
               onChange={handleChange}
             />
           </div>

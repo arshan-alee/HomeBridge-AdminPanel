@@ -8,7 +8,6 @@ import { useNavigate } from "react-router";
 import SelectPurpleInputContainer from "../components/Shared/SelectPurpleInputContainer";
 import { useEffect, useState } from "react";
 import { GetAllData } from "../axios/NetworkCall";
-import baseUrl from "../utils/baseUrl";
 
 const Job_House_Announcement = () => {
   const paginate = usePagination();
