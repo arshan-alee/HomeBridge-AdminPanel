@@ -82,7 +82,7 @@ export const editRoutes = [
   },
   {
     title: "Edit Member",
-    name: "member_details",
+    name: "member_details/:id",
     component: <MemberDetails />,
   },
   {
