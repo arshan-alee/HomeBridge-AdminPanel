@@ -168,37 +168,37 @@ const Job_House_Support = () => {
                           >
                             <td className="px-7 py-5   text-sm">
                               <p className="text-white whitespace-no-wrap">
-                                {row._id.toString().slice(0, 7)}
+                                {row._id.toString().slice(0, 7) || "-"}
                               </p>
                             </td>
                             <td className="px-7 py-5   text-sm">
                               <p className="text-white whitespace-no-wrap">
-                                {row.name}
+                                {row.name || "-"}
                               </p>
                             </td>
                             <td className="px-7 py-5   text-sm">
                               <p className="text-white whitespace-no-wrap">
-                                {row.gender}
+                                {row.gender || "-"}
                               </p>
                             </td>
                             <td className="px-7 py-5   text-sm">
                               <p className="text-white whitespace-no-wrap">
-                                {row.nationality}
+                                {row.nationality || "-"}
                               </p>
                             </td>
                             <td className="px-7 py-5   text-sm">
                               <p className="text-white whitespace-no-wrap">
-                                {row.phoneNumber}
+                                {row.phoneNumber || "-"}
                               </p>
                             </td>
                             <td className="px-7 py-5   text-sm">
                               <p className="text-white whitespace-no-wrap">
-                                {row.email}
+                                {row.email || "-"}
                               </p>
                             </td>
                             <td className="px-7 py-5   text-sm">
                               <p className="text-white whitespace-no-wrap">
-                                {formatDate(row.applicationDate)}
+                                {formatDate(row.applicationDate) || "-"}
                               </p>
                             </td>
                           </tr>

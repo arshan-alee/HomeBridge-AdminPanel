@@ -9,9 +9,21 @@ import UploadRegisterationImage from "../components/Shared/UploadRegisterationIm
 const AnnouncementRegisteration = () => {
   const [isToggled, setIsToggled] = useState(true);
   const [uploadImages, setUploadImages] = useState([]);
+  const [data, setData] = useState({});
 
   const onToggle = () => {
     setIsToggled(!isToggled);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+
+    setData((prevValue) => {
+      return {
+        ...prevValue,
+        [name]: value,
+      };
+    });
   };
 
   const handleSubmit = (e) => {
@@ -31,8 +43,20 @@ const AnnouncementRegisteration = () => {
           <div className="border-b-[1px] border-[#ffffff1a] bg-[#111C44]"></div>
           <div className="pb-20">
             <div className="py-6 px-10 grid grid-cols-2 gap-16 text-white">
-              <InputContainer text="공고명" placeholder="Kim" />
-              <InputContainer text="회사명" placeholder="h12345" />
+              <InputContainer
+                text="공고명"
+                placeholder="Kim"
+                name="announcementName"
+                value={data?.announcementName}
+                onChange={handleChange}
+              />
+              <InputContainer
+                text="회사명"
+                placeholder="h12345"
+                name="companyName"
+                value={data?.companyName}
+                onChange={handleChange}
+              />
             </div>
 
             <div className="grid py-6 px-10 text-white">
