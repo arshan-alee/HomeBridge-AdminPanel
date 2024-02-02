@@ -3,7 +3,8 @@ import axiosInstance from ".";
 export const GetAllData = async (endpoint) => {
   try {
     const { data } = await axiosInstance.get(endpoint);
-    if (data?.data) {
+    console.log("data: ", data);
+    if (data?.status) {
       return { success: true, data: data.data };
     } else {
       return { success: false, message: "No data found" };
