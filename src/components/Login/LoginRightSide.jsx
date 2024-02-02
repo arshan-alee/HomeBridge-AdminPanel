@@ -55,7 +55,7 @@ const LoginRightSide = () => {
 
     if (userToken && userToken !== "undefined") {
       setIsLoggedIn(true);
-      navigate("/admin/dashboard"); // Automatically navigate if a token is present
+      navigate("/admin/dashboard");
     }
   };
 

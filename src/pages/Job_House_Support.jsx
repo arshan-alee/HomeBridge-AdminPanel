@@ -33,7 +33,7 @@ const Job_House_Support = () => {
     try {
       setLoader(true);
       const response = await GetAllData(
-        `${baseUrl}/api/job_house_application/allApplications`
+        `/api/job_house_application/allApplications`
       );
 
       if (response.success) {
