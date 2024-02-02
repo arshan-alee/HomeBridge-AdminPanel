@@ -4,6 +4,7 @@ import Button from "../components/Shared/Button";
 import SelectInputContainer from "../components/Shared/SelectInputContainer";
 import Textarea from "../components/Shared/Textarea";
 import AddSchedule from "../components/Shared/AddSchedule";
+import TextEditor from "../components/Shared/TextEditor";
 
 const EventRegistration = () => {
   const [loading, setLoading] = useState(false);
@@ -79,6 +80,10 @@ const EventRegistration = () => {
           <div className="border-b-[1px] border-[#ffffff1a] bg-[#111C44]"></div>
           <div className="pb-20">
             <div className="py-6 px-10 grid gap-16 text-white">
+              {/* ===== */}
+              <TextEditor />
+
+              {/* ========= */}
               <InputContainer
                 text="상품소개"
                 placeholder="[New year's sunrise] Yeosu Hyangilam Sunrise with Jeolla-do delicacies, Suncheon Jeonju 1 night 2 days"

@@ -1,4 +1,4 @@
-const environment = "dev";
+const environment = "production";
 // const environment = "production";
 
 let baseUrl;
