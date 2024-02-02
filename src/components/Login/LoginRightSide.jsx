@@ -9,7 +9,7 @@ const LoginRightSide = () => {
   const [user, setUser] = useState({});
   const [loader, setLoader] = useState(false);
   const [Error, setError] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -53,9 +53,9 @@ const LoginRightSide = () => {
     const Info = localStorage.getItem("info");
     const userToken = JSON.parse(Info)?.token;
 
-    if (userToken || userToken != "undefined") {
+    if (userToken && userToken !== "undefined") {
       setIsLoggedIn(true);
-      return navigate("/admin/dashboard");
+      navigate("/admin/dashboard");
     }
   };
 
