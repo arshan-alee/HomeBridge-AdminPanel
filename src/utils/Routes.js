@@ -92,7 +92,7 @@ export const editRoutes = [
   },
   {
     title: "Inquiry Details",
-    name: "inquiry_details",
+    name: "inquiry_details/:id",
     component: <InquiryDetails />,
   },
   {
