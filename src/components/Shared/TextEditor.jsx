@@ -1,25 +1,27 @@
-import { EditorState } from "draft-js";
-import { useState } from "react";
-import { Editor } from "react-draft-wysiwyg";
-import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { editorToolBarOptions } from "../../utils/editorToolBarOptions";
+import React, { useState, useRef, useMemo } from "react";
+import JoditEditor, { Jodit } from "jodit-react";
 
 const TextEditor = () => {
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+  const editor = useRef(null);
+  const [content, setContent] = useState("");
 
-  const handleEditorStateChange = (newState) => {
-    setEditorState(newState);
+  const config = {
+    height: 300,
+    askBeforePasteHTML: false,
+    askBeforePasteFromWord: false,
+    events: {
+      paste: function (event) {},
+    },
   };
-
   return (
-    <div className="w-full h-[350px] bg-[#fff] text-black rounded-lg p-5 overflow-y-auto">
-      <Editor
-        editorState={editorState}
-        toolbar={editorToolBarOptions}
-        toolbarClassName="toolbarClassName"
-        wrapperClassName="wrapperClassName"
-        editorClassName="editorClassName"
-        onEditorStateChange={handleEditorStateChange}
+    <div className="w-full  bg-[#fff] text-black rounded-lg p-3 overflow-y-auto">
+      <JoditEditor
+        ref={editor}
+        config={config}
+        value={content}
+        tabIndex={1} // tabIndex of textarea
+        onBlur={(newContent) => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
+        onChange={(newContent) => {}}
       />
     </div>
   );
