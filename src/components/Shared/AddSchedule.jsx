@@ -4,7 +4,7 @@ import Textarea from "./Textarea";
 import UploadInput from "./UploadInput";
 
 const AddSchedule = ({ index, schedule, removeSchedule, onChange }) => {
-  const [daySchedules, setDaySchedules] = useState([]);
+  const [daySchedules, setDaySchedules] = useState(schedule.daySchedules || []);
 
   const addDaySchedule = () => {
     setDaySchedules([...daySchedules, {}]);
@@ -14,6 +14,7 @@ const AddSchedule = ({ index, schedule, removeSchedule, onChange }) => {
     const updatedDaySchedules = [...daySchedules];
     updatedDaySchedules[dayIndex] = dayScheduleData;
     setDaySchedules(updatedDaySchedules);
+    onChange(index, { ...schedule, daySchedules: updatedDaySchedules });
   };
 
   return (
@@ -59,7 +60,7 @@ const AddSchedule = ({ index, schedule, removeSchedule, onChange }) => {
               text="상세일정"
               placeholder="서울"
               name="detailedSchedule"
-              value={daySchedule?.detailedSchedule}
+              value={daySchedule.detailedSchedule || ""}
               onChange={(e) =>
                 handleDayScheduleChange(dayIndex, {
                   ...daySchedule,
@@ -76,7 +77,7 @@ const AddSchedule = ({ index, schedule, removeSchedule, onChange }) => {
               height="300px"
               rounded="10px"
               name="dayScheduleInfo"
-              value={daySchedule?.dayScheduleInfo}
+              value={daySchedule.dayScheduleInfo || ""}
               onChange={(e) =>
                 handleDayScheduleChange(dayIndex, {
                   ...daySchedule,

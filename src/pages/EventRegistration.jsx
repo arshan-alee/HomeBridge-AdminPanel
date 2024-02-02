@@ -12,7 +12,18 @@ const EventRegistration = () => {
     productIntroduction: "",
     eventInformation: "",
     productInformation: "",
-    schedules: [],
+    schedules: [
+      {
+        scheduleIntroduction: "",
+        daySchedules: [
+          {
+            detailedSchedule: "",
+            scheduleImage: "",
+            dayScheduleInfo: "",
+          },
+        ],
+      },
+    ],
   });
 
   console.log("dataaaaaaaaaaa");
