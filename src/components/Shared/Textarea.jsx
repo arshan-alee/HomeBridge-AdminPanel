@@ -5,8 +5,8 @@ const Textarea = ({ text, placeholder, ...props }) => {
     <div className="flex flex-col gap-2">
       <p className="text-[18px]">{text}</p>
       <textarea
-        // placeholder={placeholder}
-        value={placeholder}
+        // placeholder={placeholder }
+        value={props.value}
         name={props.name}
         onChange={props.onChange}
         style={{
