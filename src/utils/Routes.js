@@ -97,7 +97,7 @@ export const editRoutes = [
   },
   {
     title: "F-2-R Support List",
-    name: "f_2_r_support_list",
+    name: "f_2_r_support_list/:id",
     component: <F2RSupportList />,
   },
   {
