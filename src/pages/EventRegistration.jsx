@@ -6,14 +6,49 @@ import Textarea from "../components/Shared/Textarea";
 import AddSchedule from "../components/Shared/AddSchedule";
 
 const EventRegistration = () => {
-  const [schedules, setSchedules] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState({
+    // Your existing data properties
+    productIntroduction: "",
+    eventInformation: "",
+    productInformation: "",
+    schedules: [],
+  });
+
+  console.log("dataaaaaaaaaaa");
+  console.log(data);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setData((prevValue) => ({
+      ...prevValue,
+      [name]: value,
+    }));
+  };
 
   const addSchedule = () => {
-    setSchedules([...schedules, {}]);
+    setData((prevValue) => ({
+      ...prevValue,
+      schedules: [...prevValue.schedules, {}],
+    }));
   };
 
   const removeSchedule = (index) => {
-    setSchedules(schedules.filter((_, i) => i !== index));
+    setData((prevValue) => ({
+      ...prevValue,
+      schedules: prevValue.schedules.filter((_, i) => i !== index),
+    }));
+  };
+
+  const handleScheduleChange = (index, scheduleData) => {
+    setData((prevValue) => {
+      const updatedSchedules = [...prevValue.schedules];
+      updatedSchedules[index] = scheduleData;
+      return {
+        ...prevValue,
+        schedules: updatedSchedules,
+      };
+    });
   };
 
   const handleSubmit = (e) => {
@@ -36,6 +71,9 @@ const EventRegistration = () => {
               <InputContainer
                 text="상품소개"
                 placeholder="[New year's sunrise] Yeosu Hyangilam Sunrise with Jeolla-do delicacies, Suncheon Jeonju 1 night 2 days"
+                name="productIntroduction"
+                value={data?.productIntroduction}
+                onChange={handleChange}
               />
             </div>
 
@@ -45,6 +83,9 @@ const EventRegistration = () => {
                 placeholder=""
                 height="300px"
                 rounded="10px"
+                name="eventInformation"
+                onChange={handleChange}
+                value={data?.eventInformation}
               />
             </div>
             <div className="grid py-6 px-10 text-white">
@@ -53,16 +94,22 @@ const EventRegistration = () => {
                 placeholder=""
                 height="300px"
                 rounded="10px"
+                name="productInformation"
+                onChange={handleChange}
+                value={data?.productInformation}
               />
             </div>
           </div>
         </div>
 
         {/* Schedules */}
-        {schedules.map((schedule, index) => (
+        {data?.schedules.map((schedule, index) => (
           <AddSchedule
             key={index}
+            index={index}
+            schedule={schedule}
             removeSchedule={() => removeSchedule(index)}
+            onChange={handleScheduleChange}
           />
         ))}
 

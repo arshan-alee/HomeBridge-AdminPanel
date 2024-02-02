@@ -3,11 +3,17 @@ import InputContainer from "./InputContainer";
 import Textarea from "./Textarea";
 import UploadInput from "./UploadInput";
 
-const AddSchedule = ({ removeSchedule }) => {
+const AddSchedule = ({ index, schedule, removeSchedule, onChange }) => {
   const [daySchedules, setDaySchedules] = useState([]);
 
   const addDaySchedule = () => {
     setDaySchedules([...daySchedules, {}]);
+  };
+
+  const handleDayScheduleChange = (dayIndex, dayScheduleData) => {
+    const updatedDaySchedules = [...daySchedules];
+    updatedDaySchedules[dayIndex] = dayScheduleData;
+    setDaySchedules(updatedDaySchedules);
   };
 
   return (
@@ -31,21 +37,53 @@ const AddSchedule = ({ removeSchedule }) => {
         <InputContainer
           text="일정 소개"
           placeholder="2023.12.30(토)-서울/전주/순천/광양"
+          name="scheduleIntroduction"
+          value={schedule?.scheduleIntroduction}
+          onChange={(e) =>
+            onChange(index, {
+              ...schedule,
+              scheduleIntroduction: e.target.value,
+            })
+          }
         />
       </div>
 
       {/* Add Day Schedule */}
-      {daySchedules.map((schedule, index) => (
+      {daySchedules.map((daySchedule, dayIndex) => (
         <div
-          key={index}
+          key={dayIndex}
           className="grid items-end grid-cols-4 gap-8 px-10 mt-7"
         >
           <div className="col-span-1 text-[#fff] flex flex-col gap-10">
-            <InputContainer text="상세일정" placeholder="서울" />
+            <InputContainer
+              text="상세일정"
+              placeholder="서울"
+              name="detailedSchedule"
+              value={daySchedule?.detailedSchedule}
+              onChange={(e) =>
+                handleDayScheduleChange(dayIndex, {
+                  ...daySchedule,
+                  [e.target.name]: e.target.value,
+                })
+              }
+            />
             <UploadInput />
           </div>
           <div className="col-span-3">
-            <Textarea text="" placeholder="" height="300px" rounded="10px" />
+            <Textarea
+              text=""
+              placeholder=""
+              height="300px"
+              rounded="10px"
+              name="dayScheduleInfo"
+              value={daySchedule?.dayScheduleInfo}
+              onChange={(e) =>
+                handleDayScheduleChange(dayIndex, {
+                  ...daySchedule,
+                  [e.target.name]: e.target.value,
+                })
+              }
+            />
           </div>
         </div>
       ))}

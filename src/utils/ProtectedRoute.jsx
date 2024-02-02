@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const ProtectedRoute = (props) => {
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [Loading, setLoading] = useState(false);
 
   const checkUserToken = () => {
@@ -22,7 +22,7 @@ const ProtectedRoute = (props) => {
 
   useEffect(() => {
     checkUserToken();
-  }, [isLoggedIn]);
+  }, []);
 
   return (
     <>
