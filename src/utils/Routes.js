@@ -87,7 +87,7 @@ export const editRoutes = [
   },
   {
     title: "Edit Payment",
-    name: "payment_details",
+    name: "payment_details/:id",
     component: <PaymentDetails />,
   },
   {
