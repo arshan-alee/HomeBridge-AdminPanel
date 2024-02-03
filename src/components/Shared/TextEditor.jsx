@@ -20,6 +20,7 @@ const TextEditor = ({ text, placeholder, ...props }) => {
         config={config}
         name={props.name}
         value={props.value}
+        required={props.required}
         tabIndex={1}
         onBlur={props.onChange}
         // onBlur={(newContent) => props.onChange(props.name, newContent)} // preferred to use only this option to update the content for performance reasons

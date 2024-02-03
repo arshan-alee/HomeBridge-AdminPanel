@@ -5,6 +5,8 @@ import SelectInputContainer from "../components/Shared/SelectInputContainer";
 import Textarea from "../components/Shared/Textarea";
 import AddSchedule from "../components/Shared/AddSchedule";
 import TextEditor from "../components/Shared/TextEditor";
+import { PostData } from "../axios/NetworkCall";
+import toast from "react-hot-toast";
 
 const EventRegistration = () => {
   const [loading, setLoading] = useState(false);
@@ -26,9 +28,6 @@ const EventRegistration = () => {
       // },
     ],
   });
-
-  console.log("dataaaaaaaaaaa");
-  console.log(data);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -69,15 +68,54 @@ const EventRegistration = () => {
       };
     });
   };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("handleSubmit");
+
+    const requiredFields = [
+      "productIntroduction",
+      "eventInformation",
+      "productInformation",
+    ];
+
+    const emptyFields = requiredFields.filter((field) => !data[field]);
+    if (emptyFields.length > 0) {
+      toast.error(
+        `Please fill in the following fields: ${emptyFields.join(", ")}`
+      );
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const response = await PostData("/api/eventRegistration", data);
+
+      if (response?.status) {
+        toast.success(response?.message);
+
+        setLoading(false);
+
+        // Reset form fields
+        setData({
+          productIntroduction: "",
+          eventInformation: "",
+          productInformation: "",
+          schedules: [],
+        });
+      } else {
+        toast.error(response);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error("An error occurred while submitting the form.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="mx-auto w-[90%]   my-12">
+      <form className="mx-auto w-[90%]   my-12">
         {/* Top */}
         <div className="bg-[#111C44] rounded-3xl">
           <p className="px-10 py-6 text-left text-2xl font-bold text-white uppercase tracking-wider">
@@ -133,16 +171,16 @@ const EventRegistration = () => {
         ))}
 
         {/* Schdeule Button */}
-        <button
+        <div
           onClick={addSchedule}
-          className="bg-[#111C44] rounded-3xl mt-4 flex w-full justify-center items-center gap-4 text-[32px] text-[#fff] font-bold py-6 px-10"
+          className="bg-[#111C44] cursor-pointer rounded-3xl mt-4 flex w-full justify-center items-center gap-4 text-[32px] text-[#fff] font-bold py-6 px-10"
         >
           일정 추가하기
           <img src="/images/add_icon.png" alt="logo" />
-        </button>
+        </div>
 
         <div className="flex justify-end gap-7 mt-5">
-          <Button text="공고등록" />
+          <Button text="공고등록" onClick={handleSubmit} loading={loading} />
         </div>
       </form>
     </>

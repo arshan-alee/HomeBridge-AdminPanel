@@ -1,12 +1,31 @@
 import React, { useState } from "react";
+import { uploadImage } from "../../utils/helper";
 
-const UploadInput = () => {
+const UploadInput = ({ name, value, onChange }) => {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  const handleImageChange = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      let img = e.target.files[0];
-      setSelectedImage(URL.createObjectURL(img));
+  const handleImageChange = async (e) => {
+    try {
+      setError(null);
+      setLoading(true);
+
+      if (e.target.files && e.target.files[0]) {
+        let img = e.target.files[0];
+        setSelectedImage(URL.createObjectURL(img));
+
+        // Call uploadImage function
+        const imageUrl = await uploadImage(img);
+        onChange(imageUrl);
+
+        console.log("Image uploaded successfully:", imageUrl);
+      }
+    } catch (error) {
+      console.error("Error uploading image:", error.message);
+      setError("Error uploading image");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -30,6 +49,7 @@ const UploadInput = () => {
           </label>
           <input
             type="file"
+            name={name}
             onChange={handleImageChange}
             id="file-upload"
             style={{ display: "none" }}
@@ -42,6 +62,8 @@ const UploadInput = () => {
           </label>
         </>
       )}
+      {loading && <p>Loading...</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
   );
 };

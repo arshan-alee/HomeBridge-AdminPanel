@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 
 const InputContainer = ({ text, placeholder, ...props }) => {
-  const [searchTerm, setSearchTerm] = useState("");
-
   return (
     <div className="flex flex-col gap-2">
       <p className="text-[18px]">{text}</p>

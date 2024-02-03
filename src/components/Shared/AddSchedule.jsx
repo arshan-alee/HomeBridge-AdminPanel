@@ -69,7 +69,16 @@ const AddSchedule = ({ index, schedule, removeSchedule, onChange }) => {
                 })
               }
             />
-            <UploadInput />
+            <UploadInput
+              name="scheduleImage"
+              value={daySchedule?.scheduleImage}
+              onChange={(imageUrl) =>
+                handleDayScheduleChange(dayIndex, {
+                  ...daySchedule,
+                  scheduleImage: imageUrl,
+                })
+              }
+            />
           </div>
           <div className="col-span-3">
             <TextEditor
@@ -89,13 +98,13 @@ const AddSchedule = ({ index, schedule, removeSchedule, onChange }) => {
       ))}
 
       {/* Schdeule Button */}
-      <button
+      <div
         onClick={addDaySchedule}
-        className="bg-[#7551FF] w-[90%] mx-auto rounded-3xl mt-8 flex  justify-center items-center gap-4 text-[32px] text-[#fff] font-bold py-6 "
+        className="bg-[#7551FF] cursor-pointer w-[90%] mx-auto rounded-3xl mt-8 flex  justify-center items-center gap-4 text-[32px] text-[#fff] font-bold py-6 "
       >
         Day1 일정 추가하기
         <img src="/images/add_icon.png" alt="logo" />
-      </button>
+      </div>
     </div>
   );
 };
