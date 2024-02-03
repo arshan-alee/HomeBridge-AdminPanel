@@ -1,9 +1,8 @@
 import React, { useState, useRef, useMemo } from "react";
 import JoditEditor, { Jodit } from "jodit-react";
 
-const TextEditor = () => {
+const TextEditor = ({ text, placeholder, ...props }) => {
   const editor = useRef(null);
-  const [content, setContent] = useState("");
 
   const config = {
     height: 300,
@@ -14,14 +13,17 @@ const TextEditor = () => {
     },
   };
   return (
-    <div className="w-full  bg-[#fff] text-black rounded-lg p-3 overflow-y-auto">
+    <div className="w-full flex flex-col gap-2 text-black rounded-lg overflow-y-auto">
+      <p className="text-[18px] text-[#fff]">{text}</p>
       <JoditEditor
         ref={editor}
         config={config}
-        value={content}
-        tabIndex={1} // tabIndex of textarea
-        onBlur={(newContent) => setContent(newContent)} // preferred to use only this option to update the content for performance reasons
-        onChange={(newContent) => {}}
+        name={props.name}
+        value={props.value}
+        tabIndex={1}
+        onBlur={props.onChange}
+        // onBlur={(newContent) => props.onChange(props.name, newContent)} // preferred to use only this option to update the content for performance reasons
+        // onChange={props.onChange}
       />
     </div>
   );

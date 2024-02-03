@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import InputContainer from "./InputContainer";
 import Textarea from "./Textarea";
 import UploadInput from "./UploadInput";
+import TextEditor from "./TextEditor";
 
 const AddSchedule = ({ index, schedule, removeSchedule, onChange }) => {
   const [daySchedules, setDaySchedules] = useState(schedule.daySchedules || []);
@@ -71,7 +72,20 @@ const AddSchedule = ({ index, schedule, removeSchedule, onChange }) => {
             <UploadInput />
           </div>
           <div className="col-span-3">
-            <Textarea
+            <TextEditor
+              text=""
+              placeholder=""
+              name="dayScheduleInfo"
+              value={daySchedule.dayScheduleInfo || ""}
+              onChange={(e) =>
+                handleDayScheduleChange(dayIndex, {
+                  ...daySchedule,
+                  [e.target.name]: e.target.value,
+                })
+              }
+            />
+
+            {/* <Textarea
               text=""
               placeholder=""
               height="300px"
@@ -84,7 +98,7 @@ const AddSchedule = ({ index, schedule, removeSchedule, onChange }) => {
                   [e.target.name]: e.target.value,
                 })
               }
-            />
+            /> */}
           </div>
         </div>
       ))}

@@ -9,7 +9,6 @@ import TextEditor from "../components/Shared/TextEditor";
 const EventRegistration = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({
-    // Your existing data properties
     productIntroduction: "",
     eventInformation: "",
     productInformation: "",
@@ -35,6 +34,13 @@ const EventRegistration = () => {
     setData((prevValue) => ({
       ...prevValue,
       [name]: value,
+    }));
+  };
+
+  const handleEditorChange = (key, newContent) => {
+    setData((prevValue) => ({
+      ...prevValue,
+      [key]: newContent,
     }));
   };
 
@@ -80,10 +86,6 @@ const EventRegistration = () => {
           <div className="border-b-[1px] border-[#ffffff1a] bg-[#111C44]"></div>
           <div className="pb-20">
             <div className="py-6 px-10 grid gap-16 text-white">
-              {/* ===== */}
-              <TextEditor />
-
-              {/* ========= */}
               <InputContainer
                 text="상품소개"
                 placeholder="[New year's sunrise] Yeosu Hyangilam Sunrise with Jeolla-do delicacies, Suncheon Jeonju 1 night 2 days"
@@ -94,24 +96,24 @@ const EventRegistration = () => {
             </div>
 
             <div className="grid py-6 px-10 text-white">
-              <Textarea
+              <TextEditor
                 text="Event Information"
                 placeholder=""
-                height="300px"
-                rounded="10px"
                 name="eventInformation"
-                onChange={handleChange}
+                onChange={(newContent) =>
+                  handleEditorChange("eventInformation", newContent)
+                }
                 value={data?.eventInformation}
               />
             </div>
             <div className="grid py-6 px-10 text-white">
-              <Textarea
-                text="Product information"
+              <TextEditor
+                text="Product Information"
                 placeholder=""
-                height="300px"
-                rounded="10px"
                 name="productInformation"
-                onChange={handleChange}
+                onChange={(newContent) =>
+                  handleEditorChange("productInformation", newContent)
+                }
                 value={data?.productInformation}
               />
             </div>
