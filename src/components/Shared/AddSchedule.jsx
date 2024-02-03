@@ -22,7 +22,7 @@ const AddSchedule = ({ index, schedule, removeSchedule, onChange }) => {
     <div className="bg-[#111C44] rounded-3xl mt-4 pb-16">
       <div className="px-10 py-6 flex justify-between items-center">
         <p className=" text-2xl font-bold text-white uppercase tracking-wider">
-          Day 1
+          Day {index + 1}
         </p>
 
         <img
@@ -102,7 +102,7 @@ const AddSchedule = ({ index, schedule, removeSchedule, onChange }) => {
         onClick={addDaySchedule}
         className="bg-[#7551FF] cursor-pointer w-[90%] mx-auto rounded-3xl mt-8 flex  justify-center items-center gap-4 text-[32px] text-[#fff] font-bold py-6 "
       >
-        Day1 일정 추가하기
+        Day {index + 1} 일정 추가하기
         <img src="/images/add_icon.png" alt="logo" />
       </div>
     </div>
