@@ -65,26 +65,13 @@ const AddSchedule = ({ index, schedule, removeSchedule, onChange }) => {
               onChange={(e) =>
                 handleDayScheduleChange(dayIndex, {
                   ...daySchedule,
-                  [e.target.name]: e.target.value,
+                  detailedSchedule: e.target.value,
                 })
               }
             />
             <UploadInput />
           </div>
           <div className="col-span-3">
-            {/* <TextEditor
-              text=""
-              placeholder=""
-              name="dayScheduleInfo"
-              value={daySchedule?.dayScheduleInfo}
-              onChange={(e) =>
-                handleDayScheduleChange(dayIndex, {
-                  ...daySchedule,
-                  [e.target.name]: e.target.value,
-                })
-              }
-            /> */}
-
             <TextEditor
               text=""
               placeholder=""

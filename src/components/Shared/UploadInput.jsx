@@ -11,13 +11,15 @@ const UploadInput = () => {
   };
 
   return (
-    <div className="h-[150px] w-full grid place-items-center bg-[#fff] rounded-md">
+    <div className="h-[150px] w-full  grid place-items-center bg-[#fff] rounded-md">
       {selectedImage ? (
-        <img
-          src={selectedImage}
-          alt="Uploaded"
-          className="w-[100%] h-[100%]  px-3 py-5"
-        />
+        <div className="px-3 py-5 w-full h-full  overflow-hidden">
+          <img
+            src={selectedImage}
+            alt="Uploaded"
+            className="w-[100%] h-[100%]  object-cover"
+          />
+        </div>
       ) : (
         <>
           <label
