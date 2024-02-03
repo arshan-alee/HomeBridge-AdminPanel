@@ -8,21 +8,22 @@ import TextEditor from "../components/Shared/TextEditor";
 
 const EventRegistration = () => {
   const [loading, setLoading] = useState(false);
+
   const [data, setData] = useState({
     productIntroduction: "",
     eventInformation: "",
     productInformation: "",
     schedules: [
-      {
-        scheduleIntroduction: "",
-        daySchedules: [
-          {
-            detailedSchedule: "",
-            scheduleImage: "",
-            dayScheduleInfo: "",
-          },
-        ],
-      },
+      // {
+      //   scheduleIntroduction: "",
+      //   daySchedules: [
+      //     {
+      //       detailedSchedule: "",
+      //       scheduleImage: "",
+      //       dayScheduleInfo: "",
+      //     },
+      //   ],
+      // },
     ],
   });
 

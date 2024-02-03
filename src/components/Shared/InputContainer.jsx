@@ -9,7 +9,7 @@ const InputContainer = ({ text, placeholder, ...props }) => {
       <input
         type={props.type}
         name={props.name}
-        value={props.value || ""}
+        value={props.value}
         onChange={props.onChange}
         placeholder={placeholder}
         disabled={props.isDisable}

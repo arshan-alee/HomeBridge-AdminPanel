@@ -61,7 +61,7 @@ const AddSchedule = ({ index, schedule, removeSchedule, onChange }) => {
               text="상세일정"
               placeholder="서울"
               name="detailedSchedule"
-              value={daySchedule.detailedSchedule || ""}
+              value={daySchedule?.detailedSchedule}
               onChange={(e) =>
                 handleDayScheduleChange(dayIndex, {
                   ...daySchedule,
@@ -72,26 +72,11 @@ const AddSchedule = ({ index, schedule, removeSchedule, onChange }) => {
             <UploadInput />
           </div>
           <div className="col-span-3">
-            <TextEditor
+            {/* <TextEditor
               text=""
               placeholder=""
               name="dayScheduleInfo"
-              value={daySchedule.dayScheduleInfo || ""}
-              onChange={(e) =>
-                handleDayScheduleChange(dayIndex, {
-                  ...daySchedule,
-                  [e.target.name]: e.target.value,
-                })
-              }
-            />
-
-            {/* <Textarea
-              text=""
-              placeholder=""
-              height="300px"
-              rounded="10px"
-              name="dayScheduleInfo"
-              value={daySchedule.dayScheduleInfo || ""}
+              value={daySchedule?.dayScheduleInfo}
               onChange={(e) =>
                 handleDayScheduleChange(dayIndex, {
                   ...daySchedule,
@@ -99,6 +84,19 @@ const AddSchedule = ({ index, schedule, removeSchedule, onChange }) => {
                 })
               }
             /> */}
+
+            <TextEditor
+              text=""
+              placeholder=""
+              name="dayScheduleInfo"
+              value={daySchedule?.dayScheduleInfo}
+              onChange={(newContent) =>
+                handleDayScheduleChange(dayIndex, {
+                  ...daySchedule,
+                  dayScheduleInfo: newContent,
+                })
+              }
+            />
           </div>
         </div>
       ))}

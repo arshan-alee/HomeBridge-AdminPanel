@@ -11,12 +11,12 @@ const UploadInput = () => {
   };
 
   return (
-    <div className="h-[150px] grid place-items-center bg-[#fff] rounded-md">
+    <div className="h-[150px] w-full grid place-items-center bg-[#fff] rounded-md">
       {selectedImage ? (
         <img
           src={selectedImage}
           alt="Uploaded"
-          className="w-full h-full  px-3 py-5"
+          className="w-[100%] h-[100%]  px-3 py-5"
         />
       ) : (
         <>
