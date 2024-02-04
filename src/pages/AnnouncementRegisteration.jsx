@@ -41,13 +41,14 @@ const AnnouncementRegisteration = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log("handleSubmit", data);
+    const updatedData = { ...data, jobHouseimages: uploadImages };
+
     try {
       setLoading(true);
 
       const response = await PostData(
         "/api/job_house/createAnnouncement",
-        data
+        updatedData
       );
 
       if (response?.status) {
