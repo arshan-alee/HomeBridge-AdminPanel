@@ -49,7 +49,7 @@ const EventList = () => {
       {/* Body */}
       <div className="bg-[#111C44] rounded-tl-[20px] rounded-tr-[10px] rounded-br-[2px] rounded-bl-0">
         <p className="px-7 py-4 text-left text-2xl font-bold text-white uppercase tracking-wider">
-          Event 신청 리스트
+          Event 리스트
         </p>
       </div>
 
