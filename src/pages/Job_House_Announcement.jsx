@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import { GetAllData } from "../axios/NetworkCall";
 import formatDate from "../utils/helper";
 import RequestLoader from "../components/Shared/RequestLoader";
+import { exportToExcel } from "../utils/ExportToExcel";
 
 const Job_House_Announcement = () => {
   const paginate = usePagination();
@@ -17,16 +18,23 @@ const Job_House_Announcement = () => {
   const [loader, setLoader] = useState();
   const [data, setData] = useState([]);
   const [Error, setError] = useState();
+  const [filteredData, setFilteredData] = useState([]);
 
-  const { currentPage, totalPages, visibleItems, goToPage } = paginate(data);
+  const { currentPage, totalPages, visibleItems, goToPage } =
+    paginate(filteredData);
 
   const handleDownloadInExcel = () => {
     console.log("handleDownloadInExcel function called");
+    exportToExcel(data, "JobHouse Support List");
   };
 
   useEffect(() => {
     getData();
   }, []);
+
+  useEffect(() => {
+    setFilteredData(data);
+  }, [data]);
 
   const getData = async () => {
     try {
@@ -43,6 +51,35 @@ const Job_House_Announcement = () => {
       console.error("Error fetching data:", err);
     } finally {
       setLoader(false);
+    }
+  };
+
+  const handleSearch = (searchTerm) => {
+    if (!searchTerm.trim()) {
+      setFilteredData(data); // Reset to original data if search term is empty
+    } else {
+      const results = data.filter(
+        (item) =>
+          (item.announcementName &&
+            item.announcementName
+              .toLowerCase()
+              .includes(searchTerm.toLowerCase())) ||
+          (item.companyName &&
+            item.companyName
+              .toLowerCase()
+              .includes(searchTerm.toLowerCase())) ||
+          (item.deadline &&
+            item.deadline.toLowerCase().includes(searchTerm.toLowerCase())) ||
+          (item.accomodationName &&
+            item.accomodationName
+              .toLowerCase()
+              .includes(searchTerm.toLowerCase())) ||
+          (item.salary &&
+            item.salary.toLowerCase().includes(searchTerm.toLowerCase())) ||
+          (item.rent &&
+            item.rent.toLowerCase().includes(searchTerm.toLowerCase()))
+      );
+      setFilteredData(results);
     }
   };
 
@@ -74,7 +111,7 @@ const Job_House_Announcement = () => {
             ]}
           />
 
-          <SearchBar />
+          <SearchBar onSearch={handleSearch} />
         </div>
       </div>
 

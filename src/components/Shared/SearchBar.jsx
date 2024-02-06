@@ -1,6 +1,7 @@
+// SearchBar.js
 import React, { useState } from "react";
 
-const SearchBar = () => {
+const SearchBar = ({ onSearch }) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const handleSearchChange = (event) => {
@@ -9,8 +10,7 @@ const SearchBar = () => {
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
-    // You would typically handle the search term here, perhaps sending it to an API or filtering a list.
-    console.log("Searching for:", searchTerm);
+    onSearch(searchTerm); // Call the passed callback function with the search term
   };
 
   return (
@@ -22,7 +22,6 @@ const SearchBar = () => {
         placeholder="Search"
         className="w-full px-4 py-3 text-sm pl-10 rounded-full border-2 text-white bg-[#111C44] border-gray-300 focus:outline-none"
       />
-
       <button type="submit" className="absolute ml-5">
         <img
           src="/images/Search.png"

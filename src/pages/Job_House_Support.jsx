@@ -11,6 +11,7 @@ import baseUrl from "../utils/baseUrl";
 import { GetAllData } from "../axios/NetworkCall";
 import formatDate from "../utils/helper";
 import RequestLoader from "../components/Shared/RequestLoader";
+import { exportToExcel } from "../utils/ExportToExcel";
 
 const Job_House_Support = () => {
   const paginate = usePagination();
@@ -18,16 +19,23 @@ const Job_House_Support = () => {
   const [loader, setLoader] = useState();
   const [data, setData] = useState([]);
   const [Error, setError] = useState();
+  const [filteredData, setFilteredData] = useState([]);
 
-  const { currentPage, totalPages, visibleItems, goToPage } = paginate(data);
+  const { currentPage, totalPages, visibleItems, goToPage } =
+    paginate(filteredData);
 
   const handleDownloadInExcel = () => {
     console.log("handleDownloadInExcel function called");
+    exportToExcel(data, "JobHouse Support List");
   };
 
   useEffect(() => {
     getData();
   }, []);
+
+  useEffect(() => {
+    setFilteredData(data);
+  }, [data]);
 
   const getData = async () => {
     try {
@@ -46,6 +54,23 @@ const Job_House_Support = () => {
       console.error("Error fetching data:", err);
     } finally {
       setLoader(false);
+    }
+  };
+
+  const handleSearch = (searchTerm) => {
+    if (!searchTerm.trim()) {
+      setFilteredData(data); // Reset to original data if search term is empty
+    } else {
+      // Filter data based on searchTerm. Adjust the fields to match your data structure.
+      const results = data.filter(
+        (item) =>
+          item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          item.gender.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          item.nationality.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          item.phoneNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          item.email.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredData(results);
     }
   };
 
@@ -72,7 +97,7 @@ const Job_House_Support = () => {
             ]}
           />
 
-          <SearchBar />
+          <SearchBar onSearch={handleSearch} />
         </div>
       </div>
 

@@ -9,18 +9,22 @@ import { useEffect, useState } from "react";
 import { GetAllData } from "../axios/NetworkCall";
 import RequestLoader from "../components/Shared/RequestLoader";
 import formatDate from "../utils/helper";
+import { exportToExcel } from "../utils/ExportToExcel";
 
 const Membership = () => {
   const paginate = usePagination();
   const navigate = useNavigate();
   const [loader, setLoader] = useState();
   const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
   const [Error, setError] = useState();
 
-  const { currentPage, totalPages, visibleItems, goToPage } = paginate(data);
+  const { currentPage, totalPages, visibleItems, goToPage } =
+    paginate(filteredData);
 
   const handleDownloadInExcel = () => {
     console.log("handleDownloadInExcel function called");
+    exportToExcel(data, "Membership List");
   };
 
   const handleNavigation = () => {
@@ -31,6 +35,10 @@ const Membership = () => {
   useEffect(() => {
     getData();
   }, []);
+
+  useEffect(() => {
+    setFilteredData(data);
+  }, [data]);
 
   const getData = async () => {
     try {
@@ -50,6 +58,20 @@ const Membership = () => {
     }
   };
 
+  const handleSearch = (searchTerm) => {
+    if (!searchTerm.trim()) {
+      setFilteredData(data); // Reset to original data if search term is empty
+    } else {
+      // Filter data based on searchTerm. Adjust the fields to match your data structure.
+      const results = data.filter(
+        (item) =>
+          item.userName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          item.email.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredData(results);
+    }
+  };
+
   return (
     <div className="w-full pt-4 px-12">
       {/* Top bar */}
@@ -59,7 +81,7 @@ const Membership = () => {
           <TabbarButton text="회원 추가하기" onClick={handleNavigation} />
         </div>
         <div className="w-[250px]">
-          <SearchBar />
+          <SearchBar onSearch={handleSearch} />
         </div>
       </div>
 

@@ -9,6 +9,7 @@ import RequestLoader from "../components/Shared/RequestLoader";
 import { useEffect, useState } from "react";
 import { GetAllData } from "../axios/NetworkCall";
 import formatDate from "../utils/helper";
+import { exportToExcel } from "../utils/ExportToExcel";
 
 const Inquiry = () => {
   const paginate = usePagination();
@@ -16,16 +17,23 @@ const Inquiry = () => {
   const [loader, setLoader] = useState();
   const [data, setData] = useState([]);
   const [Error, setError] = useState();
+  const [filteredData, setFilteredData] = useState([]);
 
-  const { currentPage, totalPages, visibleItems, goToPage } = paginate(data);
+  const { currentPage, totalPages, visibleItems, goToPage } =
+    paginate(filteredData);
 
   const handleDownloadInExcel = () => {
     console.log("handleDownloadInExcel function called");
+    exportToExcel(data, "Payment List");
   };
 
   useEffect(() => {
     getData();
   }, []);
+
+  useEffect(() => {
+    setFilteredData(data);
+  }, [data]);
 
   const getData = async () => {
     try {
@@ -43,6 +51,22 @@ const Inquiry = () => {
     }
   };
 
+  const handleSearch = (searchTerm) => {
+    if (!searchTerm.trim()) {
+      setFilteredData(data); // Reset to original data if search term is empty
+    } else {
+      // Filter data based on searchTerm. Adjust the fields to match your data structure.
+      const results = data.filter(
+        (item) =>
+          item.productNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          item.productPrice.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          item.paymentMethod.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          item.paymentStatus.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredData(results);
+    }
+  };
+
   return (
     <div className="w-full pt-4 px-9">
       {/* Top bar */}
@@ -51,7 +75,7 @@ const Inquiry = () => {
           <TabbarButton text="엑셀다운로드" onClick={handleDownloadInExcel} />
         </div>
         <div className="w-[250px]">
-          <SearchBar />
+          <SearchBar onSearch={handleSearch} />
         </div>
       </div>
 
