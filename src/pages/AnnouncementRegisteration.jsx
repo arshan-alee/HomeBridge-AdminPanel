@@ -5,11 +5,17 @@ import SelectInputContainer from "../components/Shared/SelectInputContainer";
 import Textarea from "../components/Shared/Textarea";
 import AddSchedule from "../components/Shared/AddSchedule";
 import UploadRegisterationImage from "../components/Shared/UploadRegisterationImage";
+import TextEditor from "../components/Shared/TextEditor";
+import { PostData } from "../axios/NetworkCall";
+import toast from "react-hot-toast";
 
 const AnnouncementRegisteration = () => {
   const [isToggled, setIsToggled] = useState(true);
   const [uploadImages, setUploadImages] = useState([]);
-  const [data, setData] = useState({});
+  const [data, setData] = useState({
+    isAccomodated: isToggled,
+  });
+  const [loading, setLoading] = useState(false);
 
   const onToggle = () => {
     setIsToggled(!isToggled);
@@ -26,14 +32,46 @@ const AnnouncementRegisteration = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleEditorChange = (key, newContent) => {
+    setData((prevValue) => ({
+      ...prevValue,
+      [key]: newContent,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("handleSubmit");
+    const updatedData = { ...data, jobHouseimages: uploadImages };
+
+    try {
+      setLoading(true);
+
+      const response = await PostData(
+        "/api/job_house/createAnnouncement",
+        updatedData
+      );
+
+      if (response?.status) {
+        toast.success(response?.message);
+
+        setLoading(false);
+
+        // Reset form fields
+        // setData({});
+      } else {
+        toast.error(response);
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error("An error occurred while submitting the form.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
     <>
-      <form onSubmit={handleSubmit} className="mx-auto w-[90%]   my-12">
+      <div className="mx-auto w-[90%]   my-12">
         {/* Top */}
         <div className="bg-[#111C44] rounded-3xl">
           <p className="px-10 py-6 text-left text-2xl font-bold text-white uppercase tracking-wider">
@@ -60,27 +98,36 @@ const AnnouncementRegisteration = () => {
             </div>
 
             <div className="grid py-6 px-10 text-white">
-              <Textarea
+              <TextEditor
                 text="JOB INFO"
                 placeholder=""
-                height="300px"
-                rounded="10px"
+                name="jobInfo"
+                value={data?.jobInfo}
+                onChange={(newContent) =>
+                  handleEditorChange("jobInfo", newContent)
+                }
               />
             </div>
             <div className="grid py-6 px-10 text-white">
-              <Textarea
+              <TextEditor
                 text="Salary & Fringe benefits"
                 placeholder=""
-                height="300px"
-                rounded="10px"
+                name="salaryBenefit"
+                value={data?.salaryBenefit}
+                onChange={(newContent) =>
+                  handleEditorChange("salaryBenefit", newContent)
+                }
               />
             </div>
             <div className="grid py-6 px-10 text-white">
-              <Textarea
+              <TextEditor
                 text="JOB DETAILS"
                 placeholder=""
-                height="300px"
-                rounded="10px"
+                name="jobDetails"
+                value={data?.jobDetails}
+                onChange={(newContent) =>
+                  handleEditorChange("jobDetails", newContent)
+                }
               />
             </div>
 
@@ -124,7 +171,13 @@ const AnnouncementRegisteration = () => {
             {isToggled && (
               <>
                 <div className="py-6 px-10 w-[50%] text-white">
-                  <InputContainer text="공고명" placeholder="Kim" />
+                  <InputContainer
+                    text="공고명"
+                    placeholder="Kim"
+                    name="accomodationName"
+                    value={data?.accomodationName}
+                    onChange={handleChange}
+                  />
                 </div>
 
                 {/* Upload Image Container */}
@@ -143,46 +196,52 @@ const AnnouncementRegisteration = () => {
                           alt={`upload-preview-${index}`}
                           className="object-cover w-full h-full"
                         />
-                        {/* <button
-                          className="absolute top-1 right-1 bg-white p-1 rounded-full text-gray-700 text-sm"
-                          onClick={() => handleRemoveImage(index)}
-                        >
-                          &times;
-                        </button> */}
                       </div>
                     ))}
                 </div>
 
                 <div className="grid py-6 px-10 text-white">
-                  <Textarea
+                  <TextEditor
                     text="General Information"
                     placeholder=""
-                    height="300px"
-                    rounded="10px"
+                    name="generationInformation"
+                    value={data?.generationInformation}
+                    onChange={(newContent) =>
+                      handleEditorChange("generationInformation", newContent)
+                    }
                   />
                 </div>
                 <div className="grid py-6 px-10 text-white">
-                  <Textarea
+                  <TextEditor
                     text="Explanation"
                     placeholder=""
-                    height="300px"
-                    rounded="10px"
+                    name="explanation"
+                    value={data?.explanation}
+                    onChange={(newContent) =>
+                      handleEditorChange("explanation", newContent)
+                    }
                   />
                 </div>
                 <div className="grid py-6 px-10 text-white">
-                  <Textarea
+                  <TextEditor
                     text="External Features"
                     placeholder=""
-                    height="300px"
-                    rounded="10px"
+                    name="externalFeatures"
+                    value={data?.externalFeatures}
+                    onChange={(newContent) =>
+                      handleEditorChange("externalFeatures", newContent)
+                    }
                   />
                 </div>
                 <div className="grid py-6 px-10 text-white">
-                  <Textarea
+                  <TextEditor
                     text="Contract information"
                     placeholder=""
-                    height="300px"
-                    rounded="10px"
+                    name="contractInformation"
+                    value={data?.contractInformation}
+                    onChange={(newContent) =>
+                      handleEditorChange("contractInformation", newContent)
+                    }
                   />
                 </div>
               </>
@@ -191,9 +250,9 @@ const AnnouncementRegisteration = () => {
         </div>
 
         <div className="flex justify-end gap-7 mt-5">
-          <Button text="공고등록" />
+          <Button text="공고등록" onClick={handleSubmit} loading={loading} />
         </div>
-      </form>
+      </div>
     </>
   );
 };

@@ -6,6 +6,7 @@ import Pagination from "../components/Shared/Pagination";
 import usePagination from "../utils/usePagination";
 import { useNavigate } from "react-router";
 import SelectPurpleInputContainer from "../components/Shared/SelectPurpleInputContainer";
+import { exportToExcel } from "../utils/ExportToExcel";
 
 const EventList = () => {
   const paginate = usePagination();
@@ -14,16 +15,15 @@ const EventList = () => {
   const { currentPage, totalPages, visibleItems, goToPage } =
     paginate(eventListData);
 
-  const handleDownloadInExcel = () => {
-    console.log("handleDownloadInExcel function called");
-  };
-
   return (
     <div className="w-full pt-4 px-6">
       {/* Top bar */}
       <div className="flex flex-row items-center justify-between mb-4">
         <div className="flex gap-3">
-          <TabbarButton text="엑셀다운로드" onClick={handleDownloadInExcel} />
+          <TabbarButton
+            text="엑셀다운로드"
+            onClick={() => exportToExcel(eventListData, "Event List")}
+          />
           <TabbarButton
             text="이벤트등록"
             onClick={() => navigate("/admin/event_resgistration")}
