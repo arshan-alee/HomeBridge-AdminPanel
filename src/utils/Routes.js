@@ -16,6 +16,7 @@ import Job_House_Announcement from "../pages/Job_House_Announcement";
 import Job_House_Support from "../pages/Job_House_Support";
 import JobAndHouseSupportDetails from "../pages/JobAndHouseSupportDetails";
 import AnnouncementRegisteration from "../pages/AnnouncementRegisteration";
+import JobAndHouseAnnouncementDetails from "../pages/JobAndHouseAnnouncementDetails";
 
 export const routes = [
   {
@@ -114,6 +115,11 @@ export const editRoutes = [
     title: "Inquiry Details",
     name: "job_and_house_support_details/:id",
     component: <JobAndHouseSupportDetails />,
+  },
+  {
+    title: "Announcement Details",
+    name: "job_and_house_announcement_details/:id",
+    component: <JobAndHouseAnnouncementDetails />,
   },
   {
     title: "Announcement Registration",

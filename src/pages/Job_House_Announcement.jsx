@@ -155,9 +155,11 @@ const Job_House_Announcement = () => {
                           <tr
                             key={index}
                             className="cursor-pointer bg-[#111C44] hover:bg-[#0c1845] duration-300"
-                            // onClick={() => {
-                            //   navigate("/admin/" + "announcement_resgistration");
-                            // }}
+                            onClick={() => {
+                              navigate(
+                                `/admin/job_and_house_announcement_details/${row._id}`
+                              );
+                            }}
                           >
                             <td className="px-7 py-5   text-sm">
                               <p className="text-white whitespace-no-wrap">

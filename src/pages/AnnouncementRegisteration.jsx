@@ -12,9 +12,7 @@ import toast from "react-hot-toast";
 const AnnouncementRegisteration = () => {
   const [isToggled, setIsToggled] = useState(true);
   const [uploadImages, setUploadImages] = useState([]);
-  const [data, setData] = useState({
-    isAccomodated: isToggled,
-  });
+  const [data, setData] = useState({});
   const [loading, setLoading] = useState(false);
 
   const onToggle = () => {
@@ -41,7 +39,11 @@ const AnnouncementRegisteration = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const updatedData = { ...data, jobHouseimages: uploadImages };
+    const updatedData = {
+      ...data,
+      jobHouseimages: uploadImages,
+      isAccomodated: isToggled,
+    };
 
     try {
       setLoading(true);
@@ -93,6 +95,23 @@ const AnnouncementRegisteration = () => {
                 placeholder="h12345"
                 name="companyName"
                 value={data?.companyName}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="py-6 px-10 grid grid-cols-2 gap-16 text-white">
+              <InputContainer
+                text="샐러리"
+                placeholder="2,000,000/m"
+                name="salary"
+                value={data?.salary}
+                onChange={handleChange}
+              />
+              <InputContainer
+                text="임차료"
+                placeholder="100,000/m"
+                name="rent"
+                value={data?.rent}
                 onChange={handleChange}
               />
             </div>
