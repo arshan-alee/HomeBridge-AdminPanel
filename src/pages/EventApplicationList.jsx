@@ -152,7 +152,9 @@ const EventApplicationDetails = () => {
                             className="cursor-pointer bg-[#111C44] hover:bg-[#0c1845] duration-300"
                             key={index}
                             onClick={() =>
-                              navigate("/admin/event_application_details")
+                              navigate(
+                                `/admin/event_application_details/${row?._id}`
+                              )
                             }
                           >
                             <td className="px-7 py-5   text-sm">

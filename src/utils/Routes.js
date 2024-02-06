@@ -102,7 +102,7 @@ export const editRoutes = [
   },
   {
     title: "Event Details",
-    name: "event_application_details",
+    name: "event_application_details/:id",
     component: <EventApplicationDetails />,
   },
   {
