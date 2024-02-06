@@ -1,6 +1,13 @@
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage } from "../config/firebaseConfig";
 
+export const isDateGreaterThanToday = (dateString) => {
+  const inputDate = new Date(dateString);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return inputDate > today;
+};
+
 export default function formatDate(isoDate) {
   const date = new Date(isoDate);
   const year = date.getFullYear();

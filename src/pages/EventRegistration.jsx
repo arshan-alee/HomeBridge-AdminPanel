@@ -1,20 +1,59 @@
 import React, { useState } from "react";
 import InputContainer from "../components/Shared/InputContainer";
 import Button from "../components/Shared/Button";
-import SelectInputContainer from "../components/Shared/SelectInputContainer";
-import Textarea from "../components/Shared/Textarea";
 import AddSchedule from "../components/Shared/AddSchedule";
 import TextEditor from "../components/Shared/TextEditor";
 import { PostData } from "../axios/NetworkCall";
 import toast from "react-hot-toast";
+import { isDateGreaterThanToday } from "../utils/helper";
+
+const validateFormData = (data) => {
+  const requiredFields = [
+    "productIntroduction",
+    "deadline",
+    "departure",
+    "arrival",
+    "price",
+    "traffic",
+    "productInformation",
+  ];
+
+  const emptyFields = requiredFields.filter((field) => !data[field]);
+  if (emptyFields.length > 0) {
+    toast.error(
+      `Please fill in the following fields: ${emptyFields.join(", ")}`
+    );
+    return false; // Indicates validation failed
+  }
+
+  const dateFields = ["deadline", "departure", "arrival"];
+  const invalidDateFields = dateFields.filter(
+    (field) => data[field] && !isDateGreaterThanToday(data[field])
+  );
+
+  if (invalidDateFields.length > 0) {
+    toast.error(
+      `The following dates must be in the future: ${invalidDateFields.join(
+        ", "
+      )}`
+    );
+    return false; // Indicates validation failed
+  }
+
+  return true; // Indicates validation passed
+};
 
 const EventRegistration = () => {
   const [loading, setLoading] = useState(false);
 
   const [data, setData] = useState({
     productIntroduction: "",
-    eventInformation: "",
     productInformation: "",
+    deadline: "",
+    departure: "",
+    arrival: "",
+    price: "",
+    traffic: "",
     schedules: [
       // {
       //   scheduleIntroduction: "",
@@ -28,6 +67,9 @@ const EventRegistration = () => {
       // },
     ],
   });
+
+  console.log("data--------------------");
+  console.log(data);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -71,17 +113,8 @@ const EventRegistration = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const requiredFields = [
-      "productIntroduction",
-      "eventInformation",
-      "productInformation",
-    ];
-
-    const emptyFields = requiredFields.filter((field) => !data[field]);
-    if (emptyFields.length > 0) {
-      toast.error(
-        `Please fill in the following fields: ${emptyFields.join(", ")}`
-      );
+    if (!validateFormData(data)) {
+      // If validation fails, stop the form submission
       return;
     }
 
@@ -98,7 +131,11 @@ const EventRegistration = () => {
         // Reset form fields
         setData({
           productIntroduction: "",
-          eventInformation: "",
+          deadline: "",
+          departure: "",
+          arrival: "",
+          price: "",
+          traffic: "",
           productInformation: "",
           schedules: [],
         });
@@ -142,17 +179,43 @@ const EventRegistration = () => {
                 <InputContainer
                   text="Departure"
                   placeholder="2023.12.30(토) 07:00"
+                  type="datetime-local"
+                  name="departure"
+                  value={data?.departure}
+                  onChange={handleChange}
                 />
                 <InputContainer
                   text="Arrival"
                   placeholder="2023.12.31(일) 19:00"
+                  type="datetime-local"
+                  name="arrival"
+                  value={data?.arrival}
+                  onChange={handleChange}
                 />
-                <InputContainer text="Price" placeholder="199,000KRW" />
+                <InputContainer
+                  text="Price"
+                  placeholder="199,000KRW"
+                  type="text"
+                  name="price"
+                  value={data?.price}
+                  onChange={handleChange}
+                />
                 <InputContainer
                   text="Deadline"
                   placeholder="2023.12.31(일) 19:00"
+                  type="datetime-local"
+                  name="deadline"
+                  value={data?.deadline}
+                  onChange={handleChange}
                 />
-                <InputContainer text="traffic" placeholder="버스" />
+                <InputContainer
+                  text="traffic"
+                  placeholder="버스"
+                  type="text"
+                  name="traffic"
+                  value={data?.traffic}
+                  onChange={handleChange}
+                />
               </div>
             </div>
 
