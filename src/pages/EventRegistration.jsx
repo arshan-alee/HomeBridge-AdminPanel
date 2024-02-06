@@ -134,17 +134,28 @@ const EventRegistration = () => {
               />
             </div>
 
-            <div className="grid py-6 px-10 text-white">
-              <TextEditor
-                text="Event Information"
-                placeholder=""
-                name="eventInformation"
-                onChange={(newContent) =>
-                  handleEditorChange("eventInformation", newContent)
-                }
-                value={data?.eventInformation}
-              />
+            <div className="py-6">
+              <p className="text-[20px] text-[#fff] px-10">
+                Event Information:
+              </p>
+              <div className="py-6 px-10 grid grid-cols-3 gap-10 text-white">
+                <InputContainer
+                  text="Departure"
+                  placeholder="2023.12.30(토) 07:00"
+                />
+                <InputContainer
+                  text="Arrival"
+                  placeholder="2023.12.31(일) 19:00"
+                />
+                <InputContainer text="Price" placeholder="199,000KRW" />
+                <InputContainer
+                  text="Deadline"
+                  placeholder="2023.12.31(일) 19:00"
+                />
+                <InputContainer text="traffic" placeholder="버스" />
+              </div>
             </div>
+
             <div className="grid py-6 px-10 text-white">
               <TextEditor
                 text="Product Information"
