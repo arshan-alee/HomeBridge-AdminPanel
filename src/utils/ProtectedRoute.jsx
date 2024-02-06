@@ -33,7 +33,7 @@ const ProtectedRoute = (props) => {
           </div>
           <div className="flex h-[88.8vh]">
             <Sidebar />
-            <div className="w-[80%] overflow-y-auto">{props.children}</div>
+            <div className="w-[82%] overflow-y-auto">{props.children}</div>
           </div>
         </div>
       ) : null}

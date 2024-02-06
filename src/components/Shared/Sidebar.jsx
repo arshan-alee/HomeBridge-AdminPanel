@@ -14,7 +14,7 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="w-[20%] h-full bg-[#111C44] flex flex-col  gap-4 overflow-y-auto">
+    <div className="w-[18%] h-full bg-[#111C44] flex flex-col  gap-4 overflow-y-auto">
       <div className="mt-[100px]"></div>
       <span
         className="w-full h-[1px]"
