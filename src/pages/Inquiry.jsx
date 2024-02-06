@@ -53,9 +53,8 @@ const Inquiry = () => {
 
   const handleSearch = (searchTerm) => {
     if (!searchTerm.trim()) {
-      setFilteredData(data); // Reset to original data if search term is empty
+      setFilteredData(data);
     } else {
-      // Filter data based on searchTerm. Adjust the fields to match your data structure.
       const results = data.filter(
         (item) =>
           item.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
