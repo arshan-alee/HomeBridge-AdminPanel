@@ -53,7 +53,7 @@ const EventList = () => {
         <div className="flex gap-3">
           <TabbarButton
             text="엑셀다운로드"
-            onClick={() => exportToExcel(eventListData, "Event List")}
+            onClick={() => exportToExcel(data, "Event List")}
           />
           <TabbarButton
             text="이벤트등록"
