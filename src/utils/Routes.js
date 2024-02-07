@@ -5,18 +5,18 @@ import FTOR from "../pages/F2R";
 import Inquiry from "../pages/Inquiry";
 import MemberDetails from "../pages/MemberDetails";
 import Membership from "../pages/Membership";
-import Payment from "../pages/Payment";
 import InquiryDetails from "../pages/InquiryDetails";
 import EventRegistration from "../pages/EventRegistration";
 import EventApplicationList from "../pages/EventApplicationList";
 import EventApplicationDetails from "../pages/EventApplicationDetails";
-import PaymentDetails from "../pages/PaymentDetails";
 import EventList from "../pages/EventList";
 import Job_House_Announcement from "../pages/Job_House_Announcement";
 import Job_House_Support from "../pages/Job_House_Support";
 import JobAndHouseSupportDetails from "../pages/JobAndHouseSupportDetails";
 import AnnouncementRegisteration from "../pages/AnnouncementRegisteration";
 import JobAndHouseAnnouncementDetails from "../pages/JobAndHouseAnnouncementDetails";
+import Refund from "../pages/Refund";
+import RefundDetails from "../pages/RefundDetails";
 
 export const routes = [
   {
@@ -63,9 +63,9 @@ export const routes = [
   },
   {
     title: "결제내역",
-    name: "payments",
+    name: "refund",
     icon: "/images/cart.png",
-    component: <Payment />,
+    component: <Refund />,
   },
   {
     title: "문의내역",
@@ -88,8 +88,8 @@ export const editRoutes = [
   },
   {
     title: "Edit Payment",
-    name: "payment_details/:id",
-    component: <PaymentDetails />,
+    name: "refund_details/:id",
+    component: <RefundDetails />,
   },
   {
     title: "Inquiry Details",

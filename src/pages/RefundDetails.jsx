@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 import formatDate from "../utils/helper";
 import RequestLoader from "../components/Shared/RequestLoader";
 
-const PaymentDetails = () => {
+const RefundDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [loader, setLoader] = useState();
@@ -23,25 +23,36 @@ const PaymentDetails = () => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    setData((prevValue) => {
-      return {
+    // Check if the change is for a property within the nested `eventApplication` object
+    if (name.startsWith("eventApplication.")) {
+      const nestedFieldName = name.split(".")[1]; // Get the field name within eventApplication
+      setData((prevValue) => ({
+        ...prevValue,
+        eventApplication: {
+          ...prevValue.eventApplication,
+          [nestedFieldName]: value,
+        },
+      }));
+    } else {
+      // Handle changes for non-nested fields
+      setData((prevValue) => ({
         ...prevValue,
         [name]: value,
-      };
-    });
+      }));
+    }
   };
 
   const handleSubmit = async () => {
     setUpdatetLoading(true);
     try {
       const response = await EditData(
-        `api/payment/updateRefundRequest?id=${id}`,
+        `api/refund/updateRefundRequest?id=${id}`,
         data
       );
       if (response?.status) {
         toast.success(response?.message);
 
-        navigate("/admin/" + "payments");
+        navigate("/admin/" + "refund");
       } else {
         toast.error(response?.message);
       }
@@ -56,7 +67,7 @@ const PaymentDetails = () => {
     try {
       setLoader(true);
       const response = await GetSingleData(
-        `/api/payment/singleRefundRequest?id=${id}`
+        `/api/refund/singleRefundRequest?id=${id}`
       );
       if (response.success) {
         setData(response.data);
@@ -107,8 +118,8 @@ const PaymentDetails = () => {
                     <InputContainer
                       text="상품번호"
                       name="productNumber"
-                      value={data?.productNumber}
-                      onChange={handleChange}
+                      isDisable
+                      value={data?.event?._id}
                     />
                   </div>
 
@@ -116,36 +127,39 @@ const PaymentDetails = () => {
                     <InputContainer
                       text="상품가격"
                       name="productPrice"
-                      value={data?.productPrice}
-                      onChange={handleChange}
+                      isDisable
+                      value={data?.refundAmount}
                     />
                     <InputContainer
                       text="결제수단"
                       name="paymentMethod"
-                      value={data?.paymentMethod}
-                      onChange={handleChange}
+                      isDisable
+                      value={data?.eventApplication?.paymentMethod}
                     />
 
                     <InputContainer
                       text="결제일자"
                       name="paymentDate"
                       type="date"
-                      value={formatDate(data?.paymentDate)}
+                      value={formatDate(
+                        data?.eventApplication?.applicationDate
+                      )}
                       onChange={handleChange}
                     />
                   </div>
                   <div className="py-6 px-10 grid grid-cols-3 gap-16 text-white">
                     <InputContainer
                       text="결제상태"
-                      name="paymentStatus"
-                      value={data?.paymentStatus}
+                      name="eventApplication.paymentStatus" // Indicate that this field is nested within eventApplication
+                      value={data?.eventApplication?.paymentStatus}
                       onChange={handleChange}
                     />
+
                     <InputContainer
                       text="환불일자"
                       name="refundDate"
                       type="date"
-                      value={formatDate(data?.refundDate) || "-"}
+                      value={formatDate(data?.refundDate) || ""}
                       onChange={handleChange}
                     />
                   </div>
@@ -166,4 +180,4 @@ const PaymentDetails = () => {
   );
 };
 
-export default PaymentDetails;
+export default RefundDetails;

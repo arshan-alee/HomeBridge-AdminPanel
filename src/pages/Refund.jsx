@@ -11,7 +11,7 @@ import { GetAllData } from "../axios/NetworkCall";
 import formatDate from "../utils/helper";
 import { exportToExcel } from "../utils/ExportToExcel";
 
-const Inquiry = () => {
+const Refund = () => {
   const paginate = usePagination();
   const navigate = useNavigate();
   const [loader, setLoader] = useState();
@@ -38,7 +38,8 @@ const Inquiry = () => {
   const getData = async () => {
     try {
       setLoader(true);
-      const response = await GetAllData(`/api/payment/allRefundRequests`);
+      const response = await GetAllData(`/api/refund/allRefundRequests`);
+      console.log("response: ", response);
       if (response.success) {
         setData(response.data);
       } else {
@@ -55,13 +56,16 @@ const Inquiry = () => {
     if (!searchTerm.trim()) {
       setFilteredData(data); // Reset to original data if search term is empty
     } else {
-      // Filter data based on searchTerm. Adjust the fields to match your data structure.
       const results = data.filter(
         (item) =>
-          item.productNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          item.productPrice.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          item.paymentMethod.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          item.paymentStatus.toLowerCase().includes(searchTerm.toLowerCase())
+          item.event._id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          item.event.price.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          item.eventApplication.paymentMethod
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase()) ||
+          item.eventApplication.paymentStatus
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase())
       );
       setFilteredData(results);
     }
@@ -163,14 +167,9 @@ const Inquiry = () => {
                             key={index}
                             className="cursor-pointer bg-[#111C44] hover:bg-[#0c1845] duration-300"
                             onClick={() => {
-                              navigate(`/admin/payment_details/${row._id}`);
+                              navigate(`/admin/refund_details/${row._id}`);
                             }}
                           >
-                            <td className="px-7 py-5   text-sm">
-                              <p className="text-white whitespace-no-wrap">
-                                {row._id}
-                              </p>
-                            </td>
                             <td className="px-7 py-5   text-sm">
                               <p className="text-white whitespace-no-wrap">
                                 {row.user}
@@ -178,27 +177,34 @@ const Inquiry = () => {
                             </td>
                             <td className="px-7 py-5   text-sm">
                               <p className="text-white whitespace-no-wrap">
-                                {row.productNumber}
+                                {row._id}
                               </p>
                             </td>
                             <td className="px-7 py-5   text-sm">
                               <p className="text-white whitespace-no-wrap">
-                                {row.productPrice}
+                                {row?.event?._id}
                               </p>
                             </td>
                             <td className="px-7 py-5   text-sm">
                               <p className="text-white whitespace-no-wrap">
-                                {row.paymentMethod}
+                                {row?.refundAmount}
                               </p>
                             </td>
                             <td className="px-7 py-5   text-sm">
                               <p className="text-white whitespace-no-wrap">
-                                {formatDate(row.paymentDate)}
+                                {row?.eventApplication?.paymentMethod}
                               </p>
                             </td>
                             <td className="px-7 py-5   text-sm">
                               <p className="text-white whitespace-no-wrap">
-                                {row.paymentStatus}
+                                {formatDate(
+                                  row?.eventApplication?.applicationDate
+                                )}
+                              </p>
+                            </td>
+                            <td className="px-7 py-5   text-sm">
+                              <p className="text-white whitespace-no-wrap">
+                                {row?.eventApplication?.paymentStatus}
                               </p>
                             </td>
                           </tr>
@@ -223,4 +229,4 @@ const Inquiry = () => {
   );
 };
 
-export default Inquiry;
+export default Refund;

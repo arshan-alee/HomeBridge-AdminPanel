@@ -78,10 +78,9 @@ const Sidebar = () => {
 
       <div
         className={`flex gap-5 items-center border-solid bottom-2 py-1 pl-7 ${
-          location.pathname === "/admin/payments" &&
-          "border-r-4 border-[#7551FF]"
+          location.pathname === "/admin/refund" && "border-r-4 border-[#7551FF]"
         } cursor-pointer`}
-        onClick={() => handleNavigation("결제내역", "payments")}
+        onClick={() => handleNavigation("결제내역", "refund")}
       >
         <img src="/images/cart.png" className="" />
         <p className="text-white">결제내역</p>
