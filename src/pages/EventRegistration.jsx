@@ -6,6 +6,7 @@ import TextEditor from "../components/Shared/TextEditor";
 import { PostData } from "../axios/NetworkCall";
 import toast from "react-hot-toast";
 import { isDateGreaterThanToday } from "../utils/helper";
+import UploadRegisterationImage from "../components/Shared/UploadRegisterationImage";
 
 const validateFormData = (data) => {
   const requiredFields = [
@@ -44,6 +45,7 @@ const validateFormData = (data) => {
 };
 
 const EventRegistration = () => {
+  const [uploadImages, setUploadImages] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const [data, setData] = useState({
@@ -67,9 +69,6 @@ const EventRegistration = () => {
       // },
     ],
   });
-
-  console.log("data--------------------");
-  console.log(data);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -121,7 +120,10 @@ const EventRegistration = () => {
     try {
       setLoading(true);
 
-      const response = await PostData("/api/eventRegistration", data);
+      const response = await PostData("/api/eventRegistration", {
+        ...data,
+        eventImages: uploadImages,
+      });
 
       if (response?.status) {
         toast.success(response?.message);
@@ -138,6 +140,7 @@ const EventRegistration = () => {
           traffic: "",
           productInformation: "",
           schedules: [],
+          uploadImages: [],
         });
       } else {
         toast.error(response);
@@ -171,7 +174,7 @@ const EventRegistration = () => {
               />
             </div>
 
-            <div className="py-6">
+            <div className="pt-6">
               <p className="text-[20px] text-[#fff] px-10">
                 Event Information:
               </p>
@@ -216,6 +219,32 @@ const EventRegistration = () => {
                   value={data?.traffic}
                   onChange={handleChange}
                 />
+              </div>
+            </div>
+
+            <div className="py-6">
+              {/* Upload Image Container */}
+              <p className="px-10 text-white text-lg">Event Images</p>
+
+              <div className="py-6 px-10 flex flex-wrap gap-1 text-white">
+                <UploadRegisterationImage
+                  setUploadImages={setUploadImages}
+                  text="이벤트 이미지 등록
+"
+                />
+                {uploadImages &&
+                  uploadImages.map((item, index) => (
+                    <div
+                      key={index}
+                      className="w-24 h-24 relative border overflow-hidden"
+                    >
+                      <img
+                        src={item}
+                        alt={`upload-preview-${index}`}
+                        className="object-cover w-full h-full"
+                      />
+                    </div>
+                  ))}
               </div>
             </div>
 

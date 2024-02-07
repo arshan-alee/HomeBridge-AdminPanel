@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { uploadImage } from "../../utils/helper";
 import RequestLoader from "./RequestLoader";
 
-const UploadRegisterationImage = ({ setUploadImages }) => {
+const UploadRegisterationImage = ({ setUploadImages, text }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -51,7 +51,7 @@ const UploadRegisterationImage = ({ setUploadImages }) => {
             htmlFor="file-upload"
             className="text-[18px] font-bold text-[#1B254B] -mt-7 cursor-pointer"
           >
-            숙소이미지 등록
+            {text}
           </label>
         </>
       )}

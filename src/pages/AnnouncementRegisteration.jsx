@@ -203,7 +203,10 @@ const AnnouncementRegisteration = () => {
                 <p className="px-10 text-white text-lg font-bold">회사명</p>
 
                 <div className="py-6 px-10 flex flex-wrap gap-1 text-white">
-                  <UploadRegisterationImage setUploadImages={setUploadImages} />
+                  <UploadRegisterationImage
+                    setUploadImages={setUploadImages}
+                    text="숙소이미지 등록"
+                  />
                   {uploadImages &&
                     uploadImages.map((item, index) => (
                       <div
