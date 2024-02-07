@@ -167,7 +167,7 @@ const EventApplicationDetails = () => {
                               <p className="text-white whitespace-no-wrap">
                                 {`${row?.event?.productIntroduction
                                   .toString()
-                                  .slice(0, 20)} ...` || "-"}
+                                  .slice(0, 15)} ...` || "-"}
                               </p>
                             </td>
                             <td className="px-7 py-5   text-sm">

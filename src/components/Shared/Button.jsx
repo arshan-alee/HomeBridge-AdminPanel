@@ -8,7 +8,7 @@ const Button = ({ text, onClick, loading }) => {
       onClick={onClick}
       disabled={loading ? true : false}
     >
-      {loading ? <RequestLoader /> : "회원생성"}
+      {loading ? <RequestLoader /> : text}
     </button>
   );
 };

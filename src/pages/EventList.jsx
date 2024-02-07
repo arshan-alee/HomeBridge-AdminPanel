@@ -10,7 +10,7 @@ import { exportToExcel } from "../utils/ExportToExcel";
 import { GetAllData } from "../axios/NetworkCall";
 import { useEffect, useState } from "react";
 import RequestLoader from "../components/Shared/RequestLoader";
-import formatDate from "../utils/helper";
+import formatDate, { checkDeadline } from "../utils/helper";
 
 const EventList = () => {
   const paginate = usePagination();
@@ -160,7 +160,7 @@ const EventList = () => {
                               <p className="text-white whitespace-no-wrap">
                                 {`${row?.productIntroduction
                                   .toString()
-                                  .slice(0, 30)} ...` || "-"}
+                                  .slice(0, 15)} ...` || "-"}
                               </p>
                             </td>
                             <td className="px-7 py-5   text-sm">
@@ -171,14 +171,15 @@ const EventList = () => {
                             </td>
                             <td className="px-7 py-5   text-sm">
                               <p className="text-white whitespace-no-wrap">
-                                {/* {row.productPrice} */}
-                                1000
+                                {row?.price || "-"}
                               </p>
                             </td>
                             <td className="px-7 py-5   text-sm">
                               <p className="text-white whitespace-no-wrap">
-                                {/* {row.deadline} */}
-                                111111111
+                                {checkDeadline(row?.deadline) ===
+                                "Deadline Passed"
+                                  ? "마감"
+                                  : "등록중" || "-"}
                               </p>
                             </td>
                             <td className="px-7 py-5   text-sm">

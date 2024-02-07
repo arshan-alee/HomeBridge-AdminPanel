@@ -16,6 +16,17 @@ export default function formatDate(isoDate) {
   return `${year}-${month}-${day}`;
 }
 
+export function checkDeadline(isoDate) {
+  const date = new Date(isoDate);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  // Check if the deadline has passed
+  if (date < today) {
+    return "Deadline Passed";
+  }
+}
+
 export const uploadImage = (file) => {
   return new Promise((resolve, reject) => {
     const storageRef = ref(storage, `/files/${file.name}`);
