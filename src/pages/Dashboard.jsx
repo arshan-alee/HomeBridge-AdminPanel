@@ -1,10 +1,77 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaCaretDown } from "react-icons/fa";
 import { IoCheckmark } from "react-icons/io5";
 import BarChart from "../components/Shared/BarChart";
 import LineChart from "../components/Shared/LineChart";
+import { GetAllData } from "../axios/NetworkCall";
+
+const Loader = () => {
+  return (
+    <div className="border-2 border-r-0 border-b-0  animate-spin rounded-full   border-[#fff] h-4 w-4"></div>
+  );
+};
 
 const Dashboard = () => {
+  const [loader, setLoader] = useState();
+  const [data, setData] = useState({});
+  const [Error, setError] = useState();
+
+  const [selectedOptionData, setSelectedOptionData] = useState("Monthly");
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    try {
+      setLoader(true);
+      const response = await GetAllData(`/api/getAllCounters`);
+
+      if (response.success) {
+        setData(response.data);
+      } else {
+        setError(response.message);
+      }
+    } catch (err) {
+      console.error("Error fetching data:", err);
+    } finally {
+      setLoader(false);
+    }
+  };
+
+  const getCountData = (type) => {
+    switch (type) {
+      case "F2R":
+        return selectedOptionData === "Today"
+          ? data?.dailyF2RApplications
+          : selectedOptionData === "Monthly"
+          ? data?.monthlyF2RApplications
+          : data?.yearlyF2RApplications;
+      case "Job&House":
+        return selectedOptionData === "Today"
+          ? data?.dailyJobHousesApplications
+          : selectedOptionData === "Monthly"
+          ? data?.monthlyJobHousesApplications
+          : data?.yearlyJobHousesApplications;
+      case "Event":
+        return selectedOptionData === "Today"
+          ? data?.dailyEventApplications
+          : selectedOptionData === "Monthly"
+          ? data?.monthlyEventApplications
+          : data?.yearlyEventApplications;
+
+      case "Payment":
+        return selectedOptionData === "Today"
+          ? data?.dailyPaymentSum
+          : selectedOptionData === "Monthly"
+          ? data?.monthlyPaymentSum
+          : data?.yearlyPaymentSum;
+
+      default:
+        return 0;
+    }
+  };
+
   return (
     <div className="w-full overflow-y-hidden py-6 pl-3 pr-5">
       {/* 1st Row */}
@@ -15,12 +82,13 @@ const Dashboard = () => {
             <p className="text-[#A3AED0] font-medium text-[14px]">회원수</p>
             <div className="relative cursor-pointer z-20 inline-block">
               <select
-                name=""
-                id=""
+                name="users"
+                id="users"
                 className="text-[#A3AED0] cursor-pointer relative z-20 inline-flex appearance-none bg-transparent py-1  pr-8 text-sm font-medium outline-none"
               >
-                <option value="">Monthly</option>
-                <option value="">Yearly</option>
+                <option value="Today">Today</option>
+                <option value="Monthly">Monthly</option>
+                <option value="Yearly">Yearly</option>
               </select>
               <span className="absolute top-1/2 right-3 z-10 -translate-y-1/2">
                 <FaCaretDown className="text-[#A3AED0]" />
@@ -38,33 +106,52 @@ const Dashboard = () => {
         <div className="col-span-2 rounded-[20px] bg-[#111C44] py-7 px-8">
           <div className="flex justify-between items-center">
             <p className="text-[#fff] font-bold text-[16px]">유저 Data</p>
-            <div className="relative cursor-pointer z-20 inline-block">
+            {/* <div className="relative cursor-pointer z-20 inline-block">
               <select
                 name=""
                 id=""
                 className="text-[#A3AED0] cursor-pointer relative z-20 inline-flex appearance-none bg-transparent py-1 pr-8 text-sm font-medium outline-none"
               >
+                <option value="">Today</option>
                 <option value="">Monthly</option>
                 <option value="">Yearly</option>
               </select>
               <span className="absolute top-1/2 right-3 z-10 -translate-y-1/2">
                 <FaCaretDown className="text-[#A3AED0]" />
               </span>
-            </div>
+            </div> */}
           </div>
 
           <div className="grid gap-5 mt-3 w-full grid-col-1">
             <div className="flex justify-between items-center rounded-[15px] bg-[#1B254B] py-6 px-8">
               <p className="text-[12px] text-[#A3AED0]">오늘 가입회원</p>
-              <h1 className="text-[18px] text-[#fff] font-bold">20명</h1>
+              {loader ? (
+                <Loader />
+              ) : (
+                <h1 className="text-[18px] text-[#fff] font-bold">
+                  {data?.dailyUsers} 명
+                </h1>
+              )}
             </div>
             <div className="flex justify-between items-center rounded-[15px] bg-[#1B254B] py-6 px-8">
               <p className="text-[12px] text-[#A3AED0]">이번달 가입회원</p>
-              <h1 className="text-[18px] text-[#fff] font-bold">277명</h1>
+              {loader ? (
+                <Loader />
+              ) : (
+                <h1 className="text-[18px] text-[#fff] font-bold">
+                  {data?.monthlyUsers} 명
+                </h1>
+              )}
             </div>
             <div className="flex justify-between items-center rounded-[15px] bg-[#1B254B] py-6 px-8">
               <p className="text-[12px] text-[#A3AED0]">올해 가입회원</p>
-              <h1 className="text-[18px] text-[#fff] font-bold">3423명</h1>
+              {loader ? (
+                <Loader />
+              ) : (
+                <h1 className="text-[18px] text-[#fff] font-bold">
+                  {data?.yearlyUsers} 명
+                </h1>
+              )}
             </div>
           </div>
         </div>
@@ -78,12 +165,15 @@ const Dashboard = () => {
             <p className="text-[#fff] font-bold text-[16px]">Data</p>
             <div className="relative cursor-pointer z-20 inline-block">
               <select
-                name=""
-                id=""
+                onChange={(e) => setSelectedOptionData(e.target.value)}
+                value={selectedOptionData}
+                name="general"
+                id="general"
                 className="text-[#A3AED0] cursor-pointer relative z-20 inline-flex appearance-none bg-transparent py-1 pr-8 text-sm font-medium outline-none"
               >
-                <option value="">Monthly</option>
-                <option value="">Yearly</option>
+                <option value="Today">Today</option>
+                <option value="Monthly">Monthly</option>
+                <option value="Yearly">Yearly</option>
               </select>
               <span className="absolute top-1/2 right-3 z-10 -translate-y-1/2">
                 <FaCaretDown className="text-[#A3AED0]" />
@@ -94,15 +184,33 @@ const Dashboard = () => {
           <div className="grid gap-5 mt-3 w-full grid-col-1">
             <div className="flex justify-between items-center rounded-[15px] bg-[#1B254B] py-6 px-8">
               <p className="text-[12px] text-[#A3AED0]">F-2-R 신청자</p>
-              <h1 className="text-[18px] text-[#fff] font-bold">20명</h1>
+              {loader ? (
+                <Loader />
+              ) : (
+                <h1 className="text-[18px] text-[#fff] font-bold">
+                  {getCountData("F2R")} 건
+                </h1>
+              )}
             </div>
             <div className="flex justify-between items-center rounded-[15px] bg-[#1B254B] py-6 px-8">
-              <p className="text-[12px] text-[#A3AED0]">Job&House</p>
-              <h1 className="text-[18px] text-[#fff] font-bold">77건</h1>
+              <p className="text-[12px] text-[#A3AED0]">Job&House 신청자</p>
+              {loader ? (
+                <Loader />
+              ) : (
+                <h1 className="text-[18px] text-[#fff] font-bold">
+                  {getCountData("Job&House")} 건
+                </h1>
+              )}
             </div>
             <div className="flex justify-between items-center rounded-[15px] bg-[#1B254B] py-6 px-8">
-              <p className="text-[12px] text-[#A3AED0]">Event</p>
-              <h1 className="text-[18px] text-[#fff] font-bold">34건</h1>
+              <p className="text-[12px] text-[#A3AED0]">Event 신청자</p>
+              {loader ? (
+                <Loader />
+              ) : (
+                <h1 className="text-[18px] text-[#fff] font-bold">
+                  {getCountData("Event")} 건
+                </h1>
+              )}
             </div>
           </div>
         </div>
@@ -138,12 +246,15 @@ const Dashboard = () => {
             </div>
             <div className="relative cursor-pointer z-20 inline-block">
               <select
-                name=""
-                id=""
+                onChange={(e) => setSelectedOptionData(e.target.value)}
+                value={selectedOptionData}
+                name="general_chart"
+                id="general_chart"
                 className="text-[#A3AED0] cursor-pointer relative z-20 inline-flex appearance-none bg-transparent py-1  pr-8 text-sm font-medium outline-none"
               >
-                <option value="">Monthly</option>
-                <option value="">Yearly</option>
+                <option value="Today">Today</option>
+                <option value="Monthly">Monthly</option>
+                <option value="Yearly">Yearly</option>
               </select>
               <span className="absolute top-1/2 right-3 z-10 -translate-y-1/2">
                 <FaCaretDown className="text-[#A3AED0]" />
@@ -160,23 +271,38 @@ const Dashboard = () => {
 
         <div className="flex justify-center items-center gap-10">
           <div className="flex w-[270px] justify-between items-center rounded-[15px] bg-[#1B254B] py-6 px-8">
-            <p className="text-[12px] text-[#A3AED0]">F-2-R 신청자</p>
-            <h1 className="text-[18px] text-[#fff] font-bold">20명</h1>
+            <p className="text-[12px] text-[#A3AED0]">결제 수</p>
+            {loader ? (
+              <Loader />
+            ) : (
+              <h1 className="text-[18px] text-[#fff] font-bold">
+                {getCountData("Event")} 명
+              </h1>
+            )}
           </div>
           <div className="flex w-[270px] justify-between items-center rounded-[15px] bg-[#1B254B] py-6 px-8">
-            <p className="text-[12px] text-[#A3AED0]">Job&House</p>
-            <h1 className="text-[18px] text-[#fff] font-bold">77건</h1>
+            <p className="text-[12px] text-[#A3AED0]">결제금액</p>
+            {loader ? (
+              <Loader />
+            ) : (
+              <h1 className="text-[18px] text-[#fff] font-bold">
+                {getCountData("Payment")} KRW
+              </h1>
+            )}
           </div>
         </div>
 
         <div className="relative cursor-pointer z-20 inline-block">
           <select
-            name=""
-            id=""
+            onChange={(e) => setSelectedOptionData(e.target.value)}
+            value={selectedOptionData}
+            name="payment"
+            id="payment"
             className="text-[#A3AED0] cursor-pointer relative z-20 inline-flex appearance-none bg-transparent py-1  pr-8 text-sm font-medium outline-none"
           >
-            <option value="">Monthly</option>
-            <option value="">Yearly</option>
+            <option value="Today">Today</option>
+            <option value="Monthly">Monthly</option>
+            <option value="Yearly">Yearly</option>
           </select>
           <span className="absolute top-1/2 right-3 z-10 -translate-y-1/2">
             <FaCaretDown className="text-[#A3AED0]" />
