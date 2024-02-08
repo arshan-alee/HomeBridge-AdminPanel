@@ -174,9 +174,11 @@ const EventList = () => {
                       <tbody className="relative overflow-auto">
                         {visibleItems.map((row, index) => (
                           <tr
-                            className=" bg-[#111C44] hover:bg-[#0c1845] duration-300"
+                            className=" bg-[#111C44] cursor-pointer hover:bg-[#0c1845] duration-300"
                             key={index}
-                            // onClick={() => navigate("/admin/event_application_details")}
+                            onClick={() =>
+                              navigate(`/admin/event_list_details/${row?._id}`)
+                            }
                           >
                             <td className="px-7 py-5   text-sm">
                               <p className="text-white whitespace-no-wrap">

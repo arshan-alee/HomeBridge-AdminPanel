@@ -119,7 +119,9 @@ const JobAndHouseAnnouncementDetails = () => {
       ) : (
         <>
           {Error ? (
-            <div className="text-black text-center ">{Error}</div>
+            <div className="w-full h-[60vh] flex items-center justify-center">
+              <h1 className="text-black text-center ">{Error}</h1>
+            </div>
           ) : (
             <div className="w-[90%]  my-12 mx-auto">
               <div className="bg-[#111C44] rounded-3xl ">

@@ -17,6 +17,7 @@ import AnnouncementRegisteration from "../pages/AnnouncementRegisteration";
 import JobAndHouseAnnouncementDetails from "../pages/JobAndHouseAnnouncementDetails";
 import Refund from "../pages/Refund";
 import RefundDetails from "../pages/RefundDetails";
+import EditEventRegistration from "../pages/EditEventRegistration";
 
 export const routes = [
   {
@@ -110,6 +111,11 @@ export const editRoutes = [
     title: "Event Registration",
     name: "event_resgistration",
     component: <EventRegistration />,
+  },
+  {
+    title: "Edit Event Registration",
+    name: "event_list_details/:id",
+    component: <EditEventRegistration />,
   },
   {
     title: "Inquiry Details",

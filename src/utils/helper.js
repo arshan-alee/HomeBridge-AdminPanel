@@ -16,6 +16,18 @@ export default function formatDate(isoDate) {
   return `${year}-${month}-${day}`;
 }
 
+// Function to convert ISO string to local date-time format
+export const convertToLocalDateTime = (isoDateString) => {
+  const date = new Date(isoDateString);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+  const localDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
+  return localDateTime;
+};
+
 export function checkDeadline(isoDate) {
   const date = new Date(isoDate);
   const today = new Date();
