@@ -71,6 +71,7 @@ const AddSchedule = ({ index, schedule, removeSchedule, onChange }) => {
             />
             <UploadInput
               name="scheduleImage"
+              id={dayIndex}
               value={daySchedule?.scheduleImage}
               onChange={(imageUrl) =>
                 handleDayScheduleChange(dayIndex, {

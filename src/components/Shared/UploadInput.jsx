@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { uploadImage } from "../../utils/helper";
 
-const UploadInput = ({ name, value, onChange }) => {
+const UploadInput = ({ name, value, onChange, id }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -42,7 +42,7 @@ const UploadInput = ({ name, value, onChange }) => {
       ) : (
         <>
           <label
-            htmlFor="file-upload"
+            htmlFor={`file-upload/${id}`}
             className="w-[70px] h-[70px] grid place-content-center bg-[#1B254B] cursor-pointer rounded-full"
           >
             <img src="/images/upload.png" alt="Upload Icon" />
@@ -51,7 +51,7 @@ const UploadInput = ({ name, value, onChange }) => {
             type="file"
             name={name}
             onChange={handleImageChange}
-            id="file-upload"
+            id={`file-upload/${id}`}
             style={{ display: "none" }}
           />
           <label

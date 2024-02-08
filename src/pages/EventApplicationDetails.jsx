@@ -155,14 +155,6 @@ const EventApplicationDetails = () => {
                         value={data?.email}
                         onChange={handleChange}
                       />
-                      <InputContainer
-                        text="결제일자"
-                        placeholder="2023.11.04  14:32"
-                        type="date"
-                        // name="applicationDate"
-                        // value={formatDate(data?.applicationDate)}
-                        // onChange={handleChange}
-                      />
                     </div>
 
                     <div className="py-6 px-10 grid grid-cols-3 gap-16 text-white">

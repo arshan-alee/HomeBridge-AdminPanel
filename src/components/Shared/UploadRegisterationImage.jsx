@@ -36,7 +36,7 @@ const UploadRegisterationImage = ({ setUploadImages, text }) => {
       ) : (
         <>
           <label
-            htmlFor="file-upload"
+            htmlFor="file-upload-registration"
             className="w-[70px] h-[70px] grid place-content-center bg-[#1B254B] cursor-pointer rounded-full"
           >
             <img src="/images/upload.png" alt="Upload Icon" />
@@ -44,11 +44,11 @@ const UploadRegisterationImage = ({ setUploadImages, text }) => {
           <input
             type="file"
             onChange={handleImageChange}
-            id="file-upload"
+            id="file-upload-registration"
             style={{ display: "none" }}
           />
           <label
-            htmlFor="file-upload"
+            htmlFor="file-upload-registration"
             className="text-[18px] font-bold text-[#1B254B] -mt-7 cursor-pointer"
           >
             {text}
