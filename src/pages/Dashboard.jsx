@@ -4,6 +4,7 @@ import { IoCheckmark } from "react-icons/io5";
 import BarChart from "../components/Shared/BarChart";
 import LineChart from "../components/Shared/LineChart";
 import { GetAllData } from "../axios/NetworkCall";
+import RequestLoader from "../components/Shared/RequestLoader";
 
 const Loader = () => {
   return (
@@ -43,46 +44,33 @@ const Dashboard = () => {
   };
 
   const getCountData = (type) => {
-    let optionData = "Monthly";
-
     switch (type) {
       case "F2R":
-      case "Job&House":
-      case "Event":
-        optionData = selectedGeneralData;
-        break;
-      case "Payment":
-        optionData = selectedPaymentData;
-        break;
-      default:
-        return 0;
-    }
-
-    switch (type) {
-      case "F2R":
-        return optionData === "Today"
+        return selectedOptionData === "Today"
           ? data?.dailyF2RApplications
-          : optionData === "Monthly"
+          : selectedOptionData === "Monthly"
           ? data?.monthlyF2RApplications
           : data?.yearlyF2RApplications;
       case "Job&House":
-        return optionData === "Today"
+        return selectedOptionData === "Today"
           ? data?.dailyJobHousesApplications
-          : optionData === "Monthly"
+          : selectedOptionData === "Monthly"
           ? data?.monthlyJobHousesApplications
           : data?.yearlyJobHousesApplications;
       case "Event":
-        return optionData === "Today"
+        return selectedOptionData === "Today"
           ? data?.dailyEventApplications
-          : optionData === "Monthly"
+          : selectedOptionData === "Monthly"
           ? data?.monthlyEventApplications
           : data?.yearlyEventApplications;
+
       case "Payment":
-        return optionData === "Today"
+        return selectedOptionData === "Today"
           ? data?.dailyPaymentSum
-          : optionData === "Monthly"
+          : selectedOptionData === "Monthly"
           ? data?.monthlyPaymentSum
           : data?.yearlyPaymentSum;
+
       default:
         return 0;
     }
@@ -112,11 +100,22 @@ const Dashboard = () => {
             </div> */}
           </div>
 
-          <h1 className="text-[34px] text-[#fff] font-bold mb-3">
-            2.579 <span className="text-[#A3AED0] text-[14px]">유저</span>
-          </h1>
+          {loader ? (
+            <Loader />
+          ) : (
+            <h1 className="text-[34px] text-[#fff] font-bold mb-3">
+              {data?.totalUsers}{" "}
+              <span className="text-[#A3AED0] text-[14px]">유저</span>
+            </h1>
+          )}
 
-          <BarChart />
+          {loader ? (
+            <div className="w-full h-[40vh] flex items-center justify-center">
+              <RequestLoader />
+            </div>
+          ) : (
+            <BarChart data={data?.userCountsByMonth} />
+          )}
         </div>
         {/* Right */}
         <div className="col-span-2 rounded-[20px] bg-[#111C44] py-7 px-8">
@@ -246,7 +245,7 @@ const Dashboard = () => {
                 </span>
               </div>
             </div>
-            <div className="relative cursor-pointer z-20 inline-block">
+            {/* <div className="relative cursor-pointer z-20 inline-block">
               <select
                 onChange={(e) => setSelectedChartData(e.target.value)}
                 value={selectedChartData}
@@ -261,9 +260,16 @@ const Dashboard = () => {
               <span className="absolute top-1/2 right-3 z-10 -translate-y-1/2">
                 <FaCaretDown className="text-[#A3AED0]" />
               </span>
-            </div>
+            </div> */}
           </div>
-          <LineChart />
+
+          {loader ? (
+            <div className="w-full h-[40vh] flex items-center justify-center">
+              <RequestLoader />
+            </div>
+          ) : (
+            <LineChart />
+          )}
         </div>
       </div>
 

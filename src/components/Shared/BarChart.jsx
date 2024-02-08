@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ApexCharts from "react-apexcharts";
 
 const options = {
@@ -93,28 +93,27 @@ const options = {
   },
 };
 
-const BarChart = () => {
-  const [state, setState] = useState({
-    series: [
+const BarChart = ({ data }) => {
+  const [series, setSeries] = useState([
+    {
+      name: "Users",
+      data: [], // Initially empty, will be updated by useEffect
+    },
+  ]);
+
+  // Update the series state whenever the data prop changes
+  useEffect(() => {
+    setSeries([
       {
-        name: "Sales",
-        data: [44, 55, 41, 67, 22, 43, 65, 65, 65, 65, 65, 65],
+        name: "Users",
+        data: data, // Use the updated data prop
       },
-      // {
-      //   name: "Revenue",
-      //   data: [13, 23, 20, 8, 13, 27, 15],
-      // },
-    ],
-  });
+    ]);
+  }, [data]);
 
   return (
     <div>
-      <ApexCharts
-        options={options}
-        series={state.series}
-        type="bar"
-        height={250}
-      />
+      <ApexCharts options={options} series={series} type="bar" height={250} />
     </div>
   );
 };
