@@ -83,7 +83,7 @@ const Dashboard = () => {
         <div className="col-span-4 rounded-[20px] bg-[#111C44] pt-10 pb-3 px-12">
           <div className="flex justify-between items-center">
             <p className="text-[#A3AED0] font-medium text-[14px]">회원수</p>
-            <div className="relative cursor-pointer z-20 inline-block">
+            {/* <div className="relative cursor-pointer z-20 inline-block">
               <select
                 name="users"
                 id="users"
@@ -96,7 +96,7 @@ const Dashboard = () => {
               <span className="absolute top-1/2 right-3 z-10 -translate-y-1/2">
                 <FaCaretDown className="text-[#A3AED0]" />
               </span>
-            </div>
+            </div> */}
           </div>
 
           <h1 className="text-[34px] text-[#fff] font-bold mb-3">

@@ -46,7 +46,7 @@ const options = {
   },
 
   xaxis: {
-    categories: ["1", "2", "3", "4", "5", "6", "7"],
+    categories: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"],
     labels: {
       style: {
         colors: "#fff", // Change the color of x-axis labels to white
@@ -98,7 +98,7 @@ const BarChart = () => {
     series: [
       {
         name: "Sales",
-        data: [44, 55, 41, 67, 22, 43, 65],
+        data: [44, 55, 41, 67, 22, 43, 65, 65, 65, 65, 65, 65],
       },
       // {
       //   name: "Revenue",
