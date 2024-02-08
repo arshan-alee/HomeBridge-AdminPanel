@@ -43,33 +43,46 @@ const Dashboard = () => {
   };
 
   const getCountData = (type) => {
+    let optionData = "Monthly";
+
     switch (type) {
       case "F2R":
-        return selectedOptionData === "Today"
+      case "Job&House":
+      case "Event":
+        optionData = selectedGeneralData;
+        break;
+      case "Payment":
+        optionData = selectedPaymentData;
+        break;
+      default:
+        return 0;
+    }
+
+    switch (type) {
+      case "F2R":
+        return optionData === "Today"
           ? data?.dailyF2RApplications
-          : selectedOptionData === "Monthly"
+          : optionData === "Monthly"
           ? data?.monthlyF2RApplications
           : data?.yearlyF2RApplications;
       case "Job&House":
-        return selectedOptionData === "Today"
+        return optionData === "Today"
           ? data?.dailyJobHousesApplications
-          : selectedOptionData === "Monthly"
+          : optionData === "Monthly"
           ? data?.monthlyJobHousesApplications
           : data?.yearlyJobHousesApplications;
       case "Event":
-        return selectedOptionData === "Today"
+        return optionData === "Today"
           ? data?.dailyEventApplications
-          : selectedOptionData === "Monthly"
+          : optionData === "Monthly"
           ? data?.monthlyEventApplications
           : data?.yearlyEventApplications;
-
       case "Payment":
-        return selectedOptionData === "Today"
+        return optionData === "Today"
           ? data?.dailyPaymentSum
-          : selectedOptionData === "Monthly"
+          : optionData === "Monthly"
           ? data?.monthlyPaymentSum
           : data?.yearlyPaymentSum;
-
       default:
         return 0;
     }

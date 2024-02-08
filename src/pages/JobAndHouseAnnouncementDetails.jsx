@@ -64,7 +64,7 @@ const JobAndHouseAnnouncementDetails = () => {
 
     try {
       const response = await EditData(
-        `api/job_house/updateAnnouncement?id=${id}`,
+        `/api/job_house/updateAnnouncement?id=${id}`,
         updatedData
       );
       if (response?.status) {
@@ -85,7 +85,7 @@ const JobAndHouseAnnouncementDetails = () => {
     setDeleteLoading(true);
     try {
       const response = await DeleteSingleData(
-        `api/job_house/deleteAnnouncement?id=${id}`
+        `/api/job_house/deleteAnnouncement?id=${id}`
       );
 
       if (response?.status) {
@@ -106,7 +106,7 @@ const JobAndHouseAnnouncementDetails = () => {
     try {
       setLoader(true);
       const response = await GetSingleData(
-        `${baseUrl}/api/job_house/announcement?id=${id}`
+        `/api/job_house/announcement?id=${id}`
       );
 
       if (response.success) {
