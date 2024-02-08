@@ -46,12 +46,26 @@ const JobAndHouseAnnouncementDetails = () => {
       [key]: newContent,
     }));
   };
+
+  const removeImage = (index) => {
+    setUploadImages((currentImages) =>
+      currentImages.filter((_, i) => i !== index)
+    );
+  };
+
   const handleSubmit = async () => {
     setUpdatetLoading(true);
+
+    const updatedData = {
+      ...data,
+      jobHouseimages: uploadImages,
+      isAccomodated: isToggled,
+    };
+
     try {
       const response = await EditData(
         `api/job_house/updateAnnouncement?id=${id}`,
-        data
+        updatedData
       );
       if (response?.status) {
         toast.success(response?.message);
@@ -96,7 +110,9 @@ const JobAndHouseAnnouncementDetails = () => {
       );
 
       if (response.success) {
+        console.log("response: ", response.data);
         setData(response.data);
+        setUploadImages(response.data.jobHouseimages);
       } else {
         setError(response.message);
       }
@@ -255,7 +271,7 @@ const JobAndHouseAnnouncementDetails = () => {
                         회사명
                       </p>
 
-                      <div className="py-6 px-10 flex flex-wrap gap-1 text-white">
+                      {/* <div className="py-6 px-10 flex flex-wrap gap-1 text-white">
                         <UploadRegisterationImage
                           setUploadImages={setUploadImages}
                         />
@@ -269,6 +285,46 @@ const JobAndHouseAnnouncementDetails = () => {
                                 src={item}
                                 alt={`upload-preview-${index}`}
                                 className="object-cover w-full h-full"
+                              />
+                            </div>
+                          ))}
+                      </div> */}
+
+                      <div className="py-6 px-10 flex flex-wrap gap-4 text-white">
+                        <UploadRegisterationImage
+                          setUploadImages={setUploadImages}
+                          text="숙소이미지 등록"
+                        />
+                        {uploadImages &&
+                          uploadImages.map((item, index) => (
+                            <div
+                              key={index}
+                              className="w-24 h-24 relative border overflow-hidden rounded-lg shadow-lg"
+                            >
+                              <button
+                                onClick={() => removeImage(index)}
+                                className="absolute top-1 right-1 bg-gray-200 text-gray-800 p-1 rounded-full hover:bg-gray-400 hover:text-white"
+                                style={{ zIndex: 10 }}
+                              >
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  className="h-4 w-4"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke="currentColor"
+                                  strokeWidth="2"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M6 18L18 6M6 6l12 12"
+                                  />
+                                </svg>
+                              </button>
+                              <img
+                                src={item}
+                                alt={`upload-preview-${index}`}
+                                className="object-cover w-full h-full rounded-lg"
                               />
                             </div>
                           ))}
