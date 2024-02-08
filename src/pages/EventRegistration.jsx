@@ -197,8 +197,8 @@ const EventRegistration = () => {
                 />
                 <InputContainer
                   text="Price"
-                  placeholder="199,000KRW"
-                  type="text"
+                  placeholder="199,000"
+                  type="number"
                   name="price"
                   value={data?.price}
                   onChange={handleChange}
