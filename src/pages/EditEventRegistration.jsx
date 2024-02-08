@@ -65,6 +65,9 @@ const EditEventRegistration = () => {
   const [updateLoading, setUpdateLoading] = useState(false);
   const [deleteLoading, setDeleteLoading] = useState(false);
 
+  console.log("data---------------------->");
+  console.log(data);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setData((prevValue) => ({
@@ -245,7 +248,7 @@ const EditEventRegistration = () => {
                       </div>
                     </div>
 
-                    {/* <div className="py-6">
+                    <div className="py-6">
                       <p className="px-10 text-white text-lg">Event Images</p>
 
                       <div className="py-6 px-10 flex flex-wrap gap-1 text-white">
@@ -254,8 +257,8 @@ const EditEventRegistration = () => {
                           text="이벤트 이미지 등록
 "
                         />
-                        {uploadImages &&
-                          uploadImages.map((item, index) => (
+                        {data?.eventImages &&
+                          data?.eventImages.map((item, index) => (
                             <div
                               key={index}
                               className="w-24 h-24 relative border overflow-hidden"
@@ -268,7 +271,7 @@ const EditEventRegistration = () => {
                             </div>
                           ))}
                       </div>
-                    </div> */}
+                    </div>
 
                     <div className="grid py-6 px-10 text-white">
                       <TextEditor
@@ -285,7 +288,7 @@ const EditEventRegistration = () => {
                 </div>
 
                 {/* Schedules */}
-                {/* {data?.schedules.length > 0 &&
+                {data?.schedules.length > 0 &&
                   data?.schedules.map((schedule, index) => (
                     <AddSchedule
                       key={index}
@@ -294,7 +297,7 @@ const EditEventRegistration = () => {
                       removeSchedule={() => removeSchedule(index)}
                       onChange={handleScheduleChange}
                     />
-                  ))} */}
+                  ))}
 
                 {/* Schdeule Button */}
                 <div
