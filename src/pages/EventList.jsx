@@ -195,7 +195,7 @@ const EventList = () => {
                             </td>
                             <td className="px-7 py-5   text-sm">
                               <p className="text-white whitespace-no-wrap">
-                                {row?.price || "-"}
+                                {`${row?.price} KRW` || "-"}
                               </p>
                             </td>
                             <td className="px-7 py-5   text-sm">
