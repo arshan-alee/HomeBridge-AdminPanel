@@ -7,6 +7,7 @@ import { PostData } from "../axios/NetworkCall";
 import toast from "react-hot-toast";
 import { isDateGreaterThanToday } from "../utils/helper";
 import UploadRegisterationImage from "../components/Shared/UploadRegisterationImage";
+import { useNavigate } from "react-router-dom";
 
 const validateFormData = (data) => {
   const requiredFields = [
@@ -45,6 +46,7 @@ const validateFormData = (data) => {
 };
 
 const EventRegistration = () => {
+  const navigate = useNavigate();
   const [uploadImages, setUploadImages] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -129,6 +131,7 @@ const EventRegistration = () => {
         toast.success(response?.message);
 
         setLoading(false);
+        navigate("/admin/event_list");
 
         // Reset form fields
         setData({
