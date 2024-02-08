@@ -19,12 +19,18 @@ const EventApplicationDetails = () => {
   const [loader, setLoader] = useState();
   const [data, setData] = useState([]);
   const [Error, setError] = useState();
+  const [filteredData, setFilteredData] = useState([]);
 
-  const { currentPage, totalPages, visibleItems, goToPage } = paginate(data);
+  const { currentPage, totalPages, visibleItems, goToPage } =
+    paginate(filteredData);
 
   useEffect(() => {
     getData();
   }, []);
+
+  useEffect(() => {
+    setFilteredData(data);
+  }, [data]);
 
   const getData = async () => {
     try {
@@ -45,6 +51,25 @@ const EventApplicationDetails = () => {
       setLoader(false);
     }
   };
+
+  const handleSearch = (searchTerm) => {
+    if (!searchTerm.trim()) {
+      setFilteredData(data); // Reset to original data if search term is empty
+    } else {
+      // Filter data based on searchTerm. Adjust the fields to match your data structure.
+      const results = data.filter(
+        (item) =>
+          item?.event?.productIntroduction
+            .toLowerCase()
+            .includes(searchTerm.toLowerCase()) ||
+          item?.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          item?.phoneNumber.toLowerCase().includes(searchTerm.toLowerCase()) ||
+          item?.email.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredData(results);
+    }
+  };
+
   return (
     <div className="w-full pt-4 px-8">
       {/* Top bar */}
@@ -72,7 +97,7 @@ const EventApplicationDetails = () => {
               },
             ]}
           />
-          <SearchBar />
+          <SearchBar onSearch={handleSearch} />
         </div>
       </div>
 
