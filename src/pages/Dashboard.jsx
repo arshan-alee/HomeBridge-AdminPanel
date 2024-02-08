@@ -15,8 +15,11 @@ const Dashboard = () => {
   const [loader, setLoader] = useState();
   const [data, setData] = useState({});
   const [Error, setError] = useState();
-
   const [selectedOptionData, setSelectedOptionData] = useState("Monthly");
+
+  const [selectedGeneralData, setSelectedGeneralData] = useState("Monthly");
+  const [selectedChartData, setSelectedChartData] = useState("Monthly");
+  const [selectedPaymentData, setSelectedPaymentData] = useState("Monthly");
 
   useEffect(() => {
     getData();
@@ -106,20 +109,6 @@ const Dashboard = () => {
         <div className="col-span-2 rounded-[20px] bg-[#111C44] py-7 px-8">
           <div className="flex justify-between items-center">
             <p className="text-[#fff] font-bold text-[16px]">유저 Data</p>
-            {/* <div className="relative cursor-pointer z-20 inline-block">
-              <select
-                name=""
-                id=""
-                className="text-[#A3AED0] cursor-pointer relative z-20 inline-flex appearance-none bg-transparent py-1 pr-8 text-sm font-medium outline-none"
-              >
-                <option value="">Today</option>
-                <option value="">Monthly</option>
-                <option value="">Yearly</option>
-              </select>
-              <span className="absolute top-1/2 right-3 z-10 -translate-y-1/2">
-                <FaCaretDown className="text-[#A3AED0]" />
-              </span>
-            </div> */}
           </div>
 
           <div className="grid gap-5 mt-3 w-full grid-col-1">
@@ -165,8 +154,8 @@ const Dashboard = () => {
             <p className="text-[#fff] font-bold text-[16px]">Data</p>
             <div className="relative cursor-pointer z-20 inline-block">
               <select
-                onChange={(e) => setSelectedOptionData(e.target.value)}
-                value={selectedOptionData}
+                onChange={(e) => setSelectedGeneralData(e.target.value)}
+                value={selectedGeneralData}
                 name="general"
                 id="general"
                 className="text-[#A3AED0] cursor-pointer relative z-20 inline-flex appearance-none bg-transparent py-1 pr-8 text-sm font-medium outline-none"
@@ -246,8 +235,8 @@ const Dashboard = () => {
             </div>
             <div className="relative cursor-pointer z-20 inline-block">
               <select
-                onChange={(e) => setSelectedOptionData(e.target.value)}
-                value={selectedOptionData}
+                onChange={(e) => setSelectedChartData(e.target.value)}
+                value={selectedChartData}
                 name="general_chart"
                 id="general_chart"
                 className="text-[#A3AED0] cursor-pointer relative z-20 inline-flex appearance-none bg-transparent py-1  pr-8 text-sm font-medium outline-none"
@@ -294,8 +283,8 @@ const Dashboard = () => {
 
         <div className="relative cursor-pointer z-20 inline-block">
           <select
-            onChange={(e) => setSelectedOptionData(e.target.value)}
-            value={selectedOptionData}
+            onChange={(e) => setSelectedPaymentData(e.target.value)}
+            value={selectedPaymentData}
             name="payment"
             id="payment"
             className="text-[#A3AED0] cursor-pointer relative z-20 inline-flex appearance-none bg-transparent py-1  pr-8 text-sm font-medium outline-none"
