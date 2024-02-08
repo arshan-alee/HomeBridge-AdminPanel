@@ -140,8 +140,8 @@ const EventRegistration = () => {
           traffic: "",
           productInformation: "",
           schedules: [],
-          uploadImages: [],
         });
+        setUploadImages([]);
       } else {
         toast.error(response);
       }
