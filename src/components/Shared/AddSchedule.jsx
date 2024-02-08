@@ -51,52 +51,54 @@ const AddSchedule = ({ index, schedule, removeSchedule, onChange }) => {
       </div>
 
       {/* Add Day Schedule */}
-      {daySchedules.map((daySchedule, dayIndex) => (
-        <div
-          key={dayIndex}
-          className="grid items-end grid-cols-4 gap-8 px-10 mt-7"
-        >
-          <div className="col-span-1 text-[#fff] flex flex-col gap-10">
-            <InputContainer
-              text="상세일정"
-              placeholder="서울"
-              name="detailedSchedule"
-              value={daySchedule?.detailedSchedule}
-              onChange={(e) =>
-                handleDayScheduleChange(dayIndex, {
-                  ...daySchedule,
-                  detailedSchedule: e.target.value,
-                })
-              }
-            />
-            <UploadInput
-              name="scheduleImage"
-              id={dayIndex}
-              value={daySchedule?.scheduleImage}
-              onChange={(imageUrl) =>
-                handleDayScheduleChange(dayIndex, {
-                  ...daySchedule,
-                  scheduleImage: imageUrl,
-                })
-              }
-            />
+      {daySchedules &&
+        daySchedules.length > 0 &&
+        daySchedules.map((daySchedule, dayIndex) => (
+          <div
+            key={dayIndex}
+            className="grid items-end grid-cols-4 gap-8 px-10 mt-7"
+          >
+            <div className="col-span-1 text-[#fff] flex flex-col gap-10">
+              <InputContainer
+                text="상세일정"
+                placeholder="서울"
+                name="detailedSchedule"
+                value={daySchedule?.detailedSchedule}
+                onChange={(e) =>
+                  handleDayScheduleChange(dayIndex, {
+                    ...daySchedule,
+                    detailedSchedule: e.target.value,
+                  })
+                }
+              />
+              <UploadInput
+                name="scheduleImage"
+                id={dayIndex}
+                value={daySchedule?.scheduleImage}
+                onChange={(imageUrl) =>
+                  handleDayScheduleChange(dayIndex, {
+                    ...daySchedule,
+                    scheduleImage: imageUrl,
+                  })
+                }
+              />
+            </div>
+            <div className="col-span-3">
+              <TextEditor
+                text=""
+                placeholder=""
+                name="dayScheduleInfo"
+                value={daySchedule?.dayScheduleInfo}
+                onChange={(newContent) =>
+                  handleDayScheduleChange(dayIndex, {
+                    ...daySchedule,
+                    dayScheduleInfo: newContent,
+                  })
+                }
+              />
+            </div>
           </div>
-          <div className="col-span-3">
-            <TextEditor
-              text=""
-              placeholder=""
-              name="dayScheduleInfo"
-              value={daySchedule?.dayScheduleInfo}
-              onChange={(newContent) =>
-                handleDayScheduleChange(dayIndex, {
-                  ...daySchedule,
-                  dayScheduleInfo: newContent,
-                })
-              }
-            />
-          </div>
-        </div>
-      ))}
+        ))}
 
       {/* Schdeule Button */}
       <div

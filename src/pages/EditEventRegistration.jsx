@@ -288,7 +288,8 @@ const EditEventRegistration = () => {
                 </div>
 
                 {/* Schedules */}
-                {data?.schedules.length > 0 &&
+                {data?.schedules &&
+                  data?.schedules.length > 0 &&
                   data?.schedules.map((schedule, index) => (
                     <AddSchedule
                       key={index}

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { uploadImage } from "../../utils/helper";
 
 const UploadInput = ({ name, value, onChange, id }) => {
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(value || null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
