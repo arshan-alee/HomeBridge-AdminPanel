@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 
 const options = {
@@ -114,30 +114,58 @@ const options = {
   },
 };
 
-const LineChart = () => {
+const LineChart = ({
+  eventApplicationCountsByMonth,
+  f2rApplicationCountsByMonth,
+  jobHouseCountsByMonth,
+}) => {
   const [state, setState] = useState({
     series: [
       {
         name: "F-2-R 신청자",
-        data: [83, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30, 45],
+        data: [],
       },
 
       {
         name: "Job&House",
-        data: [30, 90, 36, 30, 45, 35, 64, 52, 59, 36, 39, 51],
+        data: [],
       },
       {
         name: "Event",
-        data: [10, 27, 36, 30, 25, 95, 64, 52, 59, 36, 90, 51],
+        data: [],
       },
     ],
   });
+
+  // Update the series state whenever the data prop changes
+  useEffect(() => {
+    setState({
+      series: [
+        {
+          name: "F-2-R 신청자",
+          data: f2rApplicationCountsByMonth || [],
+        },
+        {
+          name: "Job&House",
+          data: jobHouseCountsByMonth || [],
+        },
+        {
+          name: "Event",
+          data: eventApplicationCountsByMonth || [],
+        },
+      ],
+    });
+  }, [
+    eventApplicationCountsByMonth,
+    f2rApplicationCountsByMonth,
+    jobHouseCountsByMonth,
+  ]);
 
   return (
     <div>
       <ReactApexChart
         options={options}
-        series={state.series}
+        series={state.series} // Make sure it's state.series
         type="line"
         width="100%"
         height={250}
