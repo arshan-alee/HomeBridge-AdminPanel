@@ -108,10 +108,19 @@ const EditEventRegistration = () => {
     });
   };
 
+  const removeImage = (index) => {
+    setUploadImages((currentImages) =>
+      currentImages.filter((_, i) => i !== index)
+    );
+  };
+
   const handleSubmit = async () => {
     setUpdateLoading(true);
     try {
-      const response = await EditData(`/api/editEventRegistration/${id}`, data);
+      const response = await EditData(`/api/editEventRegistration/${id}`, {
+        ...data,
+        eventImages: uploadImages,
+      });
       if (response?.status) {
         toast.success(response?.message);
 
@@ -154,6 +163,7 @@ const EditEventRegistration = () => {
 
       if (response.success) {
         setData(response.data);
+        setUploadImages(response.data.eventImages);
       } else {
         setError(response.message);
       }
@@ -251,7 +261,7 @@ const EditEventRegistration = () => {
                     <div className="py-6">
                       <p className="px-10 text-white text-lg">Event Images</p>
 
-                      <div className="py-6 px-10 flex flex-wrap gap-1 text-white">
+                      {/* <div className="py-6 px-10 flex flex-wrap gap-1 text-white">
                         <UploadRegisterationImage
                           setUploadImages={setUploadImages}
                           text="이벤트 이미지 등록
@@ -267,6 +277,46 @@ const EditEventRegistration = () => {
                                 src={item}
                                 alt={`upload-preview-${index}`}
                                 className="object-cover w-full h-full"
+                              />
+                            </div>
+                          ))}
+                      </div> */}
+
+                      <div className="py-6 px-10 flex flex-wrap gap-4 text-white">
+                        <UploadRegisterationImage
+                          setUploadImages={setUploadImages}
+                          text="숙소이미지 등록"
+                        />
+                        {uploadImages &&
+                          uploadImages.map((item, index) => (
+                            <div
+                              key={index}
+                              className="w-24 h-24 relative border overflow-hidden rounded-lg shadow-lg"
+                            >
+                              <button
+                                onClick={() => removeImage(index)}
+                                className="absolute top-1 right-1 bg-gray-200 text-gray-800 p-1 rounded-full hover:bg-gray-400 hover:text-white "
+                                style={{ zIndex: 10 }}
+                              >
+                                <svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  className="h-4 w-4"
+                                  fill="none"
+                                  viewBox="0 0 24 24"
+                                  stroke="currentColor"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
+                                    d="M6 18L18 6M6 6l12 12"
+                                  />
+                                </svg>
+                              </button>
+                              <img
+                                src={item}
+                                alt={`upload-preview-${index}`}
+                                className="object-cover w-full h-full rounded-lg"
                               />
                             </div>
                           ))}
