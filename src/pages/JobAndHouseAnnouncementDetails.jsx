@@ -271,25 +271,6 @@ const JobAndHouseAnnouncementDetails = () => {
                         회사명
                       </p>
 
-                      {/* <div className="py-6 px-10 flex flex-wrap gap-1 text-white">
-                        <UploadRegisterationImage
-                          setUploadImages={setUploadImages}
-                        />
-                        {uploadImages &&
-                          uploadImages.map((item, index) => (
-                            <div
-                              key={index}
-                              className="w-24 h-24 relative border overflow-hidden"
-                            >
-                              <img
-                                src={item}
-                                alt={`upload-preview-${index}`}
-                                className="object-cover w-full h-full"
-                              />
-                            </div>
-                          ))}
-                      </div> */}
-
                       <div className="py-6 px-10 flex flex-wrap gap-4 text-white">
                         <UploadRegisterationImage
                           setUploadImages={setUploadImages}
