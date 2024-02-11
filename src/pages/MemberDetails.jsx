@@ -115,13 +115,13 @@ const MemberDetails = () => {
                       value={data?.userName}
                       onChange={handleChange}
                     />
-                    <InputContainer
+                    {/* <InputContainer
                       text="비밀번호"
                       placeholder="h12345"
                       name="password"
                       value={data?.password}
                       onChange={handleChange}
-                    />
+                    /> */}
 
                     <InputContainer
                       text="비밀번호 확인"
