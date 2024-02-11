@@ -130,15 +130,21 @@ const MemberDetails = () => {
                       value={formatDate(data?.createdAt)}
                       onChange={handleChange}
                     />
-                  </div>
-
-                  <div className="py-6 px-10 grid grid-cols-3 gap-16 text-white">
                     <InputContainer
                       text="이메일"
                       name="email"
                       value={data?.email}
                       onChange={handleChange}
                     />
+                  </div>
+
+                  <div className="py-6 px-10 grid grid-cols-3 gap-16 text-white">
+                    {/* <InputContainer
+                      text="이메일"
+                      name="email"
+                      value={data?.email}
+                      onChange={handleChange}
+                    /> */}
                     <InputContainer
                       text="회원등급"
                       name="role"
