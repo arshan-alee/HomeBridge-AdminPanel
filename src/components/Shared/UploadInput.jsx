@@ -32,7 +32,31 @@ const UploadInput = ({ name, value, onChange, id }) => {
   return (
     <div className="h-[150px] w-full  grid place-items-center bg-[#fff] rounded-md">
       {selectedImage ? (
-        <div className="px-3 py-5 w-full h-full  overflow-hidden">
+        <div className="px-3 py-5 w-full h-full relative  overflow-hidden">
+          <div
+            onClick={() => {
+              setSelectedImage(null);
+              onChange(null);
+            }}
+            className="absolute cursor-pointer top-1 right-1 bg-gray-200 text-gray-800 p-1 rounded-full hover:bg-gray-400 hover:text-white "
+            style={{ zIndex: 10 }}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </div>
+
           <img
             src={selectedImage}
             alt="Uploaded"

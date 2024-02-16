@@ -236,26 +236,6 @@ const EventRegistration = () => {
               {/* Upload Image Container */}
               <p className="px-10 text-white text-lg">Event Images</p>
 
-              {/* <div className="py-6 px-10 flex flex-wrap gap-1 text-white">
-                <UploadRegisterationImage
-                  setUploadImages={setUploadImages}
-                  text="이벤트 이미지 등록
-"
-                />
-                {uploadImages &&
-                  uploadImages.map((item, index) => (
-                    <div
-                      key={index}
-                      className="w-24 h-24 relative border overflow-hidden"
-                    >
-                      <img
-                        src={item}
-                        alt={`upload-preview-${index}`}
-                        className="object-cover w-full h-full"
-                      />
-                    </div>
-                  ))}
-              </div> */}
               <div className="py-6 px-10 flex flex-wrap gap-4 text-white">
                 <UploadRegisterationImage
                   setUploadImages={setUploadImages}
