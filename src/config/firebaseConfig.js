@@ -2,13 +2,13 @@ import { initializeApp } from "firebase/app";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyChbWGkWmsKtTMxuGcekRX55t4Woz3fGvE",
-  authDomain: "home-bridge-93cac.firebaseapp.com",
-  projectId: "home-bridge-93cac",
-  storageBucket: "home-bridge-93cac.appspot.com",
-  messagingSenderId: "624454975131",
-  appId: "1:624454975131:web:b5495c6dea1d57eef0903e",
-  measurementId: "G-6CFHHDVZ3S",
+  apiKey: "AIzaSyA1AaVm9kV15w94WktBOEgYsdlhMEbo3SY",
+  authDomain: "homebridge-75193.firebaseapp.com",
+  projectId: "homebridge-75193",
+  storageBucket: "homebridge-75193.appspot.com",
+  messagingSenderId: "880896997021",
+  appId: "1:880896997021:web:a6803c131585c174db4674",
+  measurementId: "G-17Z3KFD5T9",
 };
 
 // Initialize Firebase
