@@ -91,7 +91,9 @@ const Refund = () => {
       ) : (
         <>
           {Error ? (
-            <div className="text-black text-center ">{Error}</div>
+            <div className="w-full h-[60vh] flex items-center justify-center">
+              <h1 className="text-black text-center ">{Error}</h1>
+            </div>
           ) : (
             <>
               <div className="bg-[#111C44] rounded-tl-[20px] rounded-tr-[10px] rounded-br-[2px] rounded-bl-0">

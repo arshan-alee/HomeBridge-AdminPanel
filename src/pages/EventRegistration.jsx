@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 const validateFormData = (data) => {
   const requiredFields = [
     "productIntroduction",
+    "productDescription",
     "deadline",
     "departure",
     "arrival",
@@ -52,6 +53,7 @@ const EventRegistration = () => {
 
   const [data, setData] = useState({
     productIntroduction: "",
+    productDescription: "",
     productInformation: "",
     deadline: "",
     departure: "",
@@ -180,6 +182,16 @@ const EventRegistration = () => {
                 placeholder="[New year's sunrise] Yeosu Hyangilam Sunrise with Jeolla-do delicacies, Suncheon Jeonju 1 night 2 days"
                 name="productIntroduction"
                 value={data?.productIntroduction}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="py-6 px-10 grid gap-16 text-white">
+              <InputContainer
+                text="제품 설명"
+                placeholder="Best natural scenery, accommodation with a panoramic view of the sea"
+                name="productDescription"
+                value={data?.productDescription}
                 onChange={handleChange}
               />
             </div>

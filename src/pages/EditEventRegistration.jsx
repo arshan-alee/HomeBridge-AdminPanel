@@ -210,6 +210,16 @@ const EditEventRegistration = () => {
                       />
                     </div>
 
+                    <div className="py-6 px-10 grid gap-16 text-white">
+                      <InputContainer
+                        text="제품 설명"
+                        placeholder="Best natural scenery, accommodation with a panoramic view of the sea"
+                        name="productDescription"
+                        value={data?.productDescription}
+                        onChange={handleChange}
+                      />
+                    </div>
+
                     <div className="pt-6">
                       <p className="text-[20px] text-[#fff] px-10">
                         Event Information:
