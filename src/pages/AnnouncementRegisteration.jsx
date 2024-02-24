@@ -1,13 +1,37 @@
 import React, { useState } from "react";
 import InputContainer from "../components/Shared/InputContainer";
 import Button from "../components/Shared/Button";
-import SelectInputContainer from "../components/Shared/SelectInputContainer";
-import Textarea from "../components/Shared/Textarea";
-import AddSchedule from "../components/Shared/AddSchedule";
 import UploadRegisterationImage from "../components/Shared/UploadRegisterationImage";
 import TextEditor from "../components/Shared/TextEditor";
 import { PostData } from "../axios/NetworkCall";
 import toast from "react-hot-toast";
+
+const validateFormData = (data) => {
+  const requiredFields = [
+    "announcementName",
+    "companyName",
+    "salary",
+    "rent",
+    "jobInfo",
+    "salaryBenefit",
+    "jobDetails",
+    "accomodationName",
+    "generationInformation",
+    "explanation",
+    "externalFeatures",
+    "contractInformation",
+  ];
+
+  const emptyFields = requiredFields.filter((field) => !data[field]);
+  if (emptyFields.length > 0) {
+    toast.error(
+      `Please fill in the following fields: ${emptyFields.join(", ")}`
+    );
+    return false; // Indicates validation failed
+  }
+
+  return true; // Indicates validation passed
+};
 
 const AnnouncementRegisteration = () => {
   const [isToggled, setIsToggled] = useState(true);
@@ -45,6 +69,12 @@ const AnnouncementRegisteration = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateFormData(data)) {
+      // If validation fails, stop the form submission
+      return;
+    }
+
     const updatedData = {
       ...data,
       jobHouseimages: uploadImages,
