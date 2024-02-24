@@ -119,14 +119,14 @@ const AnnouncementRegisteration = () => {
             <div className="py-6 px-10 grid grid-cols-2 gap-16 text-white">
               <InputContainer
                 text="공고명"
-                placeholder="Kim"
+                placeholder="Store management at a burger joint in Itaewon."
                 name="announcementName"
                 value={data?.announcementName}
                 onChange={handleChange}
               />
               <InputContainer
                 text="회사명"
-                placeholder="h12345"
+                placeholder="Yongsan-gu, Seoul"
                 name="companyName"
                 value={data?.companyName}
                 onChange={handleChange}
@@ -226,7 +226,7 @@ const AnnouncementRegisteration = () => {
                 <div className="py-6 px-10 w-[50%] text-white">
                   <InputContainer
                     text="공고명"
-                    placeholder="Kim"
+                    placeholder="[강원도 영월] 포도농장과 가까운 남자 전용숙소"
                     name="accomodationName"
                     value={data?.accomodationName}
                     onChange={handleChange}
