@@ -81,7 +81,12 @@ const Job_House_Support = () => {
         <div className="flex gap-3">
           <TabbarButton text="엑셀다운로드" onClick={handleDownloadInExcel} />
           {/* Announcement Registeration */}
-          <TabbarButton text="공고등록" onClick={handleDownloadInExcel} />
+          <TabbarButton
+            text="공고등록"
+            onClick={() => {
+              navigate("/admin/" + "announcement_resgistration");
+            }}
+          />
         </div>
         <div className="w-[60%] flex flex-row justify-end gap-3">
           <SelectPurpleInputContainer
