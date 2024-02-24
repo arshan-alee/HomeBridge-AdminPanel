@@ -199,11 +199,14 @@ const Inquiry = () => {
               </div>
 
               {/* Pagination */}
-              <Pagination
-                totalPages={totalPages}
-                currentPage={currentPage}
-                onPageChange={goToPage}
-              />
+
+              {data && data.length > 5 && (
+                <Pagination
+                  totalPages={totalPages}
+                  currentPage={currentPage}
+                  onPageChange={goToPage}
+                />
+              )}
             </>
           )}
         </>
