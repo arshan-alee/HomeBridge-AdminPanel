@@ -5,6 +5,7 @@ import UploadRegisterationImage from "../components/Shared/UploadRegisterationIm
 import TextEditor from "../components/Shared/TextEditor";
 import { PostData } from "../axios/NetworkCall";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const validateFormData = (data) => {
   const requiredFields = [
@@ -15,11 +16,6 @@ const validateFormData = (data) => {
     "jobInfo",
     "salaryBenefit",
     "jobDetails",
-    "accomodationName",
-    "generationInformation",
-    "explanation",
-    "externalFeatures",
-    "contractInformation",
   ];
 
   const emptyFields = requiredFields.filter((field) => !data[field]);
@@ -34,6 +30,7 @@ const validateFormData = (data) => {
 };
 
 const AnnouncementRegisteration = () => {
+  const navigate = useNavigate();
   const [isToggled, setIsToggled] = useState(true);
   const [uploadImages, setUploadImages] = useState([]);
   const [data, setData] = useState({});
@@ -91,6 +88,7 @@ const AnnouncementRegisteration = () => {
 
       if (response?.status) {
         toast.success(response?.message);
+        navigate("/admin/job_house_announcement");
 
         setLoading(false);
 
