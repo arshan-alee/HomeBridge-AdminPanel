@@ -12,6 +12,9 @@ axiosInstance.interceptors.request.use(
     if (user) {
       config.headers["Authorization"] = user?.token;
     }
+
+    console.log("config");
+    console.log(config);
     return config;
   },
   function (err) {

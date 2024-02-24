@@ -184,7 +184,7 @@ const EventApplicationDetails = () => {
                           >
                             <td className="px-7 py-5   text-sm">
                               <p className="text-white whitespace-no-wrap">
-                                {`${row?.user.toString().slice(0, 7)} ...` ||
+                                {`${row?.user?.toString().slice(0, 7)} ...` ||
                                   "-"}
                               </p>
                             </td>
