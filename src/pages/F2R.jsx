@@ -144,6 +144,15 @@ const F2R = () => {
                             국적
                             <IoChevronDownSharp className="text-[#A3AED0] ml-2 inline-block text-[18px] cursor-pointer" />
                           </th>
+
+                          <th
+                            scope="col"
+                            className="px-7 py-3 border-b-[1px] border-[#ffffff1a] bg-[#111C44] text-left text-sm font-semibold text-[#A3AED0] uppercase tracking-wider"
+                          >
+                            이메일
+                            <IoChevronDownSharp className="text-[#A3AED0] ml-2 inline-block text-[18px] cursor-pointer" />
+                          </th>
+
                           <th
                             scope="col"
                             className="px-7 py-3 border-b-[1px] border-[#ffffff1a] bg-[#111C44] text-left text-sm font-semibold text-[#A3AED0] uppercase tracking-wider"
@@ -194,6 +203,11 @@ const F2R = () => {
                             <td className="px-7 py-5   text-sm">
                               <p className="text-white whitespace-no-wrap">
                                 {row.nationality}
+                              </p>
+                            </td>
+                            <td className="px-7 py-5   text-sm">
+                              <p className="text-white whitespace-no-wrap">
+                                {row?.email}
                               </p>
                             </td>
                             <td className="px-7 py-5   text-sm">
