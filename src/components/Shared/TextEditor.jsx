@@ -21,12 +21,24 @@ const TextEditor = ({ text, placeholder, ...props }) => {
       events: {
         paste: function (event) {},
       },
+      defaultStyle: {
+        fontFamily: "Noto Sans, sans-serif",
+        fontWeight: "normal",
+      },
     }),
     []
   );
 
   return (
     <div className="w-full flex flex-col gap-2 text-black rounded-lg overflow-y-auto">
+      <style>
+        {`
+          .jodit-container {
+            font-family: 'Noto Sans', sans-serif !important;
+          }
+        `}
+      </style>
+
       <p className="text-[18px] text-[#fff]">{text}</p>
       <JoditEditor
         ref={editor}
