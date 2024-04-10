@@ -120,11 +120,11 @@ const LoginRightSide = () => {
             {Error}
           </div>
         )}
-        <Link to="/forgot-password">
+{/*         <Link to="/forgot-password">
           <p className="text-center text-[14px] py-2 cursor-pointer">
             Forgot Password
           </p>
-        </Link>
+        </Link> */}
       </form>
     </div>
   );
